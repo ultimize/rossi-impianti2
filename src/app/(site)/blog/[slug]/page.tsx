@@ -462,9 +462,6 @@ export default async function ArticlePage({ params }: Props) {
                           src={art.cover_url}
                           alt={art.cover_alt || art.title}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.07]"
-                          onError={(e) => {
-                            (e.target as HTMLElement).style.display = 'none';
-                          }}
                         />
                       ) : (
                         <div className="absolute inset-0 bg-gradient-to-br from-border to-[#2c3137] transition-transform duration-500 group-hover:scale-[1.07]" />
