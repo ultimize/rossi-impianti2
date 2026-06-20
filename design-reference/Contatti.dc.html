@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Saira+Condensed:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box;}html,body{margin:0;padding:0;background:#101214;}a{transition:all .25s ease;}</style>
+</helmet>
+<div style="background:#101214;font-family:'IBM Plex Sans',sans-serif;color:#fff;">
+  <dc-import name="SiteHeader" active="contatti" hint-size="100%,86px"></dc-import>
+
+  <div style="background:linear-gradient(90deg,rgba(11,13,15,.6) 0%,rgba(11,13,15,.15) 60%,rgba(11,13,15,0) 100%),url('assets/hero/contatti.png');background-size:cover;background-position:right center;border-bottom:1px solid #20242a;">
+    <div style="max-width:1240px;margin:0 auto;padding:76px 48px;">
+      <div style="font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:3px;color:#E11D17;text-transform:uppercase;margin-bottom:16px;">Contatti</div>
+      <h1 style="font-family:'Saira Condensed';font-weight:800;font-size:68px;line-height:.95;margin:0 0 16px;text-transform:uppercase;letter-spacing:-1px;">Parliamo del<br>tuo progetto</h1>
+      <p style="font-size:18px;color:#9aa1a9;margin:0;max-width:600px;line-height:1.55;">Richiedi un preventivo o una consulenza: ti rispondiamo al più presto.</p>
+    </div>
+  </div>
+
+  <div style="max-width:1240px;margin:0 auto;padding:80px 48px 90px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
+    <div>
+      <div style="display:flex;flex-direction:column;gap:22px;margin-bottom:28px;">
+        <div><div style="font-family:'Saira Condensed';font-weight:700;font-size:12.5px;letter-spacing:1.5px;color:#7c848d;text-transform:uppercase;margin-bottom:5px;">Sede</div><div style="font-size:17px;color:#fff;">Via Dei Fiori, 9/A — 36040 Sarego (VI)</div></div>
+      <div style="display:flex;gap:56px;flex-wrap:wrap;">
+        <div><div style="font-family:'Saira Condensed';font-weight:700;font-size:12.5px;letter-spacing:1.5px;color:#7c848d;text-transform:uppercase;margin-bottom:5px;">Tel / Fax</div><div style="font-size:17px;color:#fff;">0444 820798</div></div>
+        <div><div style="font-family:'Saira Condensed';font-weight:700;font-size:12.5px;letter-spacing:1.5px;color:#7c848d;text-transform:uppercase;margin-bottom:5px;">P.IVA</div><div style="font-size:17px;color:#fff;">01659230245</div></div>
+      </div>
+      <div><div style="font-family:'Saira Condensed';font-weight:700;font-size:12.5px;letter-spacing:1.5px;color:#7c848d;text-transform:uppercase;margin-bottom:5px;">Email</div><div style="font-size:17px;color:#fff;">info@rossimpiantisrl.it</div><div style="font-size:15px;color:#9aa1a9;margin-top:2px;">amministrazione@rossimpiantisrl.it</div></div>
+      </div>
+      <div style="position:relative;height:280px;border-radius:8px;overflow:hidden;border:1px solid #20242a;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 13px,#22262b 13px,#22262b 26px);">
+        <span style="position:absolute;left:18px;bottom:16px;font-family:'Saira Condensed';font-weight:600;font-size:13px;letter-spacing:1px;color:#7c848d;background:#101214;border-radius:2px;padding:8px 13px;text-transform:uppercase;">Mappa — Sarego (VI)</span>
+      </div>
+    </div>
+
+    <div style="background:#16191d;border:1px solid #20242a;border-radius:8px;padding:40px 38px;">
+      <h2 style="font-family:'Saira Condensed';font-weight:800;font-size:30px;color:#fff;margin:0 0 24px;text-transform:uppercase;">Richiedi un preventivo</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+        <input placeholder="Nome" style="background:#101214;border:1px solid #2c3137;border-radius:3px;padding:14px;color:#fff;font-family:'IBM Plex Sans';font-size:15px;outline:none;" style-focus="border-color:#E11D17;">
+        <input placeholder="Cognome" style="background:#101214;border:1px solid #2c3137;border-radius:3px;padding:14px;color:#fff;font-family:'IBM Plex Sans';font-size:15px;outline:none;" style-focus="border-color:#E11D17;">
+      </div>
+      <input placeholder="Email" style="width:100%;background:#101214;border:1px solid #2c3137;border-radius:3px;padding:14px;color:#fff;font-family:'IBM Plex Sans';font-size:15px;outline:none;margin-bottom:14px;" style-focus="border-color:#E11D17;">
+      <input placeholder="Telefono" style="width:100%;background:#101214;border:1px solid #2c3137;border-radius:3px;padding:14px;color:#fff;font-family:'IBM Plex Sans';font-size:15px;outline:none;margin-bottom:14px;" style-focus="border-color:#E11D17;">
+      <textarea placeholder="Raccontaci il tuo progetto" rows="5" style="width:100%;background:#101214;border:1px solid #2c3137;border-radius:3px;padding:14px;color:#fff;font-family:'IBM Plex Sans';font-size:15px;outline:none;margin-bottom:16px;resize:vertical;" style-focus="border-color:#E11D17;"></textarea>
+      <label style="display:flex;align-items:flex-start;gap:10px;margin-bottom:20px;font-size:13px;color:#9aa1a9;line-height:1.4;cursor:pointer;"><input type="checkbox" style="margin-top:2px;accent-color:#E11D17;">Acconsento al trattamento dei dati secondo la Privacy Policy.</label>
+      <button style="width:100%;font-family:'Saira Condensed';font-weight:700;font-size:18px;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#E11D17;border:none;border-radius:3px;padding:16px;cursor:pointer;" style-hover="background:#c2160f;">Invia richiesta</button>
+    </div>
+  </div>
+
+  <dc-import name="SiteFooter" hint-size="100%,220px"></dc-import>
+</div>
+</x-dc>
+</body>
+</html>

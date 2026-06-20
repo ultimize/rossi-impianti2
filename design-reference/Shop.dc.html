@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Saira+Condensed:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#101214;}
+  a{transition:all .25s ease;}
+  button{font-family:inherit;cursor:pointer;}
+  input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+</style>
+</helmet>
+
+<div style="background:#101214;font-family:'IBM Plex Sans',sans-serif;color:#fff;min-height:100vh;">
+
+  <!-- HEADER -->
+  <div style="position:sticky;top:0;z-index:50;background:rgba(16,18,20,.92);backdrop-filter:blur(10px);border-bottom:1px solid #20242a;">
+    <div style="max-width:1240px;margin:0 auto;padding:18px 48px;display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:28px;">
+        <a href="Home.dc.html" style="line-height:1;text-decoration:none;">
+          <div style="display:flex;align-items:baseline;gap:6px;font-family:Archivo;"><span style="font-weight:800;font-size:22px;letter-spacing:-.5px;color:#fff;">ROSSI IMPIANTI</span><span style="font-weight:600;font-size:10.5px;color:#7c848d;">srl</span></div>
+          <div style="display:flex;gap:9px;font-family:Archivo;font-weight:700;font-size:9px;letter-spacing:.8px;margin-top:3px;"><span style="color:#E11D17;">RISCALDAMENTO</span><span style="color:#2BB3EF;">CONDIZIONAMENTO</span></div>
+        </a>
+        <span style="font-family:'Saira Condensed';font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#2BB3EF;border:1px solid #234;border-radius:2px;padding:5px 10px;">Shop</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:22px;">
+        <a href="Home.dc.html" style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;text-decoration:none;" style-hover="color:#fff;">← Torna al sito</a>
+        <button onClick="{{ goCatalog }}" style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;background:none;border:none;" style-hover="color:#fff;">Catalogo</button>
+        <button onClick="{{ goCart }}" style="display:flex;align-items:center;gap:9px;font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#E11D17;border:none;border-radius:2px;padding:10px 16px;" style-hover="background:#c2160f;">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3 4h2l2.4 12.5a1 1 0 0 0 1 .8h9.2a1 1 0 0 0 1-.8L21 8H6"/><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/></svg>
+          Carrello · {{ cartCount }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CATALOG ================= -->
+  <sc-if value="{{ isCatalog }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <!-- shop hero -->
+    <div style="background:radial-gradient(120% 120% at 80% 0%,#1c2127 0%,#13161a 55%,#0d0f11 100%);border-bottom:1px solid #20242a;">
+      <div style="max-width:1240px;margin:0 auto;padding:64px 48px;">
+        <div style="font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:3px;color:#E11D17;text-transform:uppercase;margin-bottom:16px;">Shop online</div>
+        <h1 style="font-family:'Saira Condensed';font-weight:800;font-size:64px;line-height:.95;margin:0 0 16px;text-transform:uppercase;letter-spacing:-1px;">Climatizzatori, caldaie<br>e accessori</h1>
+        <p style="font-size:17px;color:#9aa1a9;margin:0 0 22px;max-width:540px;line-height:1.55;">Prodotti selezionati, spedizione in tutta Italia. Pagamenti sicuri con Stripe e PayPal.</p>
+        <div style="display:flex;align-items:center;gap:18px;">
+          <span style="display:inline-flex;align-items:center;gap:8px;font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#c7ccd2;border:1px solid #2c3137;border-radius:3px;padding:8px 14px;">Pagamenti — Stripe · PayPal</span>
+          <span style="display:inline-flex;align-items:center;gap:8px;font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#c7ccd2;border:1px solid #2c3137;border-radius:3px;padding:8px 14px;">Spedizione tracciata</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:1240px;margin:0 auto;padding:48px 48px 90px;">
+      <!-- category filter -->
+      <div style="display:flex;gap:10px;margin-bottom:32px;flex-wrap:wrap;">
+        <sc-for list="{{ cats }}" as="c" hint-placeholder-count="4">
+          <button onClick="{{ c.sel }}" style="font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase;border-radius:3px;padding:10px 18px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};">{{ c.name }}</button>
+        </sc-for>
+      </div>
+      <!-- product grid -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="6">
+          <div onClick="{{ p.open }}" style="border:1px solid #20242a;border-radius:6px;overflow:hidden;background:#16191d;cursor:pointer;" style-hover="border-color:#E11D17;transform:translateY(-4px);">
+            <div style="position:relative;height:200px;overflow:hidden;">
+              <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 12px,#22262b 12px,#22262b 24px);transition:transform .6s ease;" style-hover="transform:scale(1.06);"></div>
+              <span style="position:absolute;top:14px;left:14px;font-family:'Saira Condensed';font-weight:700;font-size:11.5px;letter-spacing:1px;text-transform:uppercase;background:#101214;color:#9aa1a9;border:1px solid #2c3137;border-radius:2px;padding:5px 10px;">{{ p.category }}</span>
+            </div>
+            <div style="padding:24px 26px 28px;">
+              <h3 style="font-family:'Saira Condensed';font-weight:700;font-size:24px;color:#fff;margin:0 0 6px;text-transform:uppercase;line-height:1.05;">{{ p.name }}</h3>
+              <p style="font-size:13.5px;color:#7c848d;margin:0 0 16px;line-height:1.5;">{{ p.short }}</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-family:'Saira Condensed';font-weight:800;font-size:26px;color:#fff;">{{ p.priceLabel }}</span>
+                <span style="font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#E11D17;">Scopri →</span>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ================= PRODUCT ================= -->
+  <sc-if value="{{ isProduct }}" hint-placeholder-val="{{ false }}">
+  <div style="max-width:1240px;margin:0 auto;padding:36px 48px 90px;">
+    <button onClick="{{ goCatalog }}" style="font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#9aa1a9;background:none;border:none;margin-bottom:28px;" style-hover="color:#fff;">← Catalogo</button>
+    <div style="display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:start;">
+      <div style="position:relative;height:480px;border-radius:8px;overflow:hidden;border:1px solid #20242a;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 13px,#22262b 13px,#22262b 26px);">
+        <span style="position:absolute;left:20px;bottom:20px;font-family:'Saira Condensed';font-weight:600;font-size:13px;letter-spacing:1px;color:#7c848d;background:#101214;border-radius:2px;padding:8px 13px;text-transform:uppercase;">Foto prodotto</span>
+      </div>
+      <div>
+        <div style="font-family:'Saira Condensed';font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#2BB3EF;margin-bottom:12px;">{{ selected.category }}</div>
+        <h1 style="font-family:'Saira Condensed';font-weight:800;font-size:46px;color:#fff;margin:0 0 12px;text-transform:uppercase;line-height:.98;">{{ selected.name }}</h1>
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:18px;">
+          <div style="display:flex;gap:1px;">
+            <sc-for list="{{ selected.stars }}" as="st" hint-placeholder-count="5"><span style="font-size:18px;line-height:1;color:{{ st.color }};">★</span></sc-for>
+          </div>
+          <span style="font-family:'Saira Condensed';font-weight:700;font-size:16px;color:#fff;">{{ selected.ratingLabel }}</span>
+          <a href="#recensioni" style="font-size:13.5px;color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">{{ selected.reviewCount }} recensioni</a>
+        </div>
+        <div style="font-family:'Saira Condensed';font-weight:800;font-size:40px;color:#fff;margin-bottom:6px;">{{ selected.priceLabel }}</div>
+        <div style="font-size:13px;color:#7c848d;margin-bottom:24px;">IVA inclusa · spedizione calcolata al checkout</div>
+        <p style="font-size:16px;color:#c7ccd2;line-height:1.6;margin:0 0 28px;">{{ selected.desc }}</p>
+        <div style="display:flex;gap:14px;margin-bottom:30px;">
+          <button onClick="{{ selected.add }}" style="flex:1;font-family:'Saira Condensed';font-weight:700;font-size:18px;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#E11D17;border:none;border-radius:3px;padding:17px;" style-hover="background:#c2160f;">Aggiungi al carrello</button>
+          <button onClick="{{ goCart }}" style="font-family:'Saira Condensed';font-weight:700;font-size:18px;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:none;border:1.5px solid #3a4047;border-radius:3px;padding:17px 26px;" style-hover="border-color:#fff;">Vai al carrello</button>
+        </div>
+        <div style="border:1px solid #20242a;border-radius:6px;background:#16191d;padding:6px 24px;margin-bottom:22px;">
+          <sc-for list="{{ selected.specs }}" as="s" hint-placeholder-count="3">
+            <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #20242a;">
+              <span style="font-size:14px;color:#7c848d;text-transform:uppercase;letter-spacing:.5px;font-family:'Saira Condensed';font-weight:600;">{{ s.k }}</span>
+              <span style="font-size:14.5px;color:#fff;font-weight:500;">{{ s.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:#9aa1a9;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2BB3EF" stroke-width="1.7" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8 8 11 4.6-3 8-6 8-11V5l-8-3Z"/></svg>
+          Pagamenti sicuri con <strong style="color:#fff;">Stripe</strong> e <strong style="color:#fff;">PayPal</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES STRIP -->
+    <div style="margin-top:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <div style="border:1px solid #20242a;border-radius:6px;background:#16191d;padding:24px 22px;">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#E11D17" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" style="margin-bottom:14px;"><path d="M3 14V6a1 1 0 0 1 1-1h10v9M14 9h4l3 3v2M3 14h18M3 14v3h2"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>
+        <div style="font-family:'Saira Condensed';font-weight:700;font-size:17px;color:#fff;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;">Spedizione tracciata</div>
+        <p style="font-size:13.5px;color:#8a929b;line-height:1.5;margin:0;">Consegna in 24/72h in tutta Italia. Gratuita per ordini sopra € 499.</p>
+      </div>
+      <div style="border:1px solid #20242a;border-radius:6px;background:#16191d;padding:24px 22px;">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#2BB3EF" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" style="margin-bottom:14px;"><path d="M12 2 4 5v6c0 5 3.4 8 8 11 4.6-3 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <div style="font-family:'Saira Condensed';font-weight:700;font-size:17px;color:#fff;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;">Garanzia ufficiale</div>
+        <p style="font-size:13.5px;color:#8a929b;line-height:1.5;margin:0;">2 anni inclusi sul prodotto, estendibili fino a 5 anni con il servizio Rossi.</p>
+      </div>
+      <div style="border:1px solid #20242a;border-radius:6px;background:#16191d;padding:24px 22px;">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#E11D17" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" style="margin-bottom:14px;"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.1-.6-.6-2.1 2.2-2.3Z"/></svg>
+        <div style="font-family:'Saira Condensed';font-weight:700;font-size:17px;color:#fff;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;">Installazione & assistenza</div>
+        <p style="font-size:13.5px;color:#8a929b;line-height:1.5;margin:0;">Montaggio e manutenzione dai tecnici Rossi a Vicenza e provincia.</p>
+      </div>
+      <div style="border:1px solid #20242a;border-radius:6px;background:#16191d;padding:24px 22px;">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#2BB3EF" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" style="margin-bottom:14px;"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 4v4h-4M21 12a9 9 0 0 1-15 6.7L3 16M3 20v-4h4"/></svg>
+        <div style="font-family:'Saira Condensed';font-weight:700;font-size:17px;color:#fff;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;">Reso facile</div>
+        <p style="font-size:13.5px;color:#8a929b;line-height:1.5;margin:0;">Hai 14 giorni per il reso. Rimborso garantito sul prodotto integro.</p>
+      </div>
+    </div>
+
+    <!-- REVIEWS -->
+    <div id="recensioni" style="margin-top:66px;scroll-margin-top:90px;">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:28px;">
+        <h2 style="font-family:'Saira Condensed';font-weight:800;font-size:36px;color:#fff;margin:0;text-transform:uppercase;letter-spacing:-.5px;">Recensioni dei clienti</h2>
+        <button style="font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:none;border:1.5px solid #3a4047;border-radius:3px;padding:11px 20px;" style-hover="border-color:#E11D17;color:#E11D17;">Scrivi una recensione</button>
+      </div>
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:start;">
+        <!-- summary -->
+        <div style="border:1px solid #20242a;border-radius:6px;background:#16191d;padding:30px 28px;">
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:8px;">
+            <span style="font-family:'Saira Condensed';font-weight:800;font-size:58px;line-height:.9;color:#fff;">{{ selected.ratingLabel }}</span>
+            <span style="font-size:16px;color:#7c848d;">/ 5</span>
+          </div>
+          <div style="display:flex;gap:2px;margin-bottom:8px;">
+            <sc-for list="{{ selected.starsBig }}" as="st" hint-placeholder-count="5"><span style="font-size:22px;line-height:1;color:{{ st.color }};">★</span></sc-for>
+          </div>
+          <div style="font-size:13.5px;color:#8a929b;margin-bottom:22px;">Basato su {{ selected.reviewCount }} recensioni verificate</div>
+          <sc-for list="{{ selected.bars }}" as="b" hint-placeholder-count="5">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;">
+              <span style="font-size:12.5px;color:#9aa1a9;width:30px;font-family:'Saira Condensed';font-weight:600;">{{ b.label }} ★</span>
+              <div style="flex:1;height:7px;border-radius:4px;background:#23272d;overflow:hidden;"><div style="height:100%;width:{{ b.pct }};background:{{ b.fill }};border-radius:4px;"></div></div>
+              <span style="font-size:12px;color:#7c848d;width:34px;text-align:right;">{{ b.pctLabel }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <!-- list -->
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <sc-for list="{{ selected.reviewList }}" as="r" hint-placeholder-count="4">
+            <div style="border:1px solid #20242a;border-radius:6px;background:#16191d;padding:22px 24px;">
+              <div style="display:flex;align-items:center;gap:13px;margin-bottom:13px;">
+                <div style="width:42px;height:42px;flex:none;border-radius:50%;background:{{ r.avatarBg }};display:flex;align-items:center;justify-content:center;font-family:'Saira Condensed';font-weight:800;font-size:16px;color:#fff;">{{ r.initials }}</div>
+                <div style="flex:1;">
+                  <div style="display:flex;align-items:center;gap:9px;">
+                    <span style="font-family:'Saira Condensed';font-weight:700;font-size:16px;color:#fff;">{{ r.name }}</span>
+                    <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;color:#2BB3EF;">
+                      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#2BB3EF" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"><path d="m5 12 5 5L20 6"/></svg>
+                      Acquisto verificato
+                    </span>
+                  </div>
+                  <div style="font-size:12.5px;color:#7c848d;">{{ r.city }} · {{ r.date }}</div>
+                </div>
+                <div style="display:flex;gap:1px;">
+                  <sc-for list="{{ r.stars }}" as="st" hint-placeholder-count="5"><span style="font-size:14px;line-height:1;color:{{ st.color }};">★</span></sc-for>
+                </div>
+              </div>
+              <div style="font-family:'Saira Condensed';font-weight:700;font-size:16px;color:#fff;margin-bottom:5px;">{{ r.title }}</div>
+              <p style="font-size:14.5px;color:#b3bac1;line-height:1.6;margin:0;">{{ r.text }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ================= CART ================= -->
+  <sc-if value="{{ isCart }}" hint-placeholder-val="{{ false }}">
+  <div style="max-width:1240px;margin:0 auto;padding:48px 48px 90px;">
+    <h1 style="font-family:'Saira Condensed';font-weight:800;font-size:48px;color:#fff;margin:0 0 32px;text-transform:uppercase;letter-spacing:-.5px;">Il tuo carrello</h1>
+
+    <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="border:1px solid #20242a;border-radius:6px;background:#16191d;padding:64px;text-align:center;">
+        <p style="font-size:17px;color:#9aa1a9;margin:0 0 22px;">Il carrello è vuoto.</p>
+        <button onClick="{{ goCatalog }}" style="font-family:'Saira Condensed';font-weight:700;font-size:16px;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#E11D17;border:none;border-radius:3px;padding:15px 28px;" style-hover="background:#c2160f;">Vai al catalogo</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:24px;align-items:start;">
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <sc-for list="{{ cartItems }}" as="it" hint-placeholder-count="2">
+            <div style="display:flex;gap:20px;align-items:center;border:1px solid #20242a;border-radius:6px;background:#16191d;padding:18px;">
+              <div style="width:96px;height:96px;flex:none;border-radius:4px;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 10px,#22262b 10px,#22262b 20px);"></div>
+              <div style="flex:1;">
+                <div style="font-family:'Saira Condensed';font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#2BB3EF;margin-bottom:4px;">{{ it.category }}</div>
+                <h3 style="font-family:'Saira Condensed';font-weight:700;font-size:22px;color:#fff;margin:0 0 4px;text-transform:uppercase;">{{ it.name }}</h3>
+                <div style="font-size:13.5px;color:#7c848d;">{{ it.priceLabel }} cad.</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:2px;border:1px solid #2c3137;border-radius:4px;overflow:hidden;">
+                <button onClick="{{ it.dec }}" style="width:38px;height:38px;background:#101214;border:none;color:#fff;font-size:20px;line-height:1;">−</button>
+                <span style="width:42px;text-align:center;font-family:'Saira Condensed';font-weight:700;font-size:18px;color:#fff;">{{ it.qty }}</span>
+                <button onClick="{{ it.inc }}" style="width:38px;height:38px;background:#101214;border:none;color:#fff;font-size:20px;line-height:1;">+</button>
+              </div>
+              <div style="width:110px;text-align:right;font-family:'Saira Condensed';font-weight:800;font-size:22px;color:#fff;">{{ it.lineLabel }}</div>
+              <button onClick="{{ it.remove }}" style="background:none;border:none;color:#5a626b;font-size:22px;line-height:1;padding:6px;" style-hover="color:#E11D17;">×</button>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="border:1px solid #20242a;border-radius:6px;background:#16191d;padding:30px;">
+          <h3 style="font-family:'Saira Condensed';font-weight:800;font-size:24px;color:#fff;margin:0 0 22px;text-transform:uppercase;">Riepilogo</h3>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:15px;color:#9aa1a9;"><span>Subtotale</span><span style="color:#fff;">{{ subtotalLabel }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:15px;color:#9aa1a9;border-bottom:1px solid #20242a;"><span>Spedizione</span><span style="color:#fff;">Calcolata al checkout</span></div>
+          <div style="display:flex;justify-content:space-between;padding:18px 0 24px;font-family:'Saira Condensed';font-weight:800;font-size:24px;color:#fff;text-transform:uppercase;"><span>Totale</span><span>{{ subtotalLabel }}</span></div>
+          <button style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Saira Condensed';font-weight:700;font-size:17px;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#635BFF;border:none;border-radius:4px;padding:15px;margin-bottom:11px;" style-hover="filter:brightness(1.1);">Paga con carta — Stripe</button>
+          <button style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;font-family:Archivo;font-weight:800;font-size:18px;color:#003087;background:#FFC439;border:none;border-radius:4px;padding:14px;" style-hover="filter:brightness(1.04);"><span style="color:#003087;">Pay</span><span style="color:#009cde;">Pal</span></button>
+          <p style="font-size:12px;color:#5a626b;margin:16px 0 0;text-align:center;line-height:1.5;">Mockup grafico — i pagamenti Stripe e PayPal verranno collegati in fase di sviluppo.</p>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+  </sc-if>
+
+  <!-- FOOTER -->
+  <div style="background:#0d0f11;color:#7c848d;border-top:3px solid #E11D17;font-family:'IBM Plex Sans',sans-serif;">
+    <div style="max-width:1240px;margin:0 auto;padding:64px 48px 40px;display:grid;grid-template-columns:1.7fr 1fr 1fr 1.1fr;gap:40px;">
+      <div>
+        <img src="assets/logo-rossi-white.png" alt="Rossi Impianti" style="display:block;height:54px;width:auto;margin-bottom:22px;" />
+        <p style="font-size:14.5px;line-height:1.65;color:#9aa1a9;max-width:330px;margin:0 0 22px;">Progettiamo e costruiamo impianti industriali chiavi in mano dal 1980. Vicenza e provincia.</p>
+        <a href="Contatti.dc.html" style="display:inline-flex;align-items:center;gap:9px;font-family:'Saira Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:.5px;text-transform:uppercase;color:#fff;border:1.5px solid #2c3137;border-radius:2px;padding:11px 22px;text-decoration:none;" style-hover="border-color:#E11D17;color:#E11D17;">Richiedi un preventivo <span>→</span></a>
+      </div>
+      <div>
+        <div style="font-family:'Saira Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:1.5px;color:#fff;text-transform:uppercase;margin-bottom:16px;">Navigazione</div>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;">
+          <a href="Chisiamo.dc.html" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">Chi siamo</a>
+          <a href="Servizi.dc.html" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">Servizi</a>
+          <a href="Settori.dc.html" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">Settori</a>
+          <a href="Marchi.dc.html" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">Marchi trattati</a>
+          <a href="News.dc.html" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">News</a>
+          <a href="Shop.dc.html" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">Shop</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Saira Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:1.5px;color:#fff;text-transform:uppercase;margin-bottom:16px;">Servizi</div>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:#9aa1a9;">
+          <span>Impianti industriali</span>
+          <span>Impianti antincendio</span>
+          <span>Riscaldamento</span>
+          <span>Condizionamento</span>
+          <span>Idraulica</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Saira Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:1.5px;color:#fff;text-transform:uppercase;margin-bottom:16px;">Contatti</div>
+        <div style="display:flex;flex-direction:column;gap:13px;font-size:14px;line-height:1.5;">
+          <div style="color:#9aa1a9;">Via Dei Fiori, 9/A<br>36040 Sarego (VI)</div>
+          <a href="tel:0444820798" style="color:#fff;text-decoration:none;font-weight:600;" style-hover="color:#E11D17;">0444 820798</a>
+          <a href="mailto:info@rossimpiantisrl.it" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">info@rossimpiantisrl.it</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #20242a;">
+      <div style="max-width:1240px;margin:0 auto;padding:22px 48px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12.5px;color:#5f666e;">
+        <span>© 2026 Rossi Impianti S.r.l. — Tutti i diritti riservati</span>
+        <span style="letter-spacing:.3px;">P.IVA 01659230245 · COD. SDI T9K4ZHO</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { view: 'catalog', selectedId: null, cart: {}, category: 'Tutti' };
+
+  PRODUCTS = [
+    { id: 'daikin12', category: 'Climatizzazione', name: 'Climatizzatore Daikin 12000 BTU', price: 890, rating: 4.8, reviews: 47, short: 'Mono split inverter, classe A+++.', desc: 'Climatizzatore mono split inverter ad alta efficienza, silenzioso e con controllo Wi-Fi. Ideale per ambienti fino a 35 m². Installazione a regola d\u2019arte inclusa su richiesta.', specs: [{k:'Classe energetica',v:'A+++ / A++'},{k:'Potenza',v:'12.000 BTU'},{k:'Gas refrigerante',v:'R32'},{k:'Wi-Fi',v:'Integrato'}] },
+    { id: 'sime24', category: 'Riscaldamento', name: 'Caldaia a condensazione Sime 24 kW', price: 1240, rating: 4.9, reviews: 32, short: 'Murale a condensazione, alto rendimento.', desc: 'Caldaia murale a condensazione da 24 kW, ottimizzata per impianti a radiatori e a pavimento. Modulazione ampia e basse emissioni. Disponibile il Pacchetto Completo di installazione e pratiche.', specs: [{k:'Potenza',v:'24 kW'},{k:'Tipo',v:'Condensazione'},{k:'Rendimento',v:'fino al 108%'},{k:'Classe',v:'A'}] },
+    { id: 'termo-smart', category: 'Accessori', name: 'Termostato smart Wi-Fi', price: 119, rating: 4.6, reviews: 118, short: 'Cronotermostato connesso, app inclusa.', desc: 'Cronotermostato smart con controllo da app, programmazione settimanale e geolocalizzazione. Compatibile con la maggior parte degli impianti di riscaldamento e raffrescamento.', specs: [{k:'Connettività',v:'Wi-Fi 2.4 GHz'},{k:'Programmazione',v:'Settimanale'},{k:'Compatibilità',v:'Caldaie / pompe di calore'},{k:'App',v:'iOS / Android'}] },
+    { id: 'pdc8', category: 'Riscaldamento', name: 'Pompa di calore aria-acqua 8 kW', price: 3450, rating: 4.9, reviews: 21, short: 'Riscaldamento, raffrescamento e ACS.', desc: 'Pompa di calore aria-acqua da 8 kW per riscaldamento, raffrescamento e acqua calda sanitaria. Massima efficienza con impianti a pavimento. Progettazione e installazione disponibili.', specs: [{k:'Potenza',v:'8 kW'},{k:'Funzioni',v:'Caldo / Freddo / ACS'},{k:'COP',v:'fino a 4,8'},{k:'Gas',v:'R32'}] },
+    { id: 'aermec-fan', category: 'Climatizzazione', name: 'Ventilconvettore Aermec', price: 560, rating: 4.7, reviews: 54, short: 'Fan coil silenzioso, design compatto.', desc: 'Ventilconvettore Aermec a parete, ideale per la distribuzione del comfort in abbinamento a pompa di calore. Funzionamento silenzioso e filtri facilmente removibili.', specs: [{k:'Tipo',v:'Fan coil a parete'},{k:'Velocità',v:'3 + auto'},{k:'Rumorosità',v:'da 24 dB(A)'},{k:'Filtro',v:'Lavabile'}] },
+    { id: 'solare200', category: 'Riscaldamento', name: 'Kit solare termico 200 L', price: 1890, rating: 4.8, reviews: 18, short: 'Acqua calda dal sole, bollitore incluso.', desc: 'Sistema solare termico a circolazione forzata con bollitore da 200 litri e pannello ad alta resa. Riduce i consumi per l\u2019acqua calda sanitaria. Documentazione e incentivi gestiti per te.', specs: [{k:'Capacità bollitore',v:'200 L'},{k:'Pannello',v:'Alta efficienza'},{k:'Circolazione',v:'Forzata'},{k:'Uso',v:'ACS'}] }
+  ];
+
+  REVIEWS = [
+    { name: 'Marco T.', city: 'Vicenza', rating: 5, date: 'Marzo 2026', title: 'Servizio impeccabile', text: 'Ordine arrivato in 3 giorni, imballaggio perfetto. Installazione fatta dai tecnici Rossi, tutto a regola d\u2019arte. Consigliatissimi.' },
+    { name: 'Giulia P.', city: 'Verona', rating: 5, date: 'Febbraio 2026', title: 'Ottimo rapporto qualità-prezzo', text: 'Prodotto come da descrizione e assistenza pre-vendita molto disponibile nel consigliarmi la taglia giusta per casa mia.' },
+    { name: 'Andrea B.', city: 'Padova', rating: 4, date: 'Gennaio 2026', title: 'Funziona benissimo', text: 'Consuma poco e fa il suo lavoro. Tolgo una stella solo per la consegna un giorno in ritardo, ma il supporto è stato impeccabile.' },
+    { name: 'Sara M.', city: 'Sarego (VI)', rating: 5, date: 'Dicembre 2025', title: 'Mi sono trovata benissimo', text: 'Dalla scelta al montaggio sempre seguita con professionalità. Ditta seria del territorio, super consigliata a tutti.' }
+  ];
+
+  fmt(n) { return '\u20ac ' + n.toLocaleString('it-IT'); }
+  stars(rating, size) {
+    const r = Math.round(rating);
+    return Array.from({ length: 5 }, (_, i) => ({ color: i < r ? '#F5A623' : '#39404a', size: (size || 16) + 'px' }));
+  }
+  initials(name) { return name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase(); }
+  bars(rating) {
+    const dist = rating >= 4.85 ? [90, 8, 2, 0, 0] : rating >= 4.7 ? [80, 14, 4, 1, 1] : [70, 19, 7, 2, 2];
+    return dist.map((pct, i) => ({ label: 5 - i, pct: pct + '%', pctLabel: pct + '%', fill: i === 0 ? '#F5A623' : '#6a727c' }));
+  }
+  open(id) { this.setState({ view: 'product', selectedId: id }); try { window.scrollTo(0, 0); } catch(e){} }
+  add(id) { this.setState((s) => { const c = { ...s.cart }; c[id] = (c[id] || 0) + 1; return { cart: c }; }); }
+  inc(id) { this.add(id); }
+  dec(id) { this.setState((s) => { const c = { ...s.cart }; c[id] = (c[id] || 0) - 1; if (c[id] <= 0) delete c[id]; return { cart: c }; }); }
+  remove(id) { this.setState((s) => { const c = { ...s.cart }; delete c[id]; return { cart: c }; }); }
+  goCatalog() { this.setState({ view: 'catalog' }); try { window.scrollTo(0, 0); } catch(e){} }
+  goCart() { this.setState({ view: 'cart' }); try { window.scrollTo(0, 0); } catch(e){} }
+  setCategory(cat) { this.setState({ category: cat }); }
+
+  renderVals() {
+    const cat = this.state.category;
+    const products = this.PRODUCTS.filter((p) => cat === 'Tutti' || p.category === cat).map((p) => ({
+      ...p, priceLabel: this.fmt(p.price), open: () => this.open(p.id), add: () => this.add(p.id)
+    }));
+    const cats = ['Tutti', 'Climatizzazione', 'Riscaldamento', 'Accessori'].map((c) => ({
+      name: c, sel: () => this.setCategory(c),
+      bg: c === cat ? '#E11D17' : 'transparent',
+      color: c === cat ? '#fff' : '#c7ccd2',
+      border: c === cat ? '#E11D17' : '#2c3137'
+    }));
+    const sel = this.PRODUCTS.find((p) => p.id === this.state.selectedId);
+    const selected = sel ? {
+      ...sel,
+      priceLabel: this.fmt(sel.price),
+      add: () => this.add(sel.id),
+      ratingLabel: sel.rating.toLocaleString('it-IT', { minimumFractionDigits: 1 }),
+      reviewCount: sel.reviews,
+      stars: this.stars(sel.rating, 18),
+      starsBig: this.stars(sel.rating, 22),
+      bars: this.bars(sel.rating),
+      reviewList: this.REVIEWS.map((r, i) => ({
+        ...r,
+        initials: this.initials(r.name),
+        stars: this.stars(r.rating, 14),
+        avatarBg: ['#E11D17', '#2BB3EF', '#3a4047', '#F5A623'][i % 4]
+      }))
+    } : null;
+    const cartItems = Object.entries(this.state.cart).map(([id, qty]) => {
+      const p = this.PRODUCTS.find((x) => x.id === id);
+      return { ...p, qty, priceLabel: this.fmt(p.price), lineLabel: this.fmt(p.price * qty), inc: () => this.inc(id), dec: () => this.dec(id), remove: () => this.remove(id) };
+    });
+    const cartCount = Object.values(this.state.cart).reduce((a, b) => a + b, 0);
+    const subtotal = cartItems.reduce((a, i) => a + i.price * i.qty, 0);
+    return {
+      isCatalog: this.state.view === 'catalog',
+      isProduct: this.state.view === 'product' && !!selected,
+      isCart: this.state.view === 'cart',
+      products, cats, selected, cartItems, cartCount,
+      cartEmpty: cartItems.length === 0,
+      hasItems: cartItems.length > 0,
+      subtotalLabel: this.fmt(subtotal),
+      goCatalog: () => this.goCatalog(), goCart: () => this.goCart()
+    };
+  }
+}
+</script>
+</body>
+</html>

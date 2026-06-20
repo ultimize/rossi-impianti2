@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Saira+Condensed:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#101214;}
+  html{scroll-behavior:smooth;}
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+  @keyframes sheen{0%{background-position:-220% 0;}100%{background-position:220% 0;}}
+  @keyframes flick{0%,100%{transform:scale(1) translateY(0);}50%{transform:scale(1.12) translateY(-1px);}}
+  @keyframes drift{0%,100%{transform:translateX(0);}50%{transform:translateX(3px);}}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @keyframes revealUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes revealFade{from{opacity:0;}to{opacity:1;}}
+  a{transition:all .25s ease;}
+</style>
+</helmet>
+
+<div ref="{{ setRoot }}" style="background:#101214;font-family:'IBM Plex Sans',sans-serif;color:#fff;overflow-x:clip;">
+
+  <!-- HEADER -->
+  <div id="siteHeader" style="position:sticky;top:0;z-index:50;background:rgba(16,18,20,.86);backdrop-filter:blur(10px);border-bottom:1px solid #20242a;">
+    <div id="siteHeaderInner" style="max-width:1240px;margin:0 auto;padding:18px 48px;display:flex;align-items:center;justify-content:space-between;">
+      <div style="line-height:1;">
+        <div style="display:flex;align-items:baseline;gap:6px;font-family:Archivo;"><span style="font-weight:800;font-size:22px;letter-spacing:-.5px;color:#fff;">ROSSI IMPIANTI</span><span style="font-weight:600;font-size:10.5px;color:#7c848d;">srl</span></div>
+        <div style="display:flex;gap:9px;font-family:Archivo;font-weight:700;font-size:9px;letter-spacing:.8px;margin-top:3px;"><span style="color:#E11D17;">RISCALDAMENTO</span><span style="color:#2BB3EF;">CONDIZIONAMENTO</span></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:21px;">
+        <a href="#top" style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;text-decoration:none;" style-hover="color:#fff;">Home</a>
+        <a href="Chisiamo.dc.html" style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;text-decoration:none;" style-hover="color:#fff;">Chi siamo</a>
+        <a href="Servizi.dc.html" style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;text-decoration:none;" style-hover="color:#fff;">Servizi</a>
+        <a href="Settori.dc.html" style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;text-decoration:none;" style-hover="color:#fff;">Settori</a>
+        <a href="Marchi.dc.html" style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;text-decoration:none;" style-hover="color:#fff;">Marchi trattati</a>
+        <a href="News.dc.html" style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;text-decoration:none;" style-hover="color:#fff;">News</a>
+        <a href="Shop.dc.html" style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#2BB3EF;text-decoration:none;" style-hover="color:#fff;">Shop</a>
+        <a href="Contatti.dc.html" style="font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#E11D17;border-radius:2px;padding:11px 18px;text-decoration:none;" style-hover="background:#c2160f;transform:translateY(-1px);">Contatti</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div id="top" style="position:relative;background:radial-gradient(120% 120% at 80% 0%,#1c2127 0%,#13161a 45%,#0d0f11 100%);overflow:hidden;scroll-margin-top:0;">
+    <!-- VIDEO DI SFONDO (clip stock temporanea — sostituire con riprese reali dei vostri cantieri) -->
+    <video autoplay muted loop playsinline preload="auto" poster="assets/hero/settori.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78;filter:saturate(.95) contrast(1.02);pointer-events:none;">
+      <source src="https://assets.mixkit.co/videos/17675/17675-360.mp4" type="video/mp4" />
+    </video>
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,15,17,.92) 0%,rgba(13,15,17,.55) 42%,rgba(13,15,17,.12) 100%);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,15,17,.35) 0%,rgba(13,15,17,0) 32%,rgba(13,15,17,.7) 100%);pointer-events:none;"></div>
+    <div style="position:absolute;top:-70px;right:-30px;font-family:'Saira Condensed';font-weight:800;font-size:420px;line-height:.8;color:rgba(25,28,32,.55);letter-spacing:-10px;animation:floaty 7s ease-in-out infinite;pointer-events:none;">44</div>
+    <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:#E11D17;"></div>
+    <div style="max-width:1240px;margin:0 auto;padding:120px 48px 110px;position:relative;">
+      <div data-reveal style="opacity:1;transform:translateY(24px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .06s forwards;font-family:'Saira Condensed';font-weight:700;font-size:15px;letter-spacing:4px;color:#E11D17;text-transform:uppercase;margin-bottom:26px;">Impianti industriali · dal 1980</div>
+      <h1 data-reveal style="opacity:1;transform:translateY(28px);animation:revealUp .8s cubic-bezier(.16,1,.3,1) .08s forwards;font-family:'Saira Condensed';font-weight:800;font-size:96px;line-height:.92;margin:0 0 28px;text-transform:uppercase;letter-spacing:-1.5px;max-width:900px;">Progettiamo<br>e costruiamo<br><span style="color:#E11D17;">impianti industriali.</span></h1>
+      <p data-reveal style="opacity:1;transform:translateY(24px);animation:revealUp .8s cubic-bezier(.16,1,.3,1) .18s forwards;font-size:19px;color:#9aa1a9;line-height:1.55;margin:0 0 40px;max-width:480px;">44 anni di cantieri a Vicenza. Chiavi in mano, per le aziende.</p>
+      <div data-reveal style="opacity:1;transform:translateY(24px);animation:revealUp .8s cubic-bezier(.16,1,.3,1) .28s forwards;display:flex;gap:14px;">
+        <a href="Contatti.dc.html" style="font-family:'Saira Condensed';font-weight:700;font-size:18px;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#E11D17;border-radius:2px;padding:17px 34px;text-decoration:none;" style-hover="background:#c2160f;transform:translateY(-2px);">Richiedi un preventivo</a>
+        <a href="Settori.dc.html" style="font-family:'Saira Condensed';font-weight:700;font-size:18px;letter-spacing:.5px;text-transform:uppercase;color:#fff;border:1.5px solid #3a4047;border-radius:2px;padding:17px 34px;text-decoration:none;" style-hover="border-color:#fff;transform:translateY(-2px);">I nostri lavori</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div style="background:#E11D17;overflow:hidden;white-space:nowrap;">
+    <div style="display:inline-flex;animation:marquee 26s linear infinite;font-family:'Saira Condensed';font-weight:600;text-transform:uppercase;letter-spacing:1.5px;font-size:16px;color:#fff;">
+      <span style="padding:16px 0;">&nbsp;&nbsp;★&nbsp;&nbsp;44 anni di attività&nbsp;&nbsp;★&nbsp;&nbsp;Cantieri chiavi in mano&nbsp;&nbsp;★&nbsp;&nbsp;Aria · Acqua · Gas · Metano&nbsp;&nbsp;★&nbsp;&nbsp;Impianti antincendio&nbsp;&nbsp;★&nbsp;&nbsp;Vicenza e provincia&nbsp;&nbsp;★&nbsp;&nbsp;Pacchetto Completo&nbsp;&nbsp;</span>
+      <span style="padding:16px 0;">&nbsp;&nbsp;★&nbsp;&nbsp;44 anni di attività&nbsp;&nbsp;★&nbsp;&nbsp;Cantieri chiavi in mano&nbsp;&nbsp;★&nbsp;&nbsp;Aria · Acqua · Gas · Metano&nbsp;&nbsp;★&nbsp;&nbsp;Impianti antincendio&nbsp;&nbsp;★&nbsp;&nbsp;Vicenza e provincia&nbsp;&nbsp;★&nbsp;&nbsp;Pacchetto Completo&nbsp;&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- SERVIZI -->
+  <div id="servizi" style="background:#101214;padding:90px 0;scroll-margin-top:80px;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 48px;">
+      <div data-reveal style="opacity:1;transform:translateY(24px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .06s forwards;display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:end;margin-bottom:40px;">
+        <div>
+          <div style="font-family:'Saira Condensed';font-weight:700;font-size:15px;letter-spacing:3px;color:#E11D17;text-transform:uppercase;margin-bottom:14px;">Cosa facciamo</div>
+          <h2 style="font-family:'Saira Condensed';font-weight:800;font-size:56px;color:#fff;margin:0;text-transform:uppercase;letter-spacing:-.5px;line-height:.95;">Quattro aree,<br>un solo interlocutore</h2>
+        </div>
+        <p style="font-size:16px;color:#9aa1a9;line-height:1.6;margin:0 0 4px;">Dalla progettazione alla messa in opera realizziamo impianti completi per l'industria, il commercio e la casa. Ogni servizio comprende il <strong style="color:#fff;">Pacchetto Completo</strong>.</p>
+      </div>
+
+      <!-- featured industrial -->
+      <div data-reveal style="opacity:1;transform:translateY(28px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .06s forwards;display:grid;grid-template-columns:1.05fr 1fr;border:1px solid #20242a;border-radius:6px;overflow:hidden;margin-bottom:16px;background:#16191d;" style-hover="border-color:#E11D17;">
+        <div style="padding:48px 44px;display:flex;flex-direction:column;justify-content:center;">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+            <div style="width:52px;height:52px;border:1px solid #2c3137;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#E11D17;flex:none;">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 21V11l6 3.2V11l6 3.2V7l6 3v11H3Z"/><path d="M7 21v-3.4M13 21v-3.4M19 21v-3.4"/></svg>
+            </div>
+            <div style="font-family:'Saira Condensed';font-weight:800;font-size:13px;letter-spacing:2px;color:#E11D17;text-transform:uppercase;">01 / Il nostro core</div>
+          </div>
+          <h3 style="font-family:'Saira Condensed';font-weight:800;font-size:44px;color:#fff;margin:0 0 14px;text-transform:uppercase;line-height:.98;">Impianti industriali</h3>
+          <p style="font-size:15.5px;color:#9aa1a9;line-height:1.6;margin:0 0 22px;max-width:430px;">Progettazione e costruzione di impianti aria, acqua, gas e metano per aziende, capannoni e imprese edili. Cantieri chiavi in mano.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px;">
+            <span style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;border:1px solid #2c3137;border-radius:2px;padding:6px 12px;">Aria</span>
+            <span style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;border:1px solid #2c3137;border-radius:2px;padding:6px 12px;">Acqua</span>
+            <span style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;border:1px solid #2c3137;border-radius:2px;padding:6px 12px;">Gas</span>
+            <span style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;border:1px solid #2c3137;border-radius:2px;padding:6px 12px;">Metano</span>
+            <span style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;border:1px solid #2c3137;border-radius:2px;padding:6px 12px;">Antincendio</span>
+          </div>
+          <a style="font-family:'Saira Condensed';font-weight:700;font-size:16px;letter-spacing:1px;text-transform:uppercase;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:8px;width:fit-content;" style-hover="gap:14px;color:#E11D17;">Scopri il settore industriale <span>→</span></a>
+        </div>
+        <div style="overflow:hidden;position:relative;min-height:340px;">
+          <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 12px,#22262b 12px,#22262b 24px);transition:transform .6s ease;" style-hover="transform:scale(1.06);"></div>
+          <span style="position:absolute;left:22px;bottom:22px;font-family:'Saira Condensed';font-weight:600;font-size:13px;letter-spacing:1px;color:#7c848d;background:#101214;border-radius:2px;padding:8px 13px;text-transform:uppercase;">Foto — cantiere / centrale termica</span>
+        </div>
+      </div>
+
+      <!-- three services -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        <div data-reveal style="opacity:1;transform:translateY(28px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .08s forwards;border:1px solid #20242a;border-radius:6px;overflow:hidden;background:#16191d;position:relative;" style-hover="border-color:#E11D17;transform:translateY(-4px);">
+          <div style="position:absolute;top:18px;right:18px;z-index:2;font-family:'Saira Condensed';font-weight:700;font-size:12px;letter-spacing:1px;background:#E11D17;color:#fff;border-radius:2px;padding:5px 11px;">NUOVO</div>
+          <div style="overflow:hidden;height:150px;position:relative;">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 11px,#22262b 11px,#22262b 22px);transition:transform .6s ease;" style-hover="transform:scale(1.07);"></div>
+            <div style="position:absolute;left:18px;bottom:14px;width:46px;height:46px;border-radius:6px;background:#101214;border:1px solid #2c3137;display:flex;align-items:center;justify-content:center;color:#E11D17;"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" style="animation:flick 2.2s ease-in-out infinite;transform-origin:center bottom;"><path d="M12 3c.5 2.5 3.5 4 3.5 8a3.5 3.5 0 0 1-7 0c0-1.2.6-2 .6-2 .3 1.2 1.2 1.6 1.9 1.4.9-.3 1-1.6.5-3-.3-1 .3-2.8.5-3.8Z"/></svg></div>
+          </div>
+          <div style="padding:26px 28px 30px;">
+            <div style="font-family:'Saira Condensed';font-weight:800;font-size:12.5px;letter-spacing:2px;color:#E11D17;text-transform:uppercase;">02 / Sicurezza</div>
+            <h3 style="font-family:'Saira Condensed';font-weight:800;font-size:30px;color:#fff;margin:6px 0 10px;text-transform:uppercase;">Impianti antincendio</h3>
+            <p style="font-size:14px;color:#9aa1a9;line-height:1.55;margin:0 0 16px;">Progettazione e realizzazione per le aziende, a norma e certificati.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:7px;">
+              <span style="font-family:'Saira Condensed';font-weight:600;font-size:13px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;border:1px solid #2c3137;border-radius:2px;padding:5px 11px;">A norma</span>
+              <span style="font-family:'Saira Condensed';font-weight:600;font-size:13px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;border:1px solid #2c3137;border-radius:2px;padding:5px 11px;">Certificati</span>
+            </div>
+          </div>
+        </div>
+        <div data-reveal style="opacity:1;transform:translateY(28px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .14s forwards;border:1px solid #20242a;border-radius:6px;overflow:hidden;background:#16191d;" style-hover="border-color:#2BB3EF;transform:translateY(-4px);">
+          <div style="overflow:hidden;height:150px;position:relative;">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 11px,#22262b 11px,#22262b 22px);transition:transform .6s ease;" style-hover="transform:scale(1.07);"></div>
+            <div style="position:absolute;left:18px;bottom:14px;width:46px;height:46px;border-radius:6px;background:#101214;border:1px solid #2c3137;display:flex;align-items:center;justify-content:center;color:#2BB3EF;"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="5" y="4" width="14" height="15" rx="2"/><path d="M9 4v15M13 4v15M17 4v15"/><path d="M8 21v1M16 21v1"/></svg></div>
+          </div>
+          <div style="padding:26px 28px 30px;">
+            <div style="font-family:'Saira Condensed';font-weight:800;font-size:12.5px;letter-spacing:2px;color:#2BB3EF;text-transform:uppercase;">03 / Comfort</div>
+            <h3 style="font-family:'Saira Condensed';font-weight:800;font-size:30px;color:#fff;margin:6px 0 10px;text-transform:uppercase;">Riscaldamento</h3>
+            <p style="font-size:14px;color:#9aa1a9;line-height:1.55;margin:0 0 16px;">Caldaie, pompe di calore, pannelli radianti e solare termico.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:7px;">
+              <span style="font-family:'Saira Condensed';font-weight:600;font-size:13px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;border:1px solid #2c3137;border-radius:2px;padding:5px 11px;">Caldaie</span>
+              <span style="font-family:'Saira Condensed';font-weight:600;font-size:13px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;border:1px solid #2c3137;border-radius:2px;padding:5px 11px;">Pompe di calore</span>
+              <span style="font-family:'Saira Condensed';font-weight:600;font-size:13px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;border:1px solid #2c3137;border-radius:2px;padding:5px 11px;">Radiante</span>
+            </div>
+          </div>
+        </div>
+        <div data-reveal style="opacity:1;transform:translateY(28px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .2s forwards;border:1px solid #20242a;border-radius:6px;overflow:hidden;background:#16191d;" style-hover="border-color:#2BB3EF;transform:translateY(-4px);">
+          <div style="overflow:hidden;height:150px;position:relative;">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 11px,#22262b 11px,#22262b 22px);transition:transform .6s ease;" style-hover="transform:scale(1.07);"></div>
+            <div style="position:absolute;left:18px;bottom:14px;width:46px;height:46px;border-radius:6px;background:#101214;border:1px solid #2c3137;display:flex;align-items:center;justify-content:center;color:#2BB3EF;"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="5" width="18" height="9" rx="2"/><path d="M7 10h7"/><path d="M6 18c1-1.2 2.2-1.2 3.2 0M11 18c1-1.2 2.2-1.2 3.2 0M16 18c1-1.2 2.2-1.2 3.2 0" style="animation:drift 2.6s ease-in-out infinite;"/></svg></div>
+          </div>
+          <div style="padding:26px 28px 30px;">
+            <div style="font-family:'Saira Condensed';font-weight:800;font-size:12.5px;letter-spacing:2px;color:#2BB3EF;text-transform:uppercase;">04 / Clima</div>
+            <h3 style="font-family:'Saira Condensed';font-weight:800;font-size:30px;color:#fff;margin:6px 0 10px;text-transform:uppercase;">Condizionamento</h3>
+            <p style="font-size:14px;color:#9aa1a9;line-height:1.55;margin:0 0 16px;">Climatizzazione e raffrescamento canalizzato a pompa di calore.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:7px;">
+              <span style="font-family:'Saira Condensed';font-weight:600;font-size:13px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;border:1px solid #2c3137;border-radius:2px;padding:5px 11px;">Canalizzato</span>
+              <span style="font-family:'Saira Condensed';font-weight:600;font-size:13px;letter-spacing:.5px;text-transform:uppercase;color:#c7ccd2;border:1px solid #2c3137;border-radius:2px;padding:5px 11px;">Pompa di calore</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETTORI -->
+  <div id="settori" style="background:#0d0f11;padding:90px 0;scroll-margin-top:80px;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 48px;">
+      <div data-reveal style="opacity:1;transform:translateY(24px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .06s forwards;display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:end;margin-bottom:40px;">
+        <div>
+          <div style="font-family:'Saira Condensed';font-weight:700;font-size:15px;letter-spacing:3px;color:#E11D17;text-transform:uppercase;margin-bottom:14px;">Settori</div>
+          <h2 style="font-family:'Saira Condensed';font-weight:800;font-size:56px;color:#fff;margin:0;text-transform:uppercase;letter-spacing:-.5px;line-height:.95;">Per chi lavoriamo</h2>
+        </div>
+        <p style="font-size:16px;color:#9aa1a9;line-height:1.6;margin:0 0 4px;">Stesso metodo, tre contesti: grandi impianti per l'industria, soluzioni per il commercio e comfort su misura per la casa.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        <div data-reveal style="opacity:1;transform:translateY(28px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .06s forwards;background:#16191d;border:1px solid #20242a;border-radius:6px;padding:38px 34px;border-top:3px solid #E11D17;">
+          <div style="font-family:'Saira Condensed';font-weight:800;font-size:46px;color:#E11D17;line-height:.85;">01</div>
+          <h3 style="font-family:'Saira Condensed';font-weight:800;font-size:30px;color:#fff;margin:14px 0 16px;text-transform:uppercase;">Industriale</h3>
+          <div style="display:flex;flex-direction:column;gap:11px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#E11D17;font-weight:700;">—</span><span style="font-size:14.5px;color:#c7ccd2;">Aziende, capannoni e imprese edili</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#E11D17;font-weight:700;">—</span><span style="font-size:14.5px;color:#c7ccd2;">Impianti aria / acqua / gas / metano</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#E11D17;font-weight:700;">—</span><span style="font-size:14.5px;color:#c7ccd2;">Impianti antincendio a norma</span></div>
+          </div>
+        </div>
+        <div data-reveal style="opacity:1;transform:translateY(28px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .14s forwards;background:#16191d;border:1px solid #20242a;border-radius:6px;padding:38px 34px;border-top:3px solid #2BB3EF;">
+          <div style="font-family:'Saira Condensed';font-weight:800;font-size:46px;color:#2BB3EF;line-height:.85;">02</div>
+          <h3 style="font-family:'Saira Condensed';font-weight:800;font-size:30px;color:#fff;margin:14px 0 16px;text-transform:uppercase;">Commerciale</h3>
+          <div style="display:flex;flex-direction:column;gap:11px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#2BB3EF;font-weight:700;">—</span><span style="font-size:14.5px;color:#c7ccd2;">Bar, ristoranti, negozi e uffici</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#2BB3EF;font-weight:700;">—</span><span style="font-size:14.5px;color:#c7ccd2;">Climatizzazione a pompa di calore</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#2BB3EF;font-weight:700;">—</span><span style="font-size:14.5px;color:#c7ccd2;">Impianti per il ricambio dell'aria</span></div>
+          </div>
+        </div>
+        <div data-reveal style="opacity:1;transform:translateY(28px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .2s forwards;background:#16191d;border:1px solid #20242a;border-radius:6px;padding:38px 34px;border-top:3px solid #2BB3EF;">
+          <div style="font-family:'Saira Condensed';font-weight:800;font-size:46px;color:#2BB3EF;line-height:.85;">03</div>
+          <h3 style="font-family:'Saira Condensed';font-weight:800;font-size:30px;color:#fff;margin:14px 0 16px;text-transform:uppercase;">Residenziale</h3>
+          <div style="display:flex;flex-direction:column;gap:11px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#2BB3EF;font-weight:700;">—</span><span style="font-size:14.5px;color:#c7ccd2;">Riscaldamento a pannelli radianti</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#2BB3EF;font-weight:700;">—</span><span style="font-size:14.5px;color:#c7ccd2;">Solare termico e climatizzazione</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#2BB3EF;font-weight:700;">—</span><span style="font-size:14.5px;color:#c7ccd2;">Caldaie, biomassa e irrigazione</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INDUSTRIAL SPOTLIGHT -->
+  <div id="chisiamo" style="background:#16191d;border-top:3px solid #E11D17;padding:90px 0;scroll-margin-top:80px;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+      <div data-reveal style="opacity:1;transform:translateY(24px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .06s forwards;">
+        <div style="font-family:'Saira Condensed';font-weight:700;font-size:15px;letter-spacing:3px;color:#E11D17;text-transform:uppercase;margin-bottom:18px;">Il cuore dell'azienda</div>
+        <h2 style="font-family:'Saira Condensed';font-weight:800;font-size:54px;color:#fff;margin:0 0 36px;text-transform:uppercase;line-height:.96;letter-spacing:-1px;">44 anni di cantieri industriali</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#20242a;border:1px solid #20242a;">
+          <div style="background:#101214;padding:26px 28px;"><div data-count="44" style="font-family:'Saira Condensed';font-weight:800;font-size:50px;color:#E11D17;line-height:.9;">44</div><div style="font-size:13px;color:#9aa1a9;margin-top:6px;text-transform:uppercase;letter-spacing:.5px;">anni di attività</div></div>
+          <div style="background:#101214;padding:26px 28px;"><div style="font-family:'Saira Condensed';font-weight:800;font-size:50px;color:#fff;line-height:.9;">1980</div><div style="font-size:13px;color:#9aa1a9;margin-top:6px;text-transform:uppercase;letter-spacing:.5px;">fondata a Vicenza</div></div>
+          <div style="background:#101214;padding:26px 28px;"><div data-count="4" style="font-family:'Saira Condensed';font-weight:800;font-size:50px;color:#fff;line-height:.9;">4</div><div style="font-size:13px;color:#9aa1a9;margin-top:6px;text-transform:uppercase;letter-spacing:.5px;">aree di servizio</div></div>
+          <div style="background:#101214;padding:26px 28px;"><div style="font-family:'Saira Condensed';font-weight:800;font-size:50px;color:#fff;line-height:.9;">∞</div><div style="font-size:13px;color:#9aa1a9;margin-top:6px;text-transform:uppercase;letter-spacing:.5px;">chiavi in mano</div></div>
+        </div>
+      </div>
+      <div data-reveal class="ph" style="opacity:1;transform:translateY(24px);animation:revealUp .8s cubic-bezier(.16,1,.3,1) .12s forwards;min-height:440px;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 12px,#22262b 12px,#22262b 24px);border-radius:3px;display:flex;align-items:flex-end;padding:24px;">
+        <span style="font-family:'Saira Condensed';font-weight:600;font-size:13px;letter-spacing:1px;color:#7c848d;background:#101214;border-radius:2px;padding:8px 13px;text-transform:uppercase;">Foto — capannone / centrale termica</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACCHETTO COMPLETO -->
+  <div style="background:#101214;padding:90px 0;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 48px;">
+      <div data-reveal style="opacity:1;transform:translateY(24px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .06s forwards;display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:end;margin-bottom:64px;">
+        <div>
+          <div style="font-family:'Saira Condensed';font-weight:700;font-size:15px;letter-spacing:3px;color:#2BB3EF;text-transform:uppercase;margin-bottom:14px;">Pacchetto Completo</div>
+          <h2 style="font-family:'Saira Condensed';font-weight:800;font-size:56px;color:#fff;margin:0;text-transform:uppercase;letter-spacing:-.5px;line-height:.95;">Dall'idea<br>all'impianto acceso</h2>
+        </div>
+        <p style="font-size:16px;color:#9aa1a9;line-height:1.6;margin:0 0 4px;">Un solo interlocutore, dalla prima idea fino all'impianto acceso: <strong style="color:#fff;">assistenza cliente completa</strong> in progettazione, documentazione e installazione.</p>
+      </div>
+      <div data-reveal style="opacity:1;transform:translateY(28px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .12s forwards;position:relative;">
+        <div style="position:absolute;left:17%;right:17%;top:36px;height:2px;background:linear-gradient(90deg,#E11D17,#2BB3EF);opacity:.4;"></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative;">
+          <div style="text-align:center;padding:0 22px;">
+            <div style="width:72px;height:72px;border-radius:10px;background:#E11D17;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;position:relative;z-index:1;box-shadow:0 0 0 8px #101214;"><span style="font-family:'Saira Condensed';font-weight:800;font-size:32px;color:#fff;line-height:1;">01</span></div>
+            <div style="display:flex;justify-content:center;color:#7c848d;margin-bottom:14px;"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="M3 9h18M8 9v11"/></svg></div>
+            <h3 style="font-family:'Saira Condensed';font-weight:700;font-size:26px;color:#fff;margin:0 0 10px;text-transform:uppercase;">Progettazione</h3>
+            <p style="font-size:14.5px;color:#9aa1a9;margin:0 auto;line-height:1.55;max-width:250px;">Sopralluogo, studio e progetto esecutivo dell'impianto.</p>
+          </div>
+          <div style="text-align:center;padding:0 22px;">
+            <div style="width:72px;height:72px;border-radius:10px;background:#E11D17;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;position:relative;z-index:1;box-shadow:0 0 0 8px #101214;"><span style="font-family:'Saira Condensed';font-weight:800;font-size:32px;color:#fff;line-height:1;">02</span></div>
+            <div style="display:flex;justify-content:center;color:#7c848d;margin-bottom:14px;"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M7 3h8l4 4v14H7z"/><path d="M15 3v4h4"/><path d="M10 13h6M10 17h6"/></svg></div>
+            <h3 style="font-family:'Saira Condensed';font-weight:700;font-size:26px;color:#fff;margin:0 0 10px;text-transform:uppercase;">Documentazione</h3>
+            <p style="font-size:14.5px;color:#9aa1a9;margin:0 auto;line-height:1.55;max-width:250px;">Pratiche, certificazioni e documentazione tecnica completa.</p>
+          </div>
+          <div style="text-align:center;padding:0 22px;">
+            <div style="width:72px;height:72px;border-radius:10px;background:#E11D17;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;position:relative;z-index:1;box-shadow:0 0 0 8px #101214;"><span style="font-family:'Saira Condensed';font-weight:800;font-size:32px;color:#fff;line-height:1;">03</span></div>
+            <div style="display:flex;justify-content:center;color:#7c848d;margin-bottom:14px;"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M14.7 6.3a3.7 3.7 0 0 0-4.8 4.5l-5.6 5.6 2.3 2.3 5.6-5.6a3.7 3.7 0 0 0 4.5-4.8l-2.2 2.2-2-2 2.2-2.2z"/></svg></div>
+            <h3 style="font-family:'Saira Condensed';font-weight:700;font-size:26px;color:#fff;margin:0 0 10px;text-transform:uppercase;">Installazione</h3>
+            <p style="font-size:14.5px;color:#9aa1a9;margin:0 auto;line-height:1.55;max-width:250px;">Realizzazione e messa in opera a regola d'arte.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEWS -->
+  <div id="news" style="background:#0d0f11;padding:90px 0;border-top:1px solid #20242a;scroll-margin-top:80px;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 48px;">
+      <div data-reveal style="opacity:1;transform:translateY(24px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .06s forwards;display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:38px;">
+        <div>
+          <div style="font-family:'Saira Condensed';font-weight:700;font-size:15px;letter-spacing:3px;color:#E11D17;text-transform:uppercase;margin-bottom:14px;">News</div>
+          <h2 style="font-family:'Saira Condensed';font-weight:800;font-size:52px;color:#fff;margin:0;text-transform:uppercase;letter-spacing:-.5px;">Ultime novità</h2>
+        </div>
+        <a style="font-family:'Saira Condensed';font-weight:700;font-size:16px;letter-spacing:1px;text-transform:uppercase;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:8px;" style-hover="gap:14px;color:#E11D17;">Tutte le news <span>→</span></a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        <div data-reveal style="opacity:1;transform:translateY(28px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .06s forwards;border:1px solid #20242a;border-radius:6px;overflow:hidden;background:#16191d;cursor:pointer;" style-hover="border-color:#E11D17;transform:translateY(-4px);">
+          <div style="overflow:hidden;height:160px;position:relative;">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 11px,#22262b 11px,#22262b 22px);transition:transform .6s ease;" style-hover="transform:scale(1.07);"></div>
+            <span style="position:absolute;top:14px;left:14px;font-family:'Saira Condensed';font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:#E11D17;color:#fff;border-radius:2px;padding:5px 10px;">Servizi</span>
+          </div>
+          <div style="padding:24px 26px 28px;">
+            <div style="font-size:12.5px;color:#7c848d;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Marzo 2026</div>
+            <h3 style="font-family:'Saira Condensed';font-weight:700;font-size:23px;color:#fff;margin:0 0 14px;line-height:1.1;text-transform:uppercase;">Nuovo servizio: impianti antincendio per le aziende</h3>
+            <a style="font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#E11D17;text-decoration:none;">Leggi →</a>
+          </div>
+        </div>
+        <div data-reveal style="opacity:1;transform:translateY(28px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .14s forwards;border:1px solid #20242a;border-radius:6px;overflow:hidden;background:#16191d;cursor:pointer;" style-hover="border-color:#2BB3EF;transform:translateY(-4px);">
+          <div style="overflow:hidden;height:160px;position:relative;">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 11px,#22262b 11px,#22262b 22px);transition:transform .6s ease;" style-hover="transform:scale(1.07);"></div>
+            <span style="position:absolute;top:14px;left:14px;font-family:'Saira Condensed';font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:#2BB3EF;color:#0d0f11;border-radius:2px;padding:5px 10px;">Guida</span>
+          </div>
+          <div style="padding:24px 26px 28px;">
+            <div style="font-size:12.5px;color:#7c848d;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Febbraio 2026</div>
+            <h3 style="font-family:'Saira Condensed';font-weight:700;font-size:23px;color:#fff;margin:0 0 14px;line-height:1.1;text-transform:uppercase;">Pompe di calore: come scegliere quella giusta</h3>
+            <a style="font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#2BB3EF;text-decoration:none;">Leggi →</a>
+          </div>
+        </div>
+        <div data-reveal style="opacity:1;transform:translateY(28px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .2s forwards;border:1px solid #20242a;border-radius:6px;overflow:hidden;background:#16191d;cursor:pointer;" style-hover="border-color:#2BB3EF;transform:translateY(-4px);">
+          <div style="overflow:hidden;height:160px;position:relative;">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 11px,#22262b 11px,#22262b 22px);transition:transform .6s ease;" style-hover="transform:scale(1.07);"></div>
+            <span style="position:absolute;top:14px;left:14px;font-family:'Saira Condensed';font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:#2BB3EF;color:#0d0f11;border-radius:2px;padding:5px 10px;">Azienda</span>
+          </div>
+          <div style="padding:24px 26px 28px;">
+            <div style="font-size:12.5px;color:#7c848d;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Gennaio 2026</div>
+            <h3 style="font-family:'Saira Condensed';font-weight:700;font-size:23px;color:#fff;margin:0 0 14px;line-height:1.1;text-transform:uppercase;">Il Pacchetto Completo: come seguiamo ogni progetto</h3>
+            <a style="font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#2BB3EF;text-decoration:none;">Leggi →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCHI -->
+  <div id="marchi" style="background:#16191d;border-top:1px solid #20242a;padding:54px 0;scroll-margin-top:80px;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 48px;">
+      <div style="font-family:'Saira Condensed';font-weight:700;font-size:13px;letter-spacing:2px;color:#7c848d;text-transform:uppercase;margin-bottom:24px;text-align:center;">Marchi trattati</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+        <div data-reveal style="opacity:1;animation:revealFade .6s ease .06s forwards;height:74px;background:#101214;border:1px solid #20242a;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:Archivo;font-weight:800;font-size:21px;color:#4a525b;">SIME</div>
+        <div data-reveal style="opacity:1;animation:revealFade .6s ease .08s forwards;height:74px;background:#101214;border:1px solid #20242a;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:Archivo;font-weight:800;font-size:21px;color:#4a525b;">DAIKIN</div>
+        <div data-reveal style="opacity:1;animation:revealFade .6s ease .16s forwards;height:74px;background:#101214;border:1px solid #20242a;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:Archivo;font-weight:800;font-size:21px;color:#4a525b;">AERMEC</div>
+        <div data-reveal style="opacity:1;animation:revealFade .6s ease .24s forwards;height:74px;background:#101214;border:1px solid #20242a;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:Archivo;font-weight:800;font-size:21px;color:#4a525b;">SAMSUNG</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTATTI -->
+  <div id="contatti" style="background:#16191d;padding:90px 0;border-top:3px solid #E11D17;scroll-margin-top:80px;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:56px;">
+      <div data-reveal style="opacity:1;transform:translateY(24px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .06s forwards;">
+        <div style="font-family:'Saira Condensed';font-weight:700;font-size:15px;letter-spacing:3px;color:#E11D17;text-transform:uppercase;margin-bottom:14px;">Contatti</div>
+        <h2 style="font-family:'Saira Condensed';font-weight:800;font-size:50px;color:#fff;margin:0 0 28px;text-transform:uppercase;letter-spacing:-.5px;line-height:.96;">Parliamo del<br>tuo progetto</h2>
+        <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:28px;">
+          <div><div style="font-family:'Saira Condensed';font-weight:700;font-size:12.5px;letter-spacing:1.5px;color:#7c848d;text-transform:uppercase;margin-bottom:4px;">Sede</div><div style="font-size:16px;color:#fff;">Via Dei Fiori, 9/A — 36040 Sarego (VI)</div></div>
+          <div style="display:flex;gap:48px;">
+            <div><div style="font-family:'Saira Condensed';font-weight:700;font-size:12.5px;letter-spacing:1.5px;color:#7c848d;text-transform:uppercase;margin-bottom:4px;">Tel / Fax</div><div style="font-size:16px;color:#fff;">0444 820798</div></div>
+            <div><div style="font-family:'Saira Condensed';font-weight:700;font-size:12.5px;letter-spacing:1.5px;color:#7c848d;text-transform:uppercase;margin-bottom:4px;">Email</div><div style="font-size:16px;color:#fff;">info@rossimpiantisrl.it</div></div>
+          </div>
+        </div>
+        <div style="position:relative;height:200px;border-radius:6px;overflow:hidden;border:1px solid #20242a;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 12px,#22262b 12px,#22262b 24px);">
+          <span style="position:absolute;left:18px;bottom:16px;font-family:'Saira Condensed';font-weight:600;font-size:13px;letter-spacing:1px;color:#7c848d;background:#101214;border-radius:2px;padding:8px 13px;text-transform:uppercase;">Mappa — Sarego (VI)</span>
+        </div>
+      </div>
+      <div data-reveal style="opacity:1;transform:translateY(28px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .14s forwards;background:#101214;border:1px solid #20242a;border-radius:6px;padding:38px 36px;">
+        <h3 style="font-family:'Saira Condensed';font-weight:800;font-size:26px;color:#fff;margin:0 0 22px;text-transform:uppercase;">Richiedi un preventivo</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+          <input placeholder="Nome" style="background:#16191d;border:1px solid #2c3137;border-radius:3px;padding:14px 14px;color:#fff;font-family:'IBM Plex Sans';font-size:15px;outline:none;" style-focus="border-color:#E11D17;">
+          <input placeholder="Cognome" style="background:#16191d;border:1px solid #2c3137;border-radius:3px;padding:14px 14px;color:#fff;font-family:'IBM Plex Sans';font-size:15px;outline:none;" style-focus="border-color:#E11D17;">
+        </div>
+        <input placeholder="Email" style="width:100%;background:#16191d;border:1px solid #2c3137;border-radius:3px;padding:14px 14px;color:#fff;font-family:'IBM Plex Sans';font-size:15px;outline:none;margin-bottom:14px;box-sizing:border-box;" style-focus="border-color:#E11D17;">
+        <input placeholder="Telefono" style="width:100%;background:#16191d;border:1px solid #2c3137;border-radius:3px;padding:14px 14px;color:#fff;font-family:'IBM Plex Sans';font-size:15px;outline:none;margin-bottom:14px;box-sizing:border-box;" style-focus="border-color:#E11D17;">
+        <textarea placeholder="Raccontaci il tuo progetto" rows="4" style="width:100%;background:#16191d;border:1px solid #2c3137;border-radius:3px;padding:14px 14px;color:#fff;font-family:'IBM Plex Sans';font-size:15px;outline:none;margin-bottom:16px;box-sizing:border-box;resize:vertical;" style-focus="border-color:#E11D17;"></textarea>
+        <label style="display:flex;align-items:flex-start;gap:10px;margin-bottom:20px;font-size:13px;color:#9aa1a9;line-height:1.4;cursor:pointer;"><input type="checkbox" style="margin-top:2px;accent-color:#E11D17;">Acconsento al trattamento dei dati secondo la Privacy Policy.</label>
+        <button style="width:100%;font-family:'Saira Condensed';font-weight:700;font-size:18px;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#E11D17;border:none;border-radius:3px;padding:16px;cursor:pointer;" style-hover="background:#c2160f;">Invia richiesta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="background:#E11D17;color:#fff;padding:70px 0;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 48px;display:flex;align-items:center;justify-content:space-between;gap:30px;">
+      <h2 data-reveal style="opacity:1;transform:translateY(20px);animation:revealUp .7s cubic-bezier(.16,1,.3,1) .06s forwards;font-family:'Saira Condensed';font-weight:800;font-size:54px;margin:0;text-transform:uppercase;letter-spacing:-.5px;line-height:.96;">Costruiamo<br>il tuo impianto.</h2>
+      <a style="font-family:'Saira Condensed';font-weight:700;font-size:19px;letter-spacing:.5px;text-transform:uppercase;color:#E11D17;background:#fff;border-radius:2px;padding:19px 38px;text-decoration:none;white-space:nowrap;" style-hover="transform:translateY(-2px);">Richiedi un preventivo</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="background:#0d0f11;color:#7c848d;border-top:3px solid #E11D17;font-family:'IBM Plex Sans',sans-serif;">
+    <div style="max-width:1240px;margin:0 auto;padding:64px 48px 40px;display:grid;grid-template-columns:1.7fr 1fr 1fr 1.1fr;gap:40px;">
+      <div>
+        <img src="assets/logo-rossi-white.png" alt="Rossi Impianti" style="display:block;height:54px;width:auto;margin-bottom:22px;" />
+        <p style="font-size:14.5px;line-height:1.65;color:#9aa1a9;max-width:330px;margin:0 0 22px;">Progettiamo e costruiamo impianti industriali chiavi in mano dal 1980. Vicenza e provincia.</p>
+        <a href="Contatti.dc.html" style="display:inline-flex;align-items:center;gap:9px;font-family:'Saira Condensed';font-weight:700;font-size:15px;letter-spacing:.5px;text-transform:uppercase;color:#fff;border:1.5px solid #2c3137;border-radius:2px;padding:11px 22px;text-decoration:none;" style-hover="border-color:#E11D17;color:#E11D17;">Richiedi un preventivo <span>→</span></a>
+      </div>
+      <div>
+        <div style="font-family:'Saira Condensed';font-weight:700;font-size:13px;letter-spacing:1.5px;color:#fff;text-transform:uppercase;margin-bottom:16px;">Navigazione</div>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;">
+          <a href="Chisiamo.dc.html" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">Chi siamo</a>
+          <a href="Servizi.dc.html" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">Servizi</a>
+          <a href="Settori.dc.html" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">Settori</a>
+          <a href="Marchi.dc.html" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">Marchi trattati</a>
+          <a href="News.dc.html" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">News</a>
+          <a href="Shop.dc.html" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">Shop</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Saira Condensed';font-weight:700;font-size:13px;letter-spacing:1.5px;color:#fff;text-transform:uppercase;margin-bottom:16px;">Servizi</div>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:#9aa1a9;">
+          <span>Impianti industriali</span>
+          <span>Impianti antincendio</span>
+          <span>Riscaldamento</span>
+          <span>Condizionamento</span>
+          <span>Idraulica</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Saira Condensed';font-weight:700;font-size:13px;letter-spacing:1.5px;color:#fff;text-transform:uppercase;margin-bottom:16px;">Contatti</div>
+        <div style="display:flex;flex-direction:column;gap:13px;font-size:14px;line-height:1.5;">
+          <div style="color:#9aa1a9;">Via Dei Fiori, 9/A<br>36040 Sarego (VI)</div>
+          <a href="tel:0444820798" style="color:#fff;text-decoration:none;font-weight:600;" style-hover="color:#E11D17;">0444 820798</a>
+          <a href="mailto:info@rossimpiantisrl.it" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">info@rossimpiantisrl.it</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #20242a;">
+      <div style="max-width:1240px;margin:0 auto;padding:22px 48px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12.5px;color:#5f666e;">
+        <span>© 2026 Rossi Impianti S.r.l. — Tutti i diritti riservati</span>
+        <span style="letter-spacing:.3px;">P.IVA 01659230245 · COD. SDI T9K4ZHO</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { setRoot: (el) => { this._root = el; } };
+  }
+  componentDidMount() {
+    const root = this._root || document;
+    // Force hero background video to autoplay (the `muted` attribute alone isn't
+    // applied as a DOM property, so browsers block autoplay until we set it here).
+    const startVideo = () => {
+      const v = document.querySelector('#top video');
+      if (!v) return;
+      v.muted = true;
+      v.defaultMuted = true;
+      v.setAttribute('muted', '');
+      v.playsInline = true;
+      if (v.readyState === 0) { try { v.load(); } catch (e) {} }
+      const p = v.play();
+      if (p && p.catch) p.catch(() => {});
+    };
+    startVideo();
+    setTimeout(startVideo, 400);
+    setTimeout(startVideo, 1200);
+    const cEls = Array.from(root.querySelectorAll('[data-count]'));
+    const start = (el) => this.animateCount(el);
+    let cio = null;
+    try {
+      cio = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { start(e.target); cio.unobserve(e.target); } });
+      }, { threshold: 0.6 });
+      cEls.forEach((el) => cio.observe(el));
+    } catch (err) {
+      cEls.forEach((el) => start(el));
+    }
+    // failsafe so the final value is always shown even if the observer never fires
+    setTimeout(() => cEls.forEach((el) => start(el)), 1800);
+  }
+  animateCount(el) {
+    const target = parseInt(el.getAttribute('data-count'), 10);
+    const dur = 1300, start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * ease);
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+}
+</script>
+</body>
+</html>

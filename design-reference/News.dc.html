@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Saira+Condensed:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box;}html,body{margin:0;padding:0;background:#101214;}a{transition:all .25s ease;}</style>
+</helmet>
+<div style="background:#101214;font-family:'IBM Plex Sans',sans-serif;color:#fff;">
+  <dc-import name="SiteHeader" active="news" hint-size="100%,86px"></dc-import>
+
+  <!-- ============ LIST ============ -->
+  <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <div style="background:linear-gradient(90deg,rgba(11,13,15,.6) 0%,rgba(11,13,15,.15) 60%,rgba(11,13,15,0) 100%),url('assets/hero/news.png');background-size:cover;background-position:right center;border-bottom:1px solid #20242a;">
+      <div style="max-width:1240px;margin:0 auto;padding:76px 48px;">
+        <div style="font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:3px;color:#E11D17;text-transform:uppercase;margin-bottom:16px;">News</div>
+        <h1 style="font-family:'Saira Condensed';font-weight:800;font-size:68px;line-height:.95;margin:0 0 16px;text-transform:uppercase;letter-spacing:-1px;">Novità e<br>approfondimenti</h1>
+        <p style="font-size:18px;color:#9aa1a9;margin:0;max-width:600px;line-height:1.55;">Servizi, guide e aggiornamenti dal mondo Rossi Impianti.</p>
+      </div>
+    </div>
+
+    <div style="max-width:1240px;margin:0 auto;padding:80px 48px 90px;">
+      <!-- featured -->
+      <div onClick="{{ featured.open }}" style="display:grid;grid-template-columns:1.15fr 1fr;gap:0;border:1px solid #20242a;border-radius:8px;overflow:hidden;background:#16191d;cursor:pointer;margin-bottom:40px;" style-hover="border-color:#E11D17;">
+        <div style="position:relative;min-height:340px;overflow:hidden;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 13px,#22262b 13px,#22262b 26px);">
+          <span style="position:absolute;top:18px;left:18px;font-family:'Saira Condensed';font-weight:700;font-size:11.5px;letter-spacing:1px;text-transform:uppercase;background:#E11D17;color:#fff;border-radius:2px;padding:6px 12px;">In evidenza · {{ featured.cat }}</span>
+        </div>
+        <div style="padding:44px 48px;display:flex;flex-direction:column;justify-content:center;">
+          <div style="font-size:12.5px;color:#7c848d;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;">{{ featured.date }} · {{ featured.readTime }} di lettura</div>
+          <h2 style="font-family:'Saira Condensed';font-weight:800;font-size:34px;color:#fff;margin:0 0 14px;line-height:1.05;text-transform:uppercase;">{{ featured.title }}</h2>
+          <p style="font-size:15.5px;color:#9aa1a9;line-height:1.6;margin:0 0 22px;">{{ featured.excerpt }}</p>
+          <span style="font-family:'Saira Condensed';font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#E11D17;">Leggi l'articolo →</span>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+        <sc-for list="{{ articles }}" as="a" hint-placeholder-count="6">
+          <div onClick="{{ a.open }}" style="border:1px solid #20242a;border-radius:6px;overflow:hidden;background:#16191d;cursor:pointer;display:flex;flex-direction:column;" style-hover="border-color:#E11D17;transform:translateY(-4px);">
+            <div style="position:relative;height:170px;overflow:hidden;">
+              <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 11px,#22262b 11px,#22262b 22px);transition:transform .6s ease;" style-hover="transform:scale(1.07);"></div>
+              <span style="position:absolute;top:14px;left:14px;font-family:'Saira Condensed';font-weight:700;font-size:11.5px;letter-spacing:1px;text-transform:uppercase;background:{{ a.catBg }};color:{{ a.catColor }};border-radius:2px;padding:5px 10px;">{{ a.cat }}</span>
+            </div>
+            <div style="padding:24px 26px 28px;display:flex;flex-direction:column;flex:1;">
+              <div style="font-size:12.5px;color:#7c848d;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">{{ a.date }} · {{ a.readTime }}</div>
+              <h2 style="font-family:'Saira Condensed';font-weight:700;font-size:23px;color:#fff;margin:0 0 10px;line-height:1.1;text-transform:uppercase;">{{ a.title }}</h2>
+              <p style="font-size:13.5px;color:#9aa1a9;line-height:1.55;margin:0 0 16px;">{{ a.excerpt }}</p>
+              <span style="font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#E11D17;margin-top:auto;">Leggi →</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <p style="font-size:14px;color:#5a626b;margin:32px 0 0;text-align:center;">Contenuti di esempio — verranno sostituiti con gli articoli reali.</p>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ ARTICLE ============ -->
+  <sc-if value="{{ isArticle }}" hint-placeholder-val="{{ false }}">
+  <article style="display:block;">
+    <!-- breadcrumb -->
+    <div style="border-bottom:1px solid #20242a;background:#0d0f11;">
+      <nav aria-label="Breadcrumb" style="max-width:1080px;margin:0 auto;padding:15px 48px;font-size:13px;color:#7c848d;display:flex;gap:9px;flex-wrap:wrap;align-items:center;">
+        <a href="Home.dc.html" style="color:#9aa1a9;text-decoration:none;" style-hover="color:#fff;">Home</a><span style="color:#3a4047;">/</span>
+        <button onClick="{{ goList }}" style="background:none;border:none;color:#9aa1a9;font:inherit;cursor:pointer;padding:0;" style-hover="color:#fff;">News</button><span style="color:#3a4047;">/</span>
+        <span style="color:#9aa1a9;">{{ selected.cat }}</span><span style="color:#3a4047;">/</span>
+        <span style="color:#fff;">{{ selected.title }}</span>
+      </nav>
+    </div>
+
+    <!-- header -->
+    <header style="max-width:820px;margin:0 auto;padding:54px 48px 0;">
+      <span style="display:inline-block;font-family:'Saira Condensed';font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;background:{{ selected.catBg }};color:{{ selected.catColor }};border-radius:2px;padding:6px 12px;margin-bottom:20px;">{{ selected.cat }}</span>
+      <h1 style="font-family:'Saira Condensed';font-weight:800;font-size:52px;line-height:1.02;color:#fff;margin:0 0 22px;text-transform:uppercase;letter-spacing:-.5px;">{{ selected.title }}</h1>
+      <p style="font-size:20px;line-height:1.55;color:#c7ccd2;margin:0 0 28px;">{{ selected.excerpt }}</p>
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-top:1px solid #20242a;border-bottom:1px solid #20242a;padding:18px 0;">
+        <div style="width:44px;height:44px;border-radius:50%;background:#E11D17;display:flex;align-items:center;justify-content:center;font-family:'Saira Condensed';font-weight:800;font-size:15px;color:#fff;flex:none;">RI</div>
+        <div style="flex:1;min-width:160px;">
+          <div style="font-family:'Saira Condensed';font-weight:700;font-size:15px;color:#fff;">{{ selected.author }}</div>
+          <div style="font-size:13px;color:#7c848d;">Pubblicato il {{ selected.date }} · Aggiornato il {{ selected.updated }}</div>
+        </div>
+        <span style="display:inline-flex;align-items:center;gap:7px;font-size:13px;color:#9aa1a9;border:1px solid #2c3137;border-radius:3px;padding:7px 12px;">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#9aa1a9" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          {{ selected.readTime }} di lettura
+        </span>
+      </div>
+    </header>
+
+    <!-- hero image -->
+    <div style="max-width:1080px;margin:34px auto 0;padding:0 48px;">
+      <div role="img" aria-label="Immagine articolo Rossi Impianti" style="position:relative;height:440px;border-radius:8px;overflow:hidden;border:1px solid #20242a;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 14px,#22262b 14px,#22262b 28px);">
+        <span style="position:absolute;left:22px;bottom:20px;font-family:'Saira Condensed';font-weight:600;font-size:13px;letter-spacing:1px;color:#7c848d;background:#101214;border-radius:2px;padding:8px 13px;text-transform:uppercase;">Foto articolo</span>
+      </div>
+    </div>
+
+    <!-- body -->
+    <div style="max-width:1080px;margin:0 auto;padding:48px 48px 70px;display:grid;grid-template-columns:1fr 248px;gap:60px;align-items:start;">
+      <div>
+        <!-- key takeaways -->
+        <div style="border:1px solid #20242a;border-left:3px solid #E11D17;border-radius:6px;background:#16191d;padding:24px 28px;margin-bottom:40px;">
+          <div style="font-family:'Saira Condensed';font-weight:800;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#fff;margin-bottom:14px;">In sintesi</div>
+          <div style="display:flex;flex-direction:column;gap:11px;">
+            <sc-for list="{{ selected.takeaways }}" as="t" hint-placeholder-count="3">
+              <div style="display:flex;gap:11px;align-items:flex-start;font-size:15px;line-height:1.5;color:#c7ccd2;">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#E11D17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="m5 12 5 5L20 6"/></svg>
+                <span>{{ t }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- sections -->
+        <sc-for list="{{ selected.sections }}" as="sec" hint-placeholder-count="3">
+          <h2 id="{{ sec.id }}" style="font-family:'Saira Condensed';font-weight:800;font-size:30px;color:#fff;margin:42px 0 16px;text-transform:uppercase;letter-spacing:-.3px;scroll-margin-top:96px;">{{ sec.h }}</h2>
+          <sc-for list="{{ sec.paras }}" as="p" hint-placeholder-count="2">
+            <p style="font-size:16.5px;line-height:1.75;color:#b3bac1;margin:0 0 18px;">{{ p }}</p>
+          </sc-for>
+          <sc-if value="{{ sec.hasBullets }}" hint-placeholder-val="{{ false }}">
+            <ul style="margin:0 0 18px;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;">
+              <sc-for list="{{ sec.bullets }}" as="b" hint-placeholder-count="3">
+                <li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.6;color:#c7ccd2;">
+                  <span style="width:7px;height:7px;border-radius:50%;background:#E11D17;flex:none;margin-top:9px;"></span>
+                  <span>{{ b }}</span>
+                </li>
+              </sc-for>
+            </ul>
+          </sc-if>
+        </sc-for>
+
+        <!-- FAQ -->
+        <h2 id="faq" style="font-family:'Saira Condensed';font-weight:800;font-size:30px;color:#fff;margin:50px 0 20px;text-transform:uppercase;letter-spacing:-.3px;scroll-margin-top:96px;">Domande frequenti</h2>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <sc-for list="{{ selected.faq }}" as="f" hint-placeholder-count="3">
+            <div style="border:1px solid #20242a;border-radius:6px;background:#16191d;padding:20px 24px;">
+              <div style="display:flex;gap:11px;align-items:flex-start;font-family:'Saira Condensed';font-weight:700;font-size:18px;color:#fff;margin-bottom:9px;">
+                <span style="color:#E11D17;">Q.</span><span>{{ f.q }}</span>
+              </div>
+              <p style="font-size:15px;line-height:1.65;color:#9aa1a9;margin:0;padding-left:26px;">{{ f.a }}</p>
+            </div>
+          </sc-for>
+        </div>
+
+        <!-- tags -->
+        <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:36px;">
+          <sc-for list="{{ selected.keywords }}" as="k" hint-placeholder-count="4">
+            <span style="font-size:13px;color:#9aa1a9;background:#16191d;border:1px solid #2c3137;border-radius:3px;padding:6px 12px;">#{{ k }}</span>
+          </sc-for>
+        </div>
+
+        <!-- author bio -->
+        <div style="display:flex;gap:18px;align-items:flex-start;border:1px solid #20242a;border-radius:8px;background:#16191d;padding:26px 28px;margin-top:36px;">
+          <div style="width:56px;height:56px;border-radius:50%;background:#E11D17;display:flex;align-items:center;justify-content:center;font-family:'Saira Condensed';font-weight:800;font-size:19px;color:#fff;flex:none;">RI</div>
+          <div>
+            <div style="font-family:'Saira Condensed';font-weight:700;font-size:18px;color:#fff;margin-bottom:5px;">{{ selected.author }}</div>
+            <p style="font-size:14.5px;line-height:1.6;color:#9aa1a9;margin:0;">Dal 1980 progettiamo e realizziamo impianti di riscaldamento, condizionamento e impianti industriali chiavi in mano a Vicenza e provincia.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- aside -->
+      <aside style="position:sticky;top:104px;display:flex;flex-direction:column;gap:18px;">
+        <div style="border:1px solid #20242a;border-radius:6px;background:#16191d;padding:22px 24px;">
+          <div style="font-family:'Saira Condensed';font-weight:800;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:14px;">In questo articolo</div>
+          <div style="display:flex;flex-direction:column;gap:11px;">
+            <sc-for list="{{ selected.toc }}" as="t" hint-placeholder-count="3">
+              <a href="#{{ t.id }}" style="font-size:14px;color:#9aa1a9;text-decoration:none;line-height:1.4;" style-hover="color:#E11D17;">{{ t.label }}</a>
+            </sc-for>
+            <a href="#faq" style="font-size:14px;color:#9aa1a9;text-decoration:none;line-height:1.4;" style-hover="color:#E11D17;">Domande frequenti</a>
+          </div>
+        </div>
+        <a href="Contatti.dc.html" style="display:block;text-align:center;font-family:'Saira Condensed';font-weight:700;font-size:15px;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#E11D17;border-radius:3px;padding:14px;text-decoration:none;" style-hover="background:#c2160f;">Richiedi un preventivo</a>
+      </aside>
+    </div>
+
+    <!-- related -->
+    <div style="border-top:1px solid #20242a;background:#0d0f11;">
+      <div style="max-width:1080px;margin:0 auto;padding:60px 48px;">
+        <h2 style="font-family:'Saira Condensed';font-weight:800;font-size:28px;color:#fff;margin:0 0 26px;text-transform:uppercase;letter-spacing:-.3px;">Continua a leggere</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+          <sc-for list="{{ related }}" as="r" hint-placeholder-count="3">
+            <div onClick="{{ r.open }}" style="border:1px solid #20242a;border-radius:6px;overflow:hidden;background:#16191d;cursor:pointer;" style-hover="border-color:#E11D17;transform:translateY(-4px);">
+              <div style="position:relative;height:140px;overflow:hidden;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 11px,#22262b 11px,#22262b 22px);">
+                <span style="position:absolute;top:12px;left:12px;font-family:'Saira Condensed';font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;background:{{ r.catBg }};color:{{ r.catColor }};border-radius:2px;padding:4px 9px;">{{ r.cat }}</span>
+              </div>
+              <div style="padding:20px 22px 24px;">
+                <div style="font-size:12px;color:#7c848d;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">{{ r.date }}</div>
+                <h3 style="font-family:'Saira Condensed';font-weight:700;font-size:19px;color:#fff;margin:0;line-height:1.15;text-transform:uppercase;">{{ r.title }}</h3>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </article>
+  </sc-if>
+
+  <dc-import name="SiteFooter" hint-size="100%,220px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { view: 'list', slug: null };
+
+  CAT = { servizi: ['#E11D17', '#fff'], guida: ['#2BB3EF', '#0d0f11'], azienda: ['#2c3137', '#c7ccd2'] };
+
+  ART = [
+    {
+      slug: 'impianti-antincendio-aziende', cat: 'Servizi', key: 'servizi',
+      date: '12 Marzo 2026', updated: '14 Marzo 2026', iso: '2026-03-12', isoUpd: '2026-03-14',
+      author: 'Ufficio Tecnico Rossi Impianti', readTime: '5 min',
+      title: 'Impianti antincendio per le aziende: progettazione e messa a norma',
+      excerpt: 'Progettiamo e realizziamo impianti antincendio a norma per capannoni, uffici e attività produttive: rilevazione, spegnimento e certificazioni con un unico interlocutore.',
+      keywords: ['impianti antincendio', 'antincendio aziende', 'prevenzione incendi', 'Vicenza'],
+      toc: [{ id: 'normativa', label: 'Perché serve un impianto a norma' }, { id: 'tipologie', label: 'Le soluzioni che realizziamo' }, { id: 'iter', label: 'Dal progetto al collaudo' }],
+      takeaways: ['Impianti conformi al Codice di Prevenzione Incendi', 'Un solo referente dal progetto al collaudo', 'Manutenzione periodica e certificazioni incluse'],
+      sections: [
+        { id: 'normativa', h: 'Perché serve un impianto a norma', paras: ['La sicurezza antincendio non è un optional: per molte attività è un obbligo di legge legato al Codice di Prevenzione Incendi (D.M. 3 agosto 2015) e alla valutazione del rischio aziendale.', 'Un impianto progettato male — o privo di certificazione — espone l\u2019azienda a sanzioni, fermi produttivi e, soprattutto, a rischi reali per le persone.'] },
+        { id: 'tipologie', h: 'Le soluzioni che realizziamo', paras: ['Ogni edificio ha esigenze diverse. Dopo un sopralluogo definiamo la combinazione più efficace tra rilevazione, allarme e spegnimento.'], bullets: ['Reti idranti e naspi con gruppo di pressurizzazione', 'Impianti sprinkler per capannoni e magazzini', 'Rilevazione fumi e centrali di allarme', 'Estinzione a gas per locali tecnici e server'] },
+        { id: 'iter', h: 'Dal progetto al collaudo', paras: ['Seguiamo l\u2019intero iter con un unico interlocutore: rilievo, progettazione, installazione, collaudo e documentazione per i Vigili del Fuoco.', 'Al termine consegniamo le certificazioni e pianifichiamo la manutenzione periodica obbligatoria.'] }
+      ],
+      faq: [
+        { q: 'L\u2019impianto antincendio è obbligatorio per la mia azienda?', a: 'Dipende dall\u2019attività, dalla superficie e dal carico d\u2019incendio. Effettuiamo un sopralluogo per valutare gli obblighi previsti dalla normativa.' },
+        { q: 'Vi occupate anche delle pratiche con i Vigili del Fuoco?', a: 'Sì, gestiamo la documentazione tecnica e la presentazione della pratica SCIA antincendio.' },
+        { q: 'Fate la manutenzione degli impianti esistenti?', a: 'Certo, eseguiamo controlli periodici e manutenzione su impianti nuovi ed esistenti.' }
+      ]
+    },
+    {
+      slug: 'pompe-di-calore-come-scegliere', cat: 'Guida', key: 'guida',
+      date: '20 Febbraio 2026', updated: '20 Febbraio 2026', iso: '2026-02-20', isoUpd: '2026-02-20',
+      author: 'Ufficio Tecnico Rossi Impianti', readTime: '6 min',
+      title: 'Pompe di calore: come scegliere quella giusta',
+      excerpt: 'Potenza, COP e tipo di impianto: i criteri pratici per orientarsi tra le pompe di calore e scegliere la soluzione più efficiente per la tua casa.',
+      keywords: ['pompa di calore', 'COP', 'efficienza energetica', 'riscaldamento'],
+      toc: [{ id: 'come-funziona', label: 'Come funziona una pompa di calore' }, { id: 'criteri', label: 'I criteri di scelta' }, { id: 'impianto', label: 'Abbinamento all\u2019impianto' }],
+      takeaways: ['Il COP misura quanto rende rispetto all\u2019energia consumata', 'Rende al massimo con impianti a bassa temperatura', 'La taglia va dimensionata sul fabbisogno reale'],
+      sections: [
+        { id: 'come-funziona', h: 'Come funziona una pompa di calore', paras: ['La pompa di calore sposta calore dall\u2019ambiente esterno (aria, acqua o terreno) verso l\u2019interno, anziché produrlo bruciando un combustibile.', 'Questo le permette di restituire più energia termica di quanta ne consumi in elettricità: è il principio che la rende così efficiente.'] },
+        { id: 'criteri', h: 'I criteri di scelta', paras: ['Non esiste la pompa di calore migliore in assoluto: esiste quella giusta per la tua abitazione. Valutiamo insieme alcuni parametri chiave.'], bullets: ['COP e SCOP: l\u2019efficienza in condizioni reali', 'Potenza adeguata al fabbisogno termico', 'Funzioni: solo riscaldamento o anche raffrescamento e ACS', 'Rumorosità dell\u2019unità esterna'] },
+        { id: 'impianto', h: 'Abbinamento all\u2019impianto', paras: ['Il rendimento dipende molto dal tipo di emissione del calore: con un impianto a pavimento o con ventilconvettori la pompa lavora a bassa temperatura e rende di più.', 'In fase di sopralluogo verifichiamo se l\u2019impianto esistente è adatto o quali interventi servono per ottimizzarlo.'] }
+      ],
+      faq: [
+        { q: 'La pompa di calore funziona anche con il freddo?', a: 'Sì, i modelli attuali lavorano efficacemente anche con temperature esterne sotto lo zero. La resa cala leggermente ma resta conveniente.' },
+        { q: 'Posso usarla con i radiatori esistenti?', a: 'È possibile, ma il rendimento è migliore con impianti a bassa temperatura. Valutiamo caso per caso in sopralluogo.' },
+        { q: 'Quanto si risparmia rispetto alla caldaia?', a: 'Il risparmio dipende dall\u2019impianto e dalle tariffe, ma in molte case ben coibentate la pompa di calore riduce sensibilmente i costi di riscaldamento.' }
+      ]
+    },
+    {
+      slug: 'pacchetto-completo', cat: 'Azienda', key: 'azienda',
+      date: '15 Gennaio 2026', updated: '15 Gennaio 2026', iso: '2026-01-15', isoUpd: '2026-01-15',
+      author: 'Rossi Impianti srl', readTime: '4 min',
+      title: 'Il Pacchetto Completo: come seguiamo ogni progetto',
+      excerpt: 'Dalla progettazione alla messa in opera con un solo interlocutore: scopri come funziona il Pacchetto Completo Rossi Impianti.',
+      keywords: ['pacchetto completo', 'chiavi in mano', 'installazione impianti', 'preventivo'],
+      toc: [{ id: 'idea', label: 'Un solo interlocutore' }, { id: 'fasi', label: 'Le fasi del servizio' }, { id: 'vantaggi', label: 'I vantaggi per te' }],
+      takeaways: ['Progettazione, fornitura e installazione in un unico contratto', 'Gestione delle pratiche e degli incentivi', 'Assistenza e manutenzione dopo la consegna'],
+      sections: [
+        { id: 'idea', h: 'Un solo interlocutore', paras: ['Coordinare fornitori, installatori e burocrazia è la parte più stressante di un nuovo impianto. Con il Pacchetto Completo te ne occupi una volta sola: ci pensiamo noi.', 'Hai un unico referente dal primo sopralluogo fino al collaudo finale.'] },
+        { id: 'fasi', h: 'Le fasi del servizio', paras: ['Il percorso è chiaro e definito fin dall\u2019inizio, senza sorprese.'], bullets: ['Sopralluogo e analisi del fabbisogno', 'Progettazione e preventivo dettagliato', 'Fornitura dei materiali e installazione', 'Collaudo, documentazione e incentivi'] },
+        { id: 'vantaggi', h: 'I vantaggi per te', paras: ['Tempi certi, un solo contratto e la garanzia di un lavoro a regola d\u2019arte. E quando l\u2019impianto è in funzione, restiamo il tuo riferimento per assistenza e manutenzione.'] }
+      ],
+      faq: [
+        { q: 'Il preventivo è gratuito?', a: 'Sì, il sopralluogo e il preventivo sono senza impegno.' },
+        { q: 'Gestite anche gli incentivi fiscali?', a: 'Sì, ti aiutiamo a individuare e gestire gli incentivi disponibili per il tuo intervento.' },
+        { q: 'Dopo l\u2019installazione siete reperibili?', a: 'Certo, offriamo assistenza e contratti di manutenzione per mantenere l\u2019impianto efficiente nel tempo.' }
+      ]
+    },
+    {
+      slug: 'riscaldamento-a-pavimento', cat: 'Guida', key: 'guida',
+      date: '18 Dicembre 2025', updated: '18 Dicembre 2025', iso: '2025-12-18', isoUpd: '2025-12-18',
+      author: 'Ufficio Tecnico Rossi Impianti', readTime: '5 min',
+      title: 'Riscaldamento a pavimento: vantaggi e quando conviene',
+      excerpt: 'Comfort uniforme e consumi ridotti: tutto quello che c\u2019è da sapere sul riscaldamento a pavimento e quando è la scelta giusta.',
+      keywords: ['riscaldamento a pavimento', 'comfort termico', 'bassa temperatura', 'risparmio energetico'],
+      toc: [{ id: 'cos-e', label: 'Come funziona' }, { id: 'pro', label: 'I vantaggi' }, { id: 'quando', label: 'Quando conviene' }],
+      takeaways: ['Calore uniforme e nessun radiatore a vista', 'Lavora a bassa temperatura: ideale con pompa di calore', 'Massimo beneficio in costruzioni e ristrutturazioni'],
+      sections: [
+        { id: 'cos-e', h: 'Come funziona', paras: ['Il riscaldamento a pavimento distribuisce il calore attraverso una serpentina sotto la pavimentazione, scaldando l\u2019ambiente dal basso in modo uniforme.', 'Lavora a temperature più basse rispetto ai radiatori, riducendo le dispersioni e i consumi.'] },
+        { id: 'pro', h: 'I vantaggi', paras: ['Oltre al comfort, ci sono benefici concreti in termini di efficienza e di estetica.'], bullets: ['Temperatura uniforme in tutta la stanza', 'Nessun radiatore: più libertà di arredo', 'Abbinamento ottimale con pompe di calore', 'Aria più sana, meno polveri in circolo'] },
+        { id: 'quando', h: 'Quando conviene', paras: ['Rende al massimo in nuove costruzioni e ristrutturazioni importanti, dove è possibile intervenire sul massetto.', 'In sopralluogo valutiamo spessori, isolamento e tipo di pavimento per capire se è la soluzione giusta per te.'] }
+      ],
+      faq: [
+        { q: 'È compatibile con qualsiasi pavimento?', a: 'Funziona bene con gres e parquet idonei. In fase di progetto verifichiamo il materiale più adatto.' },
+        { q: 'Si può installare in una casa già abitata?', a: 'È possibile con sistemi a basso spessore, ma il caso ideale resta la ristrutturazione con rifacimento del massetto.' },
+        { q: 'È più costoso da gestire?', a: 'No, al contrario: lavorando a bassa temperatura consuma meno, soprattutto se abbinato a una pompa di calore.' }
+      ]
+    },
+    {
+      slug: 'solare-termico', cat: 'Servizi', key: 'servizi',
+      date: '10 Novembre 2025', updated: '10 Novembre 2025', iso: '2025-11-10', isoUpd: '2025-11-10',
+      author: 'Ufficio Tecnico Rossi Impianti', readTime: '4 min',
+      title: 'Solare termico: acqua calda dal sole',
+      excerpt: 'Come ridurre i consumi per l\u2019acqua calda sanitaria con un impianto solare termico, anche in abbinamento alla caldaia esistente.',
+      keywords: ['solare termico', 'acqua calda sanitaria', 'energia rinnovabile', 'risparmio'],
+      toc: [{ id: 'principio', label: 'Come funziona' }, { id: 'componenti', label: 'I componenti' }, { id: 'rendimento', label: 'Quanto si risparmia' }],
+      takeaways: ['Acqua calda gratuita dal sole per gran parte dell\u2019anno', 'Si integra con caldaia o pompa di calore', 'Riduce i consumi per l\u2019acqua calda sanitaria'],
+      sections: [
+        { id: 'principio', h: 'Come funziona', paras: ['Un impianto solare termico cattura l\u2019energia del sole attraverso pannelli e la usa per scaldare l\u2019acqua, che viene accumulata in un bollitore.', 'Quando il sole non basta, la caldaia o la pompa di calore intervengono solo per integrare: il grosso del lavoro lo fa il sole.'] },
+        { id: 'componenti', h: 'I componenti', paras: ['Un impianto a circolazione forzata è composto da pochi elementi affidabili.'], bullets: ['Pannelli solari ad alta resa', 'Bollitore di accumulo (es. 200 litri)', 'Centralina e pompa di circolazione', 'Integrazione con il generatore esistente'] },
+        { id: 'rendimento', h: 'Quanto si risparmia', paras: ['Per l\u2019acqua calda sanitaria il solare termico può coprire una quota molto significativa del fabbisogno annuo, riducendo l\u2019uso di gas o elettricità.', 'Ti aiutiamo anche a gestire la documentazione e gli eventuali incentivi.'] }
+      ],
+      faq: [
+        { q: 'Funziona anche in inverno?', a: 'Sì, anche con cielo coperto produce calore. In inverno la resa è minore e il generatore integra quando serve.' },
+        { q: 'Quanto spazio serve sul tetto?', a: 'Per una famiglia bastano in genere pochi metri quadri di pannelli. Lo valutiamo in sopralluogo.' },
+        { q: 'Si abbina alla caldaia che ho già?', a: 'Nella maggior parte dei casi sì, integrando il solare termico con il generatore esistente.' }
+      ]
+    },
+    {
+      slug: '44-anni-di-cantieri', cat: 'Azienda', key: 'azienda',
+      date: '5 Ottobre 2025', updated: '5 Ottobre 2025', iso: '2025-10-05', isoUpd: '2025-10-05',
+      author: 'Rossi Impianti srl', readTime: '3 min',
+      title: '44 anni di cantieri: la nostra esperienza industriale',
+      excerpt: 'Dal 1980 progettiamo e costruiamo impianti per l\u2019industria a Vicenza e provincia: una storia di competenza e affidabilità.',
+      keywords: ['Rossi Impianti', 'impianti industriali', 'Vicenza', 'esperienza'],
+      toc: [{ id: 'storia', label: 'Dal 1980 a oggi' }, { id: 'oggi', label: 'Cosa facciamo oggi' }],
+      takeaways: ['Oltre 40 anni di cantieri industriali', 'Squadra tecnica interna e formata', 'Radicati nel territorio di Vicenza'],
+      sections: [
+        { id: 'storia', h: 'Dal 1980 a oggi', paras: ['Abbiamo iniziato con piccoli impianti e siamo cresciuti insieme alle aziende del territorio, affrontando cantieri sempre più complessi.', 'Quarantaquattro anni di lavoro ci hanno insegnato che la differenza la fanno la cura del dettaglio e il rispetto dei tempi.'] },
+        { id: 'oggi', h: 'Cosa facciamo oggi', paras: ['Oggi progettiamo e realizziamo impianti di riscaldamento, condizionamento, antincendio e idraulici per l\u2019industria e per il privato.', 'La nostra squadra tecnica interna ci permette di garantire qualità e continuità su ogni progetto.'] }
+      ],
+      faq: [
+        { q: 'Lavorate solo con le aziende?', a: 'No, seguiamo sia clienti industriali sia privati, dal grande capannone al singolo appartamento.' },
+        { q: 'In che zona operate?', a: 'Principalmente a Vicenza e provincia, con base a Sarego.' }
+      ]
+    }
+  ];
+
+  decorate(a) {
+    const c = this.CAT[a.key];
+    return { ...a, catBg: c[0], catColor: c[1], open: () => this.open(a.slug),
+      sections: a.sections.map((s) => ({ ...s, hasBullets: Array.isArray(s.bullets) && s.bullets.length > 0 })) };
+  }
+
+  open(slug) { this.setState({ view: 'article', slug }); this.applySEO(slug); try { window.scrollTo(0, 0); } catch (e) {} }
+  goList() { this.setState({ view: 'list', slug: null }); this.applySEO(null); try { window.scrollTo(0, 0); } catch (e) {} }
+
+  componentDidMount() { this.applySEO(this.state.slug); }
+
+  applySEO(slug) {
+    if (typeof document === 'undefined') return;
+    const head = document.head;
+    const BASE = 'Rossi Impianti';
+    const setMeta = (selector, attr, key, content) => {
+      let el = head.querySelector(selector);
+      if (!el) { el = document.createElement('meta'); el.setAttribute(attr, key); head.appendChild(el); }
+      el.setAttribute('content', content);
+    };
+    const a = this.ART.find((x) => x.slug === slug);
+    if (a) {
+      document.title = a.title + ' | ' + BASE;
+      setMeta('meta[name="description"]', 'name', 'description', a.excerpt);
+      setMeta('meta[name="keywords"]', 'name', 'keywords', a.keywords.join(', '));
+      setMeta('meta[property="og:title"]', 'property', 'og:title', a.title);
+      setMeta('meta[property="og:description"]', 'property', 'og:description', a.excerpt);
+      setMeta('meta[property="og:type"]', 'property', 'og:type', 'article');
+      setMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
+      const article = {
+        '@context': 'https://schema.org', '@type': 'Article', headline: a.title,
+        description: a.excerpt, datePublished: a.iso, dateModified: a.isoUpd || a.iso,
+        author: { '@type': 'Organization', name: BASE }, publisher: { '@type': 'Organization', name: BASE },
+        keywords: a.keywords.join(', ')
+      };
+      const faqPage = {
+        '@context': 'https://schema.org', '@type': 'FAQPage',
+        mainEntity: a.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } }))
+      };
+      const breadcrumb = {
+        '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home' },
+          { '@type': 'ListItem', position: 2, name: 'News' },
+          { '@type': 'ListItem', position: 3, name: a.cat },
+          { '@type': 'ListItem', position: 4, name: a.title }
+        ]
+      };
+      let s = head.querySelector('#seo-jsonld');
+      if (!s) { s = document.createElement('script'); s.type = 'application/ld+json'; s.id = 'seo-jsonld'; head.appendChild(s); }
+      s.textContent = JSON.stringify([article, faqPage, breadcrumb]);
+    } else {
+      document.title = 'News e approfondimenti | ' + BASE;
+      setMeta('meta[name="description"]', 'name', 'description', 'Servizi, guide e aggiornamenti dal mondo Rossi Impianti: riscaldamento, condizionamento e impianti industriali a Vicenza.');
+      const s = head.querySelector('#seo-jsonld');
+      if (s) s.textContent = '';
+    }
+  }
+
+  renderVals() {
+    const articles = this.ART.map((a) => this.decorate(a));
+    const sel = this.ART.find((a) => a.slug === this.state.slug);
+    const selected = sel ? this.decorate(sel) : null;
+    const related = sel ? this.ART.filter((a) => a.slug !== sel.slug).slice(0, 3).map((a) => this.decorate(a)) : [];
+    return {
+      isList: this.state.view === 'list',
+      isArticle: this.state.view === 'article' && !!selected,
+      featured: articles[0],
+      articles: articles.slice(1),
+      selected, related,
+      goList: () => this.goList()
+    };
+  }
+}
+</script>
+</body>
+</html>

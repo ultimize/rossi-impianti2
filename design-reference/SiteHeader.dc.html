@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Saira+Condensed:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</helmet>
+<div style="position:sticky;top:0;z-index:50;background:rgba(16,18,20,.92);backdrop-filter:blur(10px);border-bottom:1px solid #20242a;font-family:'IBM Plex Sans',sans-serif;">
+  <div style="max-width:1240px;margin:0 auto;padding:18px 48px;display:flex;align-items:center;justify-content:space-between;">
+    <a href="{{ homeHref }}" style="line-height:1;text-decoration:none;">
+      <div style="display:flex;align-items:baseline;gap:6px;font-family:Archivo;"><span style="font-weight:800;font-size:22px;letter-spacing:-.5px;color:#fff;">ROSSI IMPIANTI</span><span style="font-weight:600;font-size:10.5px;color:#7c848d;">srl</span></div>
+      <div style="display:flex;gap:9px;font-family:Archivo;font-weight:700;font-size:9px;letter-spacing:.8px;margin-top:3px;"><span style="color:#E11D17;">RISCALDAMENTO</span><span style="color:#2BB3EF;">CONDIZIONAMENTO</span></div>
+    </a>
+    <div style="display:flex;align-items:center;gap:21px;">
+      <sc-for list="{{ links }}" as="l" hint-placeholder-count="6">
+        <a href="{{ l.href }}" style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:{{ l.color }};text-decoration:none;" style-hover="color:#fff;">{{ l.label }}</a>
+      </sc-for>
+      <a href="{{ shopHref }}" style="font-family:'Saira Condensed';font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:{{ shopColor }};text-decoration:none;" style-hover="color:#fff;">Shop</a>
+      <a href="{{ contattiHref }}" style="font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#E11D17;border-radius:2px;padding:11px 18px;text-decoration:none;" style-hover="background:#c2160f;transform:translateY(-1px);">Contatti</a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240,&quot;height&quot;:86},&quot;active&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const a = this.props.active || '';
+    const mk = (key, label, href) => ({ label, href, color: key === a ? '#fff' : '#c7ccd2' });
+    const links = [
+      mk('home', 'Home', 'Home.dc.html'),
+      mk('chisiamo', 'Chi siamo', 'Chisiamo.dc.html'),
+      mk('servizi', 'Servizi', 'Servizi.dc.html'),
+      mk('settori', 'Settori', 'Settori.dc.html'),
+      mk('marchi', 'Marchi trattati', 'Marchi.dc.html'),
+      mk('news', 'News', 'News.dc.html')
+    ];
+    return { links, homeHref: 'Home.dc.html', shopHref: 'Shop.dc.html', shopColor: a === 'shop' ? '#fff' : '#2BB3EF', contattiHref: 'Contatti.dc.html' };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing
+/coverage
+
+# production / build outputs
+/.next/
+/out/
+/build
+/dist
+
+# vercel
+.vercel
+
+# supabase
+.supabase/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# env files (strict ignore except example)
+.env
+.env.*
+!.env.example
+
+# misc / logs
+.DS_Store
+*.pem
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

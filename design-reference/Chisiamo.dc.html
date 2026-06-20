@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Saira+Condensed:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box;}html,body{margin:0;padding:0;background:#101214;}a{transition:all .25s ease;}</style>
+</helmet>
+<div style="background:#101214;font-family:'IBM Plex Sans',sans-serif;color:#fff;">
+  <dc-import name="SiteHeader" active="chisiamo" hint-size="100%,86px"></dc-import>
+
+  <!-- banner -->
+  <div style="background:linear-gradient(90deg,rgba(11,13,15,.6) 0%,rgba(11,13,15,.15) 60%,rgba(11,13,15,0) 100%),url('assets/hero/chisiamo.png');background-size:cover;background-position:right center;border-bottom:1px solid #20242a;position:relative;overflow:hidden;">
+    <div style="max-width:1240px;margin:0 auto;padding:76px 48px;position:relative;">
+      <div style="font-family:'Saira Condensed';font-weight:700;font-size:14px;letter-spacing:3px;color:#E11D17;text-transform:uppercase;margin-bottom:16px;">Chi siamo</div>
+      <h1 style="font-family:'Saira Condensed';font-weight:800;font-size:68px;line-height:.95;margin:0 0 16px;text-transform:uppercase;letter-spacing:-1px;">Dal 1980,<br>al fianco di Vicenza</h1>
+      <p style="font-size:18px;color:#9aa1a9;margin:0;max-width:560px;line-height:1.55;">44 anni di impianti termoidraulici civili e industriali, costruiti con dedizione e precisione.</p>
+    </div>
+  </div>
+
+  <!-- story -->
+  <div style="padding:88px 0;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+      <div>
+        <h2 style="font-family:'Saira Condensed';font-weight:800;font-size:44px;color:#fff;margin:0 0 24px;text-transform:uppercase;letter-spacing:-.5px;line-height:1;">La nostra storia</h2>
+        <p style="font-size:16px;color:#c7ccd2;line-height:1.65;margin:0 0 18px;">Nel 1980 nasce a Vicenza la ditta termoidraulica Rossi Impianti. Gestita da sempre con dedizione e precisione, è cresciuta negli anni aumentando l'organico e ampliando la proposta di servizi.</p>
+        <p style="font-size:16px;color:#c7ccd2;line-height:1.65;margin:0;">Il nostro team di professionisti interviene sia nel pronto intervento sia in progetti di grandi impianti, mettendo competenze specifiche al servizio di aziende, imprese edili, architetti, geometri e privati.</p>
+      </div>
+      <div style="position:relative;min-height:380px;border-radius:8px;overflow:hidden;border:1px solid #20242a;background:repeating-linear-gradient(45deg,#1d2024,#1d2024 12px,#22262b 12px,#22262b 24px);">
+        <span style="position:absolute;left:20px;bottom:20px;font-family:'Saira Condensed';font-weight:600;font-size:13px;letter-spacing:1px;color:#7c848d;background:#101214;border-radius:2px;padding:8px 13px;text-transform:uppercase;">Foto — sede / squadra</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- stats -->
+  <div style="background:#16191d;border-top:3px solid #E11D17;border-bottom:1px solid #20242a;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:repeat(4,1fr);">
+      <div style="padding:40px 32px;border-right:1px solid #20242a;"><div style="font-family:'Saira Condensed';font-weight:800;font-size:48px;color:#E11D17;line-height:.9;">44</div><div style="font-size:13px;color:#9aa1a9;margin-top:6px;text-transform:uppercase;letter-spacing:.5px;">anni di attività</div></div>
+      <div style="padding:40px 32px;border-right:1px solid #20242a;"><div style="font-family:'Saira Condensed';font-weight:800;font-size:48px;color:#fff;line-height:.9;">1980</div><div style="font-size:13px;color:#9aa1a9;margin-top:6px;text-transform:uppercase;letter-spacing:.5px;">fondata a Vicenza</div></div>
+      <div style="padding:40px 32px;border-right:1px solid #20242a;"><div style="font-family:'Saira Condensed';font-weight:800;font-size:48px;color:#fff;line-height:.9;">4</div><div style="font-size:13px;color:#9aa1a9;margin-top:6px;text-transform:uppercase;letter-spacing:.5px;">aree di servizio</div></div>
+      <div style="padding:40px 32px;"><div style="font-family:'Saira Condensed';font-weight:800;font-size:48px;color:#fff;line-height:.9;">∞</div><div style="font-size:13px;color:#9aa1a9;margin-top:6px;text-transform:uppercase;letter-spacing:.5px;">cantieri chiavi in mano</div></div>
+    </div>
+  </div>
+
+  <!-- valori -->
+  <div style="padding:88px 0;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 48px;">
+      <h2 style="font-family:'Saira Condensed';font-weight:800;font-size:44px;color:#fff;margin:0 0 36px;text-transform:uppercase;letter-spacing:-.5px;">Come lavoriamo</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        <div style="background:#16191d;border:1px solid #20242a;border-radius:6px;padding:36px 32px;border-top:3px solid #E11D17;">
+          <h3 style="font-family:'Saira Condensed';font-weight:700;font-size:24px;color:#fff;margin:0 0 10px;text-transform:uppercase;">Competenza</h3>
+          <p style="font-size:14.5px;color:#9aa1a9;line-height:1.6;margin:0;">Professionisti specializzati, dal pronto intervento ai grandi impianti industriali.</p>
+        </div>
+        <div style="background:#16191d;border:1px solid #20242a;border-radius:6px;padding:36px 32px;border-top:3px solid #2BB3EF;">
+          <h3 style="font-family:'Saira Condensed';font-weight:700;font-size:24px;color:#fff;margin:0 0 10px;text-transform:uppercase;">Pacchetto Completo</h3>
+          <p style="font-size:14.5px;color:#9aa1a9;line-height:1.6;margin:0;">Un solo interlocutore: progettazione, documentazione e installazione.</p>
+        </div>
+        <div style="background:#16191d;border:1px solid #20242a;border-radius:6px;padding:36px 32px;border-top:3px solid #2BB3EF;">
+          <h3 style="font-family:'Saira Condensed';font-weight:700;font-size:24px;color:#fff;margin:0 0 10px;text-transform:uppercase;">Qualità</h3>
+          <p style="font-size:14.5px;color:#9aa1a9;line-height:1.6;margin:0;">Materiali selezionati e lavori eseguiti a regola d'arte, su misura del cliente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="background:#E11D17;color:#fff;padding:64px 0;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 48px;display:flex;align-items:center;justify-content:space-between;gap:30px;">
+      <h2 style="font-family:'Saira Condensed';font-weight:800;font-size:46px;margin:0;text-transform:uppercase;letter-spacing:-.5px;line-height:.96;">Lavoriamo insieme<br>al tuo impianto.</h2>
+      <a href="Contatti.dc.html" style="font-family:'Saira Condensed';font-weight:700;font-size:18px;letter-spacing:.5px;text-transform:uppercase;color:#E11D17;background:#fff;border-radius:3px;padding:18px 34px;text-decoration:none;white-space:nowrap;" style-hover="transform:translateY(-2px);">Contattaci</a>
+    </div>
+  </div>
+
+  <dc-import name="SiteFooter" hint-size="100%,220px"></dc-import>
+</div>
+</x-dc>
+</body>
+</html>

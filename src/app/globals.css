@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #101214;
+  --foreground: #ffffff;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes sheen {
+  0% { background-position: -220% 0; }
+  100% { background-position: 220% 0; }
+}
+
+@keyframes flick {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.12) translateY(-1px); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes revealFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-marquee {
+  animation: marquee 26s linear infinite;
+}
+
+.animate-floaty {
+  animation: floaty 7s ease-in-out infinite;
+}
+
+.animate-flick {
+  animation: flick 2.2s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 2.6s ease-in-out infinite;
+}
+
+.animate-revealUp {
+  animation: revealUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-revealFade {
+  animation: revealFade 0.6s ease forwards;
+}
+
+/* Custom styles for article content (WordPress html) */
+.prose-dark {
+  color: #c7ccd2; /* text2 */
+  font-family: var(--font-ibm-plex-sans), sans-serif;
+  font-size: 16.5px;
+  line-height: 1.75;
+}
+
+.prose-dark p {
+  margin-bottom: 1.5rem;
+}
+
+.prose-dark h2 {
+  font-family: var(--font-saira-condensed), sans-serif;
+  font-weight: 800;
+  font-size: 2.25rem;
+  color: #ffffff;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  scroll-margin-top: 104px;
+}
+
+.prose-dark h3 {
+  font-family: var(--font-saira-condensed), sans-serif;
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: #ffffff;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  scroll-margin-top: 104px;
+}
+
+.prose-dark ul {
+  list-style-type: none;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.prose-dark ul li {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.prose-dark ul li::before {
+  content: "•";
+  color: #E11D17; /* rosso */
+  font-weight: bold;
+  position: absolute;
+  left: -1rem;
+}
+
+.prose-dark ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.prose-dark ol li {
+  margin-bottom: 0.5rem;
+}
+
+.prose-dark table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  border: 1px solid #20242a;
+}
+
+.prose-dark th, .prose-dark td {
+  border: 1px solid #20242a;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.prose-dark th {
+  background-color: #16191d;
+  color: #ffffff;
+  font-family: var(--font-saira-condensed), sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.prose-dark blockquote {
+  border-left: 4px solid #E11D17;
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  color: #9aa1a9;
+  font-style: italic;
+}
+
+.prose-dark img {
+  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.prose-dark a {
+  color: #2BB3EF;
+  text-decoration: underline;
+}
+
+.prose-dark a:hover {
+  color: #ffffff;
+}

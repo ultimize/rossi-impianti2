@@ -1,0 +1,55 @@
+import { MetadataRoute } from 'next';
+import { createStaticClient } from '@/lib/supabase/server';
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.rossimpiantisrl.it';
+  const supabase = createStaticClient();
+
+  // Static routes
+  const staticPaths = [
+    '',
+    '/chi-siamo',
+    '/servizi',
+    '/settori',
+    '/marchi',
+    '/contatti',
+    '/blog',
+    '/shop',
+    '/shop/carrello',
+  ];
+
+  const staticUrls = staticPaths.map((path) => ({
+    url: `${siteUrl}${path}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: path === '' ? 1.0 : 0.8,
+  }));
+
+  // Fetch articles
+  const { data: articles } = await supabase
+    .from('articles')
+    .select('slug, updated_at')
+    .eq('status', 'published');
+
+  const articleUrls = (articles || []).map((art) => ({
+    url: `${siteUrl}/blog/${art.slug}`,
+    lastModified: new Date(art.updated_at),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  // Fetch products
+  const { data: products } = await supabase
+    .from('products')
+    .select('slug, created_at')
+    .eq('status', 'published');
+
+  const productUrls = (products || []).map((prod) => ({
+    url: `${siteUrl}/shop/${prod.slug}`,
+    lastModified: new Date(prod.created_at || new Date()),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  return [...staticUrls, ...articleUrls, ...productUrls];
+}
