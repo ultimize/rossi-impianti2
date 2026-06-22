@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -101,7 +103,24 @@ export default function SiteFooter() {
       {/* Copyright Bar */}
       <div className="border-t border-border">
         <div className="max-w-[1240px] mx-auto px-6 md:px-12 py-[22px] flex items-center justify-between gap-5 flex-wrap text-[12.5px] text-[#5f666e]">
-          <span>© 2026 Rossi Impianti S.r.l. — Tutti i diritti riservati</span>
+          <div className="flex items-center gap-x-4 gap-y-2 flex-wrap">
+            <span>© 2026 Rossi Impianti S.r.l. — Tutti i diritti riservati</span>
+            <span className="hidden sm:inline text-border/60">•</span>
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="hidden sm:inline text-border/60">•</span>
+            <Link href="/cookie-policy" className="hover:text-white transition-colors">
+              Cookie Policy
+            </Link>
+            <span className="hidden sm:inline text-border/60">•</span>
+            <button
+              onClick={() => (window as any).openCookieSettings?.()}
+              className="hover:text-white transition-colors text-left font-plex"
+            >
+              Gestione cookie
+            </button>
+          </div>
           <span className="tracking-[0.3px]">P.IVA 01659230245 · COD. SDI T9K4ZHO</span>
         </div>
       </div>
