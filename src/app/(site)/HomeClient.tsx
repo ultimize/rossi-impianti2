@@ -149,7 +149,7 @@ export default function HomeClient({ articles }: HomeClientProps) {
             </div>
           </div>
           <div className="min-h-[440px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/sede.jpg')] rounded-btn flex items-end p-6 group">
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-all duration-500" />
+            <div className="absolute inset-0 bg-black/55 group-hover:bg-black/25 transition-all duration-500" />
             <span className="relative font-saira font-semibold text-[13px] tracking-[1px] text-muted2 bg-bg rounded-btn px-[13px] py-[8px] uppercase z-10">
               Foto — Sede Rossi Impianti
             </span>

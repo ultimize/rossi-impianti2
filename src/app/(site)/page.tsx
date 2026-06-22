@@ -27,7 +27,8 @@ export default async function HomePage() {
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center opacity-78 pointer-events-none filter saturate-[0.95] contrast-[1.02] bg-[url('/assets/site/hero.jpg')]"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-bg/92 via-bg/55 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-black/35 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-bg/92 via-bg/55 to-bg/40 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-bg/35 via-transparent to-bg/70 pointer-events-none" />
 
         {/* Large Decorative "44" */}
@@ -126,7 +127,7 @@ export default async function HomePage() {
               </Link>
             </div>
             <div className="min-h-[340px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/industriale.jpg')]">
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500" />
+              <div className="absolute inset-0 bg-black/55 group-hover:bg-black/20 transition-all duration-500" />
               <div className="absolute left-[22px] bottom-[22px] font-saira font-semibold text-[13px] tracking-[1px] text-muted2 bg-bg rounded-btn px-[13px] py-[8px] uppercase">
                 Centrale Termica
               </div>
@@ -141,7 +142,7 @@ export default async function HomePage() {
                 NUOVO
               </div>
               <div className="height-[150px] h-[150px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/antincendio.jpg')]">
-                <div className="absolute inset-0 bg-black/50" />
+                <div className="absolute inset-0 bg-black/55" />
                 <div className="absolute left-4.5 bottom-3.5 w-[46px] h-[46px] rounded-btn bg-[#101214] border border-[#2c3137] flex items-center justify-center text-rosso">
                   <Shield size={24} className="animate-flick origin-bottom" />
                 </div>
@@ -170,7 +171,7 @@ export default async function HomePage() {
             {/* Card 3 */}
             <div className="border border-border hover:border-azzurro hover:-translate-y-1 rounded-card overflow-hidden bg-surface transition-all duration-300 relative group">
               <div className="height-[150px] h-[150px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/riscaldamento.jpg')]">
-                <div className="absolute inset-0 bg-black/50" />
+                <div className="absolute inset-0 bg-black/55" />
                 <div className="absolute left-4.5 bottom-3.5 w-[46px] h-[46px] rounded-btn bg-[#101214] border border-[#2c3137] flex items-center justify-center text-azzurro">
                   <Flame size={24} />
                 </div>
@@ -201,7 +202,7 @@ export default async function HomePage() {
             {/* Card 4 */}
             <div className="border border-border hover:border-azzurro hover:-translate-y-1 rounded-card overflow-hidden bg-surface transition-all duration-300 relative group">
               <div className="height-[150px] h-[150px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/condizionamento.jpg')]">
-                <div className="absolute inset-0 bg-black/50" />
+                <div className="absolute inset-0 bg-black/55" />
                 <div className="absolute left-4.5 bottom-3.5 w-[46px] h-[46px] rounded-btn bg-[#101214] border border-[#2c3137] flex items-center justify-center text-azzurro">
                   <Wind size={24} className="animate-drift" />
                 </div>

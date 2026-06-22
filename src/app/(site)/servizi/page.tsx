@@ -5,6 +5,7 @@ export default function ServiziPage() {
     <div className="bg-bg text-text1">
       {/* HERO BANNER */}
       <div className="relative bg-cover bg-center bg-[url('/assets/site/header-servizi.jpg')] border-b border-border min-h-[320px] flex items-center">
+        <div className="absolute inset-0 bg-black/55 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-r from-bg/90 via-bg/40 to-transparent pointer-events-none" />
         <div className="max-w-[1240px] w-full mx-auto px-6 md:px-12 py-20 relative z-10">
           <div className="font-saira font-bold text-[14px] tracking-[3px] text-rosso uppercase mb-4">
@@ -43,7 +44,7 @@ export default function ServiziPage() {
             </div>
           </div>
           <div className="min-h-[300px] relative overflow-hidden bg-[#1d2024] bg-cover bg-center bg-[url('/assets/hero/settori.png')] flex items-end p-6">
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-all duration-500" />
+            <div className="absolute inset-0 bg-black/55 group-hover:bg-black/25 transition-all duration-500" />
             <span className="relative z-10 font-saira font-semibold text-[12px] tracking-[1px] text-muted2 bg-[#101214] rounded-btn px-3 py-1.5 uppercase">
               Foto — Centrale Industriale
             </span>
@@ -53,7 +54,7 @@ export default function ServiziPage() {
         {/* Service 2 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 border border-border rounded-card overflow-hidden bg-surface group">
           <div className="min-h-[300px] relative overflow-hidden order-2 lg:order-1 bg-[#1d2024] bg-cover bg-center bg-[url('/assets/hero/servizi.png')] flex items-end p-6">
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-all duration-500" />
+            <div className="absolute inset-0 bg-black/55 group-hover:bg-black/25 transition-all duration-500" />
             <span className="relative z-10 font-saira font-semibold text-[12px] tracking-[1px] text-muted2 bg-[#101214] rounded-btn px-3 py-1.5 uppercase">
               Foto — Impianto Antincendio
             </span>
@@ -102,7 +103,7 @@ export default function ServiziPage() {
             </div>
           </div>
           <div className="min-h-[300px] relative overflow-hidden bg-[#1d2024] bg-cover bg-center bg-[url('/assets/hero/chisiamo.png')] flex items-end p-6">
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-all duration-500" />
+            <div className="absolute inset-0 bg-black/55 group-hover:bg-black/25 transition-all duration-500" />
             <span className="relative z-10 font-saira font-semibold text-[12px] tracking-[1px] text-muted2 bg-[#101214] rounded-btn px-3 py-1.5 uppercase">
               Foto — Centrale Termica
             </span>
@@ -112,7 +113,7 @@ export default function ServiziPage() {
         {/* Service 4 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 border border-border rounded-card overflow-hidden bg-surface group">
           <div className="min-h-[300px] relative overflow-hidden order-2 lg:order-1 bg-[#1d2024] bg-cover bg-center bg-[url('/assets/hero/marchi.png')] flex items-end p-6">
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-all duration-500" />
+            <div className="absolute inset-0 bg-black/55 group-hover:bg-black/25 transition-all duration-500" />
             <span className="relative z-10 font-saira font-semibold text-[12px] tracking-[1px] text-muted2 bg-[#101214] rounded-btn px-3 py-1.5 uppercase">
               Foto — Climatizzazione
             </span>

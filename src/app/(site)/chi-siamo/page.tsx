@@ -5,6 +5,7 @@ export default function ChiSiamoPage() {
     <div className="bg-bg text-text1">
       {/* HERO BANNER */}
       <div className="relative bg-cover bg-center bg-[url('/assets/site/header-chisiamo.jpg')] border-b border-border min-h-[320px] flex items-center">
+        <div className="absolute inset-0 bg-black/55 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-r from-bg/90 via-bg/40 to-transparent pointer-events-none" />
         <div className="max-w-[1240px] w-full mx-auto px-6 md:px-12 py-20 relative z-10">
           <div className="font-saira font-bold text-[14px] tracking-[3px] text-rosso uppercase mb-4">
@@ -34,7 +35,7 @@ export default function ChiSiamoPage() {
             </p>
           </div>
           <div className="min-h-[380px] relative overflow-hidden bg-[#1d2024] rounded-card border border-border bg-cover bg-center bg-[url('/assets/hero/settori.png')] flex items-end p-6 group">
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500" />
+            <div className="absolute inset-0 bg-black/55 group-hover:bg-black/20 transition-all duration-500" />
             <span className="relative z-10 font-saira font-semibold text-[13px] tracking-[1px] text-muted bg-[#101214] border border-border rounded-btn px-3 py-2 uppercase">
               Foto — I nostri tecnici
             </span>
