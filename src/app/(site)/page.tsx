@@ -23,18 +23,10 @@ export default async function HomePage() {
     <div className="bg-bg text-text1 overflow-x-clip">
       {/* HERO SECTION */}
       <section className="relative bg-radial-gradient min-h-[600px] lg:min-h-[700px] overflow-hidden flex items-center">
-        {/* Background Video */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="/assets/hero/settori.png"
-          className="absolute inset-0 w-100 h-100 w-full h-full object-cover opacity-78 pointer-events-none filter saturate-[0.95] contrast-[1.02]"
-        >
-          <source src="https://assets.mixkit.co/videos/17675/17675-360.mp4" type="video/mp4" />
-        </video>
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 w-full h-full bg-cover bg-center opacity-78 pointer-events-none filter saturate-[0.95] contrast-[1.02] bg-[url('/assets/site/hero.jpg')]"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-bg/92 via-bg/55 to-transparent pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-bg/35 via-transparent to-bg/70 pointer-events-none" />
 
@@ -133,7 +125,7 @@ export default async function HomePage() {
                 Scopri il settore industriale <span>→</span>
               </Link>
             </div>
-            <div className="min-h-[340px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/hero/settori.png')]">
+            <div className="min-h-[340px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/industriale.jpg')]">
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500" />
               <div className="absolute left-[22px] bottom-[22px] font-saira font-semibold text-[13px] tracking-[1px] text-muted2 bg-bg rounded-btn px-[13px] py-[8px] uppercase">
                 Centrale Termica
@@ -148,7 +140,7 @@ export default async function HomePage() {
               <div className="absolute top-[18px] right-[18px] z-10 font-saira font-bold text-[12px] tracking-[1px] bg-rosso text-white rounded-btn px-2.5 py-1">
                 NUOVO
               </div>
-              <div className="height-[150px] h-[150px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/hero/servizi.png')]">
+              <div className="height-[150px] h-[150px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/antincendio.jpg')]">
                 <div className="absolute inset-0 bg-black/50" />
                 <div className="absolute left-4.5 bottom-3.5 w-[46px] h-[46px] rounded-btn bg-[#101214] border border-[#2c3137] flex items-center justify-center text-rosso">
                   <Shield size={24} className="animate-flick origin-bottom" />
@@ -177,7 +169,7 @@ export default async function HomePage() {
 
             {/* Card 3 */}
             <div className="border border-border hover:border-azzurro hover:-translate-y-1 rounded-card overflow-hidden bg-surface transition-all duration-300 relative group">
-              <div className="height-[150px] h-[150px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/hero/chisiamo.png')]">
+              <div className="height-[150px] h-[150px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/riscaldamento.jpg')]">
                 <div className="absolute inset-0 bg-black/50" />
                 <div className="absolute left-4.5 bottom-3.5 w-[46px] h-[46px] rounded-btn bg-[#101214] border border-[#2c3137] flex items-center justify-center text-azzurro">
                   <Flame size={24} />
@@ -208,7 +200,7 @@ export default async function HomePage() {
 
             {/* Card 4 */}
             <div className="border border-border hover:border-azzurro hover:-translate-y-1 rounded-card overflow-hidden bg-surface transition-all duration-300 relative group">
-              <div className="height-[150px] h-[150px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/hero/marchi.png')]">
+              <div className="height-[150px] h-[150px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/condizionamento.jpg')]">
                 <div className="absolute inset-0 bg-black/50" />
                 <div className="absolute left-4.5 bottom-3.5 w-[46px] h-[46px] rounded-btn bg-[#101214] border border-[#2c3137] flex items-center justify-center text-azzurro">
                   <Wind size={24} className="animate-drift" />
