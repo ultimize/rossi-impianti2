@@ -83,13 +83,13 @@ export default function SettoriPage() {
       <div className="bg-rosso py-16">
         <div className="max-w-[1240px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-7">
           <h2 className="font-saira font-extrabold text-[46px] text-white uppercase leading-[0.96] tracking-[-0.5px]">
-            Qual è il tuo settore?
+            44 anni di cantieri. Il prossimo è il tuo.
           </h2>
           <Link
             href="/contatti"
             className="font-saira font-bold text-[18px] tracking-[0.5px] uppercase text-rosso bg-white rounded-btn px-[34px] py-[18px] hover:-translate-y-[2px] transition-all whitespace-nowrap"
           >
-            Parlane con noi
+            Parliamone
           </Link>
         </div>
       </div>
