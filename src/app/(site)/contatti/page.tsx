@@ -86,13 +86,19 @@ export default function ContattiPage() {
               <div className="text-[15px] text-muted mt-0.5">amministrazione@rossimpiantisrl.it</div>
             </div>
           </div>
-          {/* Map Placeholder */}
-          <div className="relative h-[280px] rounded-card overflow-hidden border border-border bg-[#101214] flex items-center justify-center p-6 group">
-            <div className="absolute inset-0 bg-cover bg-center bg-[url('/assets/site/header-contatti.jpg')] opacity-35 group-hover:scale-[1.03] transition-transform duration-500 pointer-events-none" />
-            <div className="absolute inset-0 bg-black/55 pointer-events-none" />
-            <span className="relative z-10 font-saira font-semibold text-[13px] tracking-[1px] text-muted bg-[#101214] border border-border rounded-btn px-4 py-2 uppercase">
-              Mappa — Sarego (VI)
-            </span>
+          {/* Map */}
+          <div className="relative h-[280px] rounded-card overflow-hidden border border-border bg-[#101214]">
+            <iframe
+              src="https://www.google.com/maps?q=Via%20Dei%20Fiori%209%2FA%2C%2036040%20Sarego%20VI&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+              title="Sede Rossi Impianti — Sarego (VI)"
+              className="absolute inset-0 w-full h-full"
+            />
           </div>
         </div>
 
