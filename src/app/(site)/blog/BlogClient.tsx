@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Article, Category } from '@/lib/types';
 
 type BlogClientProps = {
@@ -93,13 +94,13 @@ export default function BlogClient({ articles, categories }: BlogClientProps) {
               >
                 <div className="min-h-[300px] md:min-h-[400px] relative overflow-hidden bg-[#1d2024]">
                   {featuredArticle.cover_url ? (
-                    <img
+                    <Image
                       src={featuredArticle.cover_url}
                       alt={featuredArticle.cover_alt || featuredArticle.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 60vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                      priority
                     />
                   ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-border to-[#2c3137] transition-transform duration-500 group-hover:scale-[1.04]" />
@@ -153,13 +154,12 @@ export default function BlogClient({ articles, categories }: BlogClientProps) {
                       >
                         <div className="overflow-hidden h-[180px] relative bg-cover bg-center bg-[#1d2024]">
                           {art.cover_url ? (
-                            <img
+                            <Image
                               src={art.cover_url}
                               alt={art.cover_alt || art.title}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.07]"
-                              onError={(e) => {
-                                (e.target as HTMLElement).style.display = 'none';
-                              }}
+                              fill
+                              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                              className="object-cover transition-transform duration-500 group-hover:scale-[1.07]"
                             />
                           ) : (
                             <div className="absolute inset-0 bg-gradient-to-br from-border to-[#2c3137] transition-transform duration-500 group-hover:scale-[1.07]" />

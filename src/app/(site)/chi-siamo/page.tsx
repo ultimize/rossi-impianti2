@@ -34,7 +34,7 @@ export default function ChiSiamoPage() {
               Il nostro team di professionisti interviene sia nel pronto intervento sia in progetti di grandi impianti, mettendo competenze specifiche al servizio di aziende, imprese edili, architetti, geometri e privati.
             </p>
           </div>
-          <div className="min-h-[380px] relative overflow-hidden bg-[#1d2024] rounded-card border border-border bg-cover bg-center bg-[url('/assets/hero/settori.png')] flex items-end p-6 group">
+          <div className="min-h-[380px] relative overflow-hidden bg-[#1d2024] rounded-card border border-border bg-cover bg-center bg-[url('/assets/site/header-settori.jpg')] flex items-end p-6 group">
             <div className="absolute inset-0 bg-black/55 group-hover:bg-black/20 transition-all duration-500" />
             <span className="relative z-10 font-saira font-semibold text-[13px] tracking-[1px] text-muted bg-[#101214] border border-border rounded-btn px-3 py-2 uppercase">
               Foto — I nostri tecnici

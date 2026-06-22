@@ -187,16 +187,14 @@ export default function HomeClient({ articles }: HomeClientProps) {
                   href={`/blog/${art.slug}`}
                   className="border border-border hover:border-rosso rounded-card overflow-hidden bg-surface transition-all duration-300 hover:-translate-y-1 flex flex-col h-full group"
                 >
-                  <div className="overflow-hidden h-[160px] relative bg-cover bg-center bg-[#1d2024]">
+                  <div className="overflow-hidden h-[160px] relative bg-[#1d2024]">
                     {art.cover_url ? (
-                      <img
+                      <Image
                         src={art.cover_url}
                         alt={art.cover_alt || art.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.07]"
-                        onError={(e) => {
-                          // Failover back to placeholder if image fails
-                          (e.target as HTMLElement).style.display = 'none';
-                        }}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.07]"
                       />
                     ) : (
                       <div className="absolute inset-0 bg-gradient-to-br from-border to-[#2c3137] transition-transform duration-500 group-hover:scale-[1.07]" />
@@ -271,7 +269,7 @@ export default function HomeClient({ articles }: HomeClientProps) {
             </div>
             {/* Map Placeholder */}
             <div className="relative h-[200px] rounded-card overflow-hidden border border-border bg-[#101214] flex items-center justify-center p-6 group">
-              <div className="absolute inset-0 bg-cover bg-center bg-[url('/assets/hero/contatti.png')] opacity-40 group-hover:scale-[1.03] transition-transform duration-500 pointer-events-none" />
+              <div className="absolute inset-0 bg-cover bg-center bg-[url('/assets/site/header-contatti.jpg')] opacity-40 group-hover:scale-[1.03] transition-transform duration-500 pointer-events-none" />
               <div className="absolute inset-0 bg-black/60 pointer-events-none" />
               <span className="relative z-10 font-saira font-semibold text-[14px] tracking-[1px] text-muted bg-[#101214] border border-border rounded-btn px-4 py-2 uppercase">
                 Mappa — Sarego (VI)

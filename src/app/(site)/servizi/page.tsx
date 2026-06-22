@@ -43,7 +43,7 @@ export default function ServiziPage() {
               ))}
             </div>
           </div>
-          <div className="min-h-[300px] relative overflow-hidden bg-[#1d2024] bg-cover bg-center bg-[url('/assets/hero/settori.png')] flex items-end p-6">
+          <div className="min-h-[300px] relative overflow-hidden bg-[#1d2024] bg-cover bg-center bg-[url('/assets/site/header-settori.jpg')] flex items-end p-6">
             <div className="absolute inset-0 bg-black/55 group-hover:bg-black/25 transition-all duration-500" />
             <span className="relative z-10 font-saira font-semibold text-[12px] tracking-[1px] text-muted2 bg-[#101214] rounded-btn px-3 py-1.5 uppercase">
               Foto — Centrale Industriale
@@ -53,7 +53,7 @@ export default function ServiziPage() {
 
         {/* Service 2 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 border border-border rounded-card overflow-hidden bg-surface group">
-          <div className="min-h-[300px] relative overflow-hidden order-2 lg:order-1 bg-[#1d2024] bg-cover bg-center bg-[url('/assets/hero/servizi.png')] flex items-end p-6">
+          <div className="min-h-[300px] relative overflow-hidden order-2 lg:order-1 bg-[#1d2024] bg-cover bg-center bg-[url('/assets/site/header-servizi.jpg')] flex items-end p-6">
             <div className="absolute inset-0 bg-black/55 group-hover:bg-black/25 transition-all duration-500" />
             <span className="relative z-10 font-saira font-semibold text-[12px] tracking-[1px] text-muted2 bg-[#101214] rounded-btn px-3 py-1.5 uppercase">
               Foto — Impianto Antincendio
@@ -102,7 +102,7 @@ export default function ServiziPage() {
               ))}
             </div>
           </div>
-          <div className="min-h-[300px] relative overflow-hidden bg-[#1d2024] bg-cover bg-center bg-[url('/assets/hero/chisiamo.png')] flex items-end p-6">
+          <div className="min-h-[300px] relative overflow-hidden bg-[#1d2024] bg-cover bg-center bg-[url('/assets/site/header-chisiamo.jpg')] flex items-end p-6">
             <div className="absolute inset-0 bg-black/55 group-hover:bg-black/25 transition-all duration-500" />
             <span className="relative z-10 font-saira font-semibold text-[12px] tracking-[1px] text-muted2 bg-[#101214] rounded-btn px-3 py-1.5 uppercase">
               Foto — Centrale Termica
@@ -112,7 +112,7 @@ export default function ServiziPage() {
 
         {/* Service 4 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 border border-border rounded-card overflow-hidden bg-surface group">
-          <div className="min-h-[300px] relative overflow-hidden order-2 lg:order-1 bg-[#1d2024] bg-cover bg-center bg-[url('/assets/hero/marchi.png')] flex items-end p-6">
+          <div className="min-h-[300px] relative overflow-hidden order-2 lg:order-1 bg-[#1d2024] bg-cover bg-center bg-[url('/assets/site/header-marchi.jpg')] flex items-end p-6">
             <div className="absolute inset-0 bg-black/55 group-hover:bg-black/25 transition-all duration-500" />
             <span className="relative z-10 font-saira font-semibold text-[12px] tracking-[1px] text-muted2 bg-[#101214] rounded-btn px-3 py-1.5 uppercase">
               Foto — Climatizzazione

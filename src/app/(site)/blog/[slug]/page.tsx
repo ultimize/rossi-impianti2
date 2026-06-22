@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { ChevronRight, Calendar, User, Clock, ArrowLeft, Check, HelpCircle } from 'lucide-react';
+import Image from 'next/image';
 import ArticleClientWrapper from './ArticleClientWrapper';
 import type { Article, Category } from '@/lib/types';
 
@@ -284,10 +285,13 @@ export default async function ArticlePage({ params }: Props) {
       {article.cover_url && (
         <div className="max-w-[1080px] mx-auto px-6 mb-12">
           <div className="relative h-[250px] md:h-[440px] w-full rounded-card overflow-hidden border border-border">
-            <img
+            <Image
               src={article.cover_url}
               alt={article.cover_alt || article.title}
-              className="w-full h-full object-cover"
+              fill
+              sizes="(max-width: 1080px) 100vw, 1080px"
+              className="object-cover"
+              priority
             />
           </div>
         </div>
@@ -458,10 +462,12 @@ export default async function ArticlePage({ params }: Props) {
                   >
                     <div className="overflow-hidden h-[150px] relative bg-[#1d2024]">
                       {art.cover_url ? (
-                        <img
+                        <Image
                           src={art.cover_url}
                           alt={art.cover_alt || art.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.07]"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.07]"
                         />
                       ) : (
                         <div className="absolute inset-0 bg-gradient-to-br from-border to-[#2c3137] transition-transform duration-500 group-hover:scale-[1.07]" />

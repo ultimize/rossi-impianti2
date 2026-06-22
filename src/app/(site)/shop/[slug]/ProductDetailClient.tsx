@@ -20,7 +20,7 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const images = product.image_urls && product.image_urls.length > 0
     ? product.image_urls
-    : ['/assets/hero/settori.png']; // Fallback placeholder
+    : ['/assets/site/header-settori.jpg']; // Fallback placeholder
 
   // Quantity state
   const [qty, setQty] = useState(1);
