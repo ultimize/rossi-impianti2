@@ -1,29 +1,17 @@
+import fs from 'fs';
+import path from 'path';
+
 export default function MarchiPage() {
   const brands = [
-    {
-      name: 'Sime',
-      title: 'SIME',
-      desc: 'Caldaie a condensazione e gruppi termici ad alta efficienza per il riscaldamento.',
-      hoverColor: 'hover:border-rosso',
-    },
-    {
-      name: 'Daikin',
-      title: 'DAIKIN',
-      desc: 'Climatizzatori e pompe di calore tra i più efficienti e silenziosi sul mercato.',
-      hoverColor: 'hover:border-azzurro',
-    },
-    {
-      name: 'Aermec',
-      title: 'AERMEC',
-      desc: 'Ventilconvettori e soluzioni per la climatizzazione di ambienti civili e commerciali.',
-      hoverColor: 'hover:border-azzurro',
-    },
-    {
-      name: 'Samsung',
-      title: 'SAMSUNG',
-      desc: 'Sistemi di climatizzazione con tecnologia inverter e controllo smart.',
-      hoverColor: 'hover:border-azzurro',
-    },
+    { slug: 'daikin', name: 'Daikin', logo: '/assets/marchi/daikin.svg' },
+    { slug: 'samsung', name: 'Samsung', logo: '/assets/marchi/samsung.svg' },
+    { slug: 'aermec', name: 'Aermec', logo: '/assets/marchi/aermec.svg' },
+    { slug: 'beretta', name: 'Beretta', logo: '/assets/marchi/beretta.png' },
+    { slug: 'sime', name: 'Sime', logo: '/assets/marchi/sime.svg' },
+    { slug: 'immergas', name: 'Immergas', logo: '/assets/marchi/immergas.jpg' },
+    { slug: 'paradigma', name: 'Paradigma', logo: '/assets/marchi/paradigma.jpg' },
+    { slug: 'rehau', name: 'Rehau', logo: '/assets/marchi/rehau.svg' },
+    { slug: 'eurotherm', name: 'Eurotherm', logo: '/assets/marchi/eurotherm.svg' },
   ];
 
   return (
@@ -45,33 +33,41 @@ export default function MarchiPage() {
         </div>
       </div>
 
-      {/* BRANDS LIST */}
+      {/* BRANDS GRID (BRAND WALL) */}
       <div className="max-w-[1240px] mx-auto px-6 md:px-12 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-[18px]">
-          {brands.map((brand) => (
-            <div
-              key={brand.name}
-              className={`border border-border rounded-card bg-surface p-[38px_36px] flex gap-[30px] items-center transition-all duration-300 ${brand.hoverColor}`}
-            >
-              <div className="w-[150px] h-[84px] flex-none border border-border rounded-btn bg-[#101214] flex items-center justify-center font-archivo font-extrabold text-[24px] text-[#b8bfc6] select-none">
-                {brand.title}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
+          {brands.map((brand) => {
+            const logoPath = path.join(process.cwd(), 'public', brand.logo);
+            const hasLogo = fs.existsSync(logoPath);
+
+            return (
+              <div
+                key={brand.slug}
+                className="bg-surface border border-border rounded-card h-32 flex items-center justify-center p-6 transition-all duration-300 group"
+              >
+                {hasLogo ? (
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    width={200}
+                    height={48}
+                    className="max-h-12 w-auto object-contain filter grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+                  />
+                ) : (
+                  <span className="font-saira font-bold text-[22px] text-white uppercase tracking-wider select-none">
+                    {brand.name}
+                  </span>
+                )}
               </div>
-              <div>
-                <h2 className="font-saira font-bold text-[26px] text-white uppercase mb-1">
-                  {brand.name}
-                </h2>
-                <p className="text-[14.5px] text-muted leading-[1.6]">
-                  {brand.desc}
-                </p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        <p className="text-[14px] text-faint mt-7.5 text-center mt-8">
-          Trattiamo inoltre numerosi altri marchi del settore termoidraulico. Chiedici un preventivo per il prodotto che desideri.
+        <p className="text-[15px] text-muted text-center mt-12">
+          ...e molti altri produttori selezionati.
         </p>
       </div>
     </div>
   );
 }
+
