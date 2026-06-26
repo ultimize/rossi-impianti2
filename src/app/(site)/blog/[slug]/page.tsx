@@ -205,7 +205,7 @@ export default async function ArticlePage({ params }: Props) {
   } : null;
 
   return (
-    <div className="bg-bg text-text1 min-h-screen">
+    <div className="bg-bg text-text min-h-screen">
       {/* INJECT JSON-LD */}
       <script
         type="application/ld+json"
@@ -224,17 +224,17 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* BREADCRUMB */}
       <div className="max-w-[1240px] mx-auto px-6 md:px-12 pt-6 pb-2 text-[13px] text-muted flex items-center gap-1.5 flex-wrap">
-        <Link href="/" className="hover:text-white transition-colors">Home</Link>
+        <Link href="/" className="hover:text-rosso transition-colors">Home</Link>
         <ChevronRight size={14} className="text-faint" />
-        <Link href="/blog" className="hover:text-white transition-colors">News</Link>
+        <Link href="/blog" className="hover:text-rosso transition-colors">News</Link>
         <ChevronRight size={14} className="text-faint" />
         {article.categories && (
           <>
-            <span className="text-muted2">{article.categories.name}</span>
+            <span className="text-muted-2">{article.categories.name}</span>
             <ChevronRight size={14} className="text-faint" />
           </>
         )}
-        <span className="text-white truncate max-w-[200px] md:max-w-none">{article.title}</span>
+        <span className="text-text truncate max-w-[200px] md:max-w-none">{article.title}</span>
       </div>
 
       {/* ARTICLE HEADER */}
@@ -250,11 +250,11 @@ export default async function ArticlePage({ params }: Props) {
             {article.categories.name}
           </span>
         )}
-        <h1 className="font-saira font-extrabold text-4xl md:text-[52px] leading-tight text-white uppercase tracking-[-1px] mb-5">
+        <h1 className="font-saira font-extrabold text-4xl md:text-[52px] leading-tight text-text uppercase tracking-[-1px] mb-5">
           {article.title}
         </h1>
         {article.excerpt && (
-          <p className="text-[20px] text-text2 leading-relaxed max-w-[720px] mx-auto mb-6.5 font-light">
+          <p className="text-[20px] text-text-2 leading-relaxed max-w-[720px] mx-auto mb-6.5 font-light">
             {article.excerpt}
           </p>
         )}
@@ -304,13 +304,13 @@ export default async function ArticlePage({ params }: Props) {
         <article className="min-w-0">
           {/* Key takeaways "In sintesi" */}
           {article.takeaways && article.takeaways.length > 0 && (
-            <div className="bg-surface border border-border border-l-4 border-l-rosso rounded-card p-6 md:p-7 mb-9">
-              <h3 className="font-saira font-bold text-[18px] tracking-[1.5px] text-white uppercase mb-4 flex items-center gap-2">
+            <div className="bg-bg-alt border border-border border-l-4 border-l-rosso rounded-card p-6 md:p-7 mb-9 shadow-sm">
+              <h3 className="font-saira font-bold text-[18px] tracking-[1.5px] text-text uppercase mb-4 flex items-center gap-2">
                 <Check size={18} className="text-rosso" /> In Sintesi
               </h3>
               <ul className="flex flex-col gap-3">
                 {article.takeaways.map((item, idx) => (
-                  <li key={idx} className="flex gap-3 text-[15px] text-text2 leading-relaxed">
+                  <li key={idx} className="flex gap-3 text-[15px] text-text-2 leading-relaxed">
                     <Check size={16} className="text-rosso flex-shrink-0 mt-1" />
                     <span>{item}</span>
                   </li>
@@ -322,11 +322,11 @@ export default async function ArticlePage({ params }: Props) {
           {/* HTML body rendering (prose) or structured rendering */}
           {article.body_html ? (
             <div
-              className="prose-dark"
+              className="prose-custom"
               dangerouslySetInnerHTML={{ __html: article.body_html }}
             />
           ) : (
-            <div className="prose-dark flex flex-col gap-6">
+            <div className="prose-custom flex flex-col gap-6">
               {article.body && article.body.map((section: any, idx: number) => {
                 const { h, paras, bullets } = section;
                 return (
@@ -334,16 +334,16 @@ export default async function ArticlePage({ params }: Props) {
                     {h && (
                       <h2
                         id={h.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')}
-                        className="font-saira font-extrabold text-3xl uppercase tracking-tight text-white mt-8 mb-4 scroll-mt-26"
+                        className="font-saira font-extrabold text-3xl uppercase tracking-tight text-text mt-8 mb-4 scroll-mt-26"
                       >
                         {h}
                       </h2>
                     )}
                     {paras && paras.map((p: string, pIdx: number) => (
-                      <p key={pIdx} className="mb-4 text-text2 leading-relaxed">{p}</p>
+                      <p key={pIdx} className="mb-4 text-text-2 leading-relaxed">{p}</p>
                     ))}
                     {bullets && (
-                      <ul className="list-disc pl-5 mb-4 text-text2 leading-relaxed flex flex-col gap-1.5">
+                      <ul className="list-disc pl-5 mb-4 text-text-2 leading-relaxed flex flex-col gap-1.5">
                         {bullets.map((b: string, bIdx: number) => (
                           <li key={bIdx} className="relative pl-1.5">{b}</li>
                         ))}
@@ -358,19 +358,19 @@ export default async function ArticlePage({ params }: Props) {
           {/* Collapsible FAQ widgets */}
           {article.faq && article.faq.length > 0 && (
             <div className="mt-14 pt-10 border-t border-border/40">
-              <h2 className="font-saira font-extrabold text-[36px] text-white uppercase mb-8 flex items-center gap-2.5">
+              <h2 className="font-saira font-extrabold text-[36px] text-text uppercase mb-8 flex items-center gap-2.5">
                 <HelpCircle size={28} className="text-rosso" /> Domande Frequenti
               </h2>
               <div className="flex flex-col gap-4">
                 {article.faq.map((q, idx) => (
                   <div
                     key={idx}
-                    className="bg-surface border border-border rounded-card p-5.5 p-6 hover:border-border2 transition-colors"
+                    className="bg-surface border border-border rounded-card p-5.5 p-6 hover:border-border-2 shadow-sm hover:shadow-md transition-all duration-300"
                   >
-                    <h4 className="font-saira font-bold text-[20px] text-white uppercase mb-2">
+                    <h4 className="font-saira font-bold text-[20px] text-text uppercase mb-2">
                       {q.q}
                     </h4>
-                    <p className="text-[15px] text-muted leading-relaxed">
+                    <p className="text-[15px] text-text-2 leading-relaxed">
                       {q.a}
                     </p>
                   </div>
@@ -382,11 +382,11 @@ export default async function ArticlePage({ params }: Props) {
           {/* Keywords / Tags */}
           {article.keywords && article.keywords.length > 0 && (
             <div className="mt-10 pt-6 border-t border-border/30 flex flex-wrap gap-2 items-center">
-              <span className="text-[13.5px] text-muted2 uppercase tracking-[1px] mr-1.5">Tag:</span>
+              <span className="text-[13.5px] text-muted-2 uppercase tracking-[1px] mr-1.5">Tag:</span>
               {article.keywords.map((kw) => (
                 <span
                   key={kw}
-                  className="font-saira font-semibold text-[13px] tracking-[0.5px] uppercase text-text2 bg-surface border border-border rounded-btn px-3 py-1 hover:text-white transition-colors"
+                  className="font-saira font-semibold text-[13px] tracking-[0.5px] uppercase text-text-2 bg-surface border border-border rounded-btn px-3 py-1 hover:text-rosso hover:border-rosso transition-colors"
                 >
                   #{kw}
                 </span>
@@ -395,15 +395,15 @@ export default async function ArticlePage({ params }: Props) {
           )}
 
           {/* Bio block */}
-          <div className="mt-14 bg-surface border border-border rounded-card p-6.5 p-7 flex gap-5 items-center flex-col sm:flex-row text-center sm:text-left">
+          <div className="mt-14 bg-surface border border-border rounded-card p-6.5 p-7 flex gap-5 items-center flex-col sm:flex-row text-center sm:text-left shadow-sm">
             <div className="w-[64px] h-[64px] rounded-full bg-rosso text-white font-saira font-extrabold text-[28px] flex items-center justify-center flex-shrink-0 select-none">
               RI
             </div>
             <div>
-              <h4 className="font-saira font-bold text-[19px] text-white uppercase mb-1">
+              <h4 className="font-saira font-bold text-[19px] text-text uppercase mb-1">
                 {article.author || 'Ufficio Tecnico Rossi Impianti'}
               </h4>
-              <p className="text-[14px] text-muted leading-relaxed">
+              <p className="text-[14px] text-text-2 leading-relaxed">
                 Il dipartimento tecnico di Rossi Impianti srl si occupa della progettazione, certificazione e collaudo di impianti termoidraulici civili e industriali dal 1980.
               </p>
             </div>
@@ -413,7 +413,7 @@ export default async function ArticlePage({ params }: Props) {
           <div className="mt-10">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 font-saira font-bold text-[15px] tracking-[0.5px] uppercase text-muted hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 font-saira font-bold text-[15px] tracking-[0.5px] uppercase text-muted hover:text-text transition-colors"
             >
               <ArrowLeft size={16} /> Torna a News
             </Link>
@@ -426,11 +426,11 @@ export default async function ArticlePage({ params }: Props) {
           <ArticleClientWrapper headings={tocHeadings} />
 
           {/* Sidebar CTA */}
-          <div className="bg-surface border border-border rounded-card p-6.5 p-7 flex flex-col text-center">
-            <h4 className="font-saira font-bold text-[24px] text-white uppercase leading-none mb-3">
+          <div className="bg-surface border border-border rounded-card p-6.5 p-7 flex flex-col text-center shadow-sm">
+            <h4 className="font-saira font-bold text-[24px] text-text uppercase leading-none mb-3">
               Hai un progetto da realizzare?
             </h4>
-            <p className="text-[13.5px] text-muted leading-relaxed mb-5">
+            <p className="text-[13.5px] text-text-2 leading-relaxed mb-5">
               Il nostro team è pronto ad aiutarti per progettare il tuo impianto.
             </p>
             <Link
@@ -447,7 +447,7 @@ export default async function ArticlePage({ params }: Props) {
       {relatedArticles.length > 0 && (
         <section className="bg-surface2 border-t border-border py-16">
           <div className="max-w-[1240px] mx-auto px-6 md:px-12">
-            <h3 className="font-saira font-bold text-[26px] text-white uppercase mb-8">
+            <h3 className="font-saira font-bold text-[26px] text-text uppercase mb-8">
               Articoli Correlati
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -458,9 +458,9 @@ export default async function ArticlePage({ params }: Props) {
                   <Link
                     key={art.id}
                     href={`/blog/${art.slug}`}
-                    className="border border-border hover:border-rosso rounded-card overflow-hidden bg-surface transition-all duration-300 hover:-translate-y-1 flex flex-col h-full group"
+                    className="border border-border rounded-card overflow-hidden bg-surface transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md flex flex-col h-full group"
                   >
-                    <div className="overflow-hidden h-[150px] relative bg-[#1d2024]">
+                    <div className="overflow-hidden h-[150px] relative bg-bg-alt">
                       {art.cover_url ? (
                         <Image
                           src={art.cover_url}
@@ -470,7 +470,7 @@ export default async function ArticlePage({ params }: Props) {
                           className="object-cover transition-transform duration-500 group-hover:scale-[1.07]"
                         />
                       ) : (
-                        <div className="absolute inset-0 bg-gradient-to-br from-border to-[#2c3137] transition-transform duration-500 group-hover:scale-[1.07]" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-border to-surface-2 transition-transform duration-500 group-hover:scale-[1.07]" />
                       )}
                       {art.categories && (
                         <span
@@ -483,13 +483,13 @@ export default async function ArticlePage({ params }: Props) {
                     </div>
                     <div className="p-5.5 p-6 flex flex-col flex-grow justify-between">
                       <div>
-                        <div className="text-[12px] text-muted2 uppercase tracking-[1px] mb-2">
+                        <div className="text-[12px] text-muted-2 uppercase tracking-[1px] mb-2">
                           {formatDate(art.published_at)}
                         </div>
-                        <h4 className="font-saira font-bold text-[20px] text-white uppercase mb-2 line-clamp-2 leading-tight">
+                        <h4 className="font-saira font-bold text-[20px] text-text uppercase mb-2 line-clamp-2 leading-tight">
                           {art.title}
                         </h4>
-                        <p className="text-[14px] text-muted line-clamp-2 mb-3.5 leading-relaxed">
+                        <p className="text-[14px] text-text-2 line-clamp-2 mb-3.5 leading-relaxed">
                           {art.excerpt}
                         </p>
                       </div>

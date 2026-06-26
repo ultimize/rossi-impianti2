@@ -73,7 +73,7 @@ export default function AdminOrdersClient({ initialOrders }: AdminOrdersClientPr
     <div className="flex flex-col gap-8 text-left">
       {/* Header */}
       <div>
-        <h1 className="font-saira font-extrabold text-3xl md:text-4xl text-white uppercase tracking-tight">
+        <h1 className="font-saira font-extrabold text-3xl md:text-4xl text-text uppercase tracking-tight">
           Gestione Ordini
         </h1>
         <p className="text-[14.5px] text-muted mt-1 leading-relaxed">
@@ -96,7 +96,7 @@ export default function AdminOrdersClient({ initialOrders }: AdminOrdersClientPr
             className={`font-saira font-bold text-[13px] tracking-[1px] uppercase rounded-btn px-4 py-2.5 transition-colors border ${
               filter === tab.value
                 ? 'bg-rosso border-rosso text-white'
-                : 'bg-surface border-border text-text2 hover:text-white hover:border-text2'
+                : 'bg-surface border-border text-text-2 hover:text-text hover:border-border-2 hover:bg-bg-alt'
             }`}
           >
             {tab.label}
@@ -111,16 +111,16 @@ export default function AdminOrdersClient({ initialOrders }: AdminOrdersClientPr
           return (
             <div
               key={order.id}
-              className="bg-surface border border-border rounded-card overflow-hidden flex flex-col"
+              className="bg-surface border border-border rounded-card overflow-hidden flex flex-col shadow-sm"
             >
               {/* Main Card Header */}
               <div
                 onClick={() => toggleExpand(order.id)}
-                className="p-5.5 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 cursor-pointer hover:bg-surface/60 transition-colors select-none text-left"
+                className="p-5.5 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 cursor-pointer hover:bg-bg-alt transition-colors select-none text-left"
               >
                 <div className="flex flex-col gap-1.5">
                   <div className="flex items-center gap-3 flex-wrap">
-                    <span className="font-saira font-bold text-[18px] text-white uppercase">
+                    <span className="font-saira font-bold text-[18px] text-text uppercase">
                       Ordine #{order.id.slice(0, 8)}
                     </span>
                     <span className={`px-2.5 py-0.5 rounded-btn font-saira font-bold uppercase text-[11px] tracking-[0.5px] ${getStatusStyle(order.status)}`}>
@@ -144,12 +144,12 @@ export default function AdminOrdersClient({ initialOrders }: AdminOrdersClientPr
 
                 <div className="flex items-center gap-5.5 self-stretch md:self-auto justify-between border-t border-border/30 pt-3 md:pt-0 md:border-0">
                   <div className="text-right">
-                    <div className="text-[20px] font-extrabold text-white leading-none">
+                    <div className="text-[20px] font-extrabold text-text leading-none">
                       {formatPrice(order.total_cents)}
                     </div>
                     <span className="text-[11px] text-faint block mt-1">Totale ordine</span>
                   </div>
-                  <div className="text-muted2 hover:text-white p-1">
+                  <div className="text-muted-2 hover:text-text p-1">
                     {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                   </div>
                 </div>
@@ -157,23 +157,23 @@ export default function AdminOrdersClient({ initialOrders }: AdminOrdersClientPr
 
               {/* Collapsible Details */}
               {isExpanded && (
-                <div className="border-t border-border/40 p-6 bg-[#101214]/40 flex flex-col gap-6 text-left">
+                <div className="border-t border-border/40 p-6 bg-bg-alt flex flex-col gap-6 text-left">
                   {/* Items List */}
                   <div>
-                    <h4 className="font-saira font-bold text-[13px] tracking-[1.5px] text-white uppercase mb-3">
+                    <h4 className="font-saira font-bold text-[13px] tracking-[1.5px] text-text uppercase mb-3">
                       Articoli Acquistati
                     </h4>
                     <div className="flex flex-col gap-2.5">
                       {order.items.map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex justify-between items-center bg-surface/50 border border-border/60 rounded px-4 py-2.5 text-[13.5px]"
+                          className="flex justify-between items-center bg-surface border border-border rounded px-4 py-2.5 text-[13.5px]"
                         >
                           <div className="flex items-center gap-2">
-                            <span className="font-semibold text-white">{item.name}</span>
+                            <span className="font-semibold text-text">{item.name}</span>
                             <span className="text-muted font-normal text-xs">x{item.qty}</span>
                           </div>
-                          <span className="font-semibold text-text2">{formatPrice(item.price_cents * item.qty)}</span>
+                          <span className="font-semibold text-text-2">{formatPrice(item.price_cents * item.qty)}</span>
                         </div>
                       ))}
                     </div>
@@ -191,7 +191,7 @@ export default function AdminOrdersClient({ initialOrders }: AdminOrdersClientPr
                           value={order.status}
                           onChange={(e) => handleStatusChange(order.id, e.target.value as Order['status'])}
                           disabled={loading}
-                          className="bg-[#101214] border border-[#2c3137] rounded-btn p-2.5 text-white font-plex text-[13.5px] outline-none cursor-pointer flex-grow disabled:opacity-50"
+                          className="bg-surface border border-border rounded-btn p-2.5 text-text font-plex text-[13.5px] outline-none focus:border-rosso cursor-pointer flex-grow disabled:opacity-50"
                         >
                           <option value="pending">In attesa (Pending)</option>
                           <option value="paid">Pagato (Paid)</option>
@@ -205,15 +205,15 @@ export default function AdminOrdersClient({ initialOrders }: AdminOrdersClientPr
                     <div className="flex flex-col gap-2 text-right text-[13.5px] font-plex">
                       <div className="flex justify-between md:justify-end gap-10">
                         <span className="text-muted">Subtotale:</span>
-                        <span className="text-white font-medium">{formatPrice(order.subtotal_cents)}</span>
+                        <span className="text-text font-medium">{formatPrice(order.subtotal_cents)}</span>
                       </div>
                       <div className="flex justify-between md:justify-end gap-10">
                         <span className="text-muted">Spedizione:</span>
-                        <span className="text-green-500 font-semibold">{order.shipping_cents > 0 ? formatPrice(order.shipping_cents) : 'Gratis'}</span>
+                        <span className="text-green-600 font-semibold">{order.shipping_cents > 0 ? formatPrice(order.shipping_cents) : 'Gratis'}</span>
                       </div>
                       <div className="flex justify-between md:justify-end gap-10 font-bold text-[15px] border-t border-border/30 pt-1.5 mt-1">
-                        <span className="text-white uppercase font-saira tracking-[0.5px]">Totale:</span>
-                        <span className="text-white">{formatPrice(order.total_cents)}</span>
+                        <span className="text-text uppercase font-saira tracking-[0.5px]">Totale:</span>
+                        <span className="text-rosso">{formatPrice(order.total_cents)}</span>
                       </div>
                     </div>
                   </div>

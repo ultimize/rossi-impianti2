@@ -92,22 +92,22 @@ export default function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center bg-black/60 p-4">
+    <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center bg-black/40 p-4">
       <div className="w-full max-w-[680px] bg-bg border border-border rounded-card shadow-2xl overflow-hidden">
-        <div className="p-6 md:p-8">
-          <h2 className="font-saira font-extrabold text-[20px] text-white uppercase tracking-[0.5px] mb-3">
+        <div className="p-6 md:p-8 text-left">
+          <h2 className="font-saira font-extrabold text-[20px] text-text1 uppercase tracking-[0.5px] mb-3">
             Informativa sui cookie
           </h2>
-          <p className="font-plex text-[14px] text-muted leading-relaxed mb-5">
+          <p className="font-plex text-[14px] text-text2 leading-relaxed mb-5">
             Questo sito utilizza cookie tecnici necessari al corretto funzionamento e,
             previo consenso, cookie statistici e di marketing/profilazione, anche di terze
             parti, per migliorare la tua esperienza. Puoi accettare tutti i cookie, rifiutare
             quelli non necessari o personalizzare le tue scelte. Per saperne di più consulta la{' '}
-            <Link href="/privacy-policy" className="text-rosso underline hover:no-underline">
+            <Link href="/privacy-policy" className="text-rosso underline hover:no-underline font-semibold">
               Privacy Policy
             </Link>{' '}
             e la{' '}
-            <Link href="/cookie-policy" className="text-rosso underline hover:no-underline">
+            <Link href="/cookie-policy" className="text-rosso underline hover:no-underline font-semibold">
               Cookie Policy
             </Link>
             .
@@ -134,27 +134,27 @@ export default function CookieBanner() {
           <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
             <button
               onClick={() => save({ statistics: true, marketing: true })}
-              className="font-saira font-bold text-[15px] tracking-[0.5px] uppercase text-white bg-rosso hover:bg-rosso-hover rounded-btn px-6 py-3 transition-all order-1"
+              className="font-saira font-bold text-[15px] tracking-[0.5px] uppercase text-white bg-rosso hover:bg-rosso-hover rounded-btn px-6 py-3 transition-all order-1 cursor-pointer"
             >
               Accetta tutti
             </button>
             <button
               onClick={() => save({ statistics: false, marketing: false })}
-              className="font-saira font-bold text-[15px] tracking-[0.5px] uppercase text-white border border-border hover:border-white rounded-btn px-6 py-3 transition-all order-2"
+              className="font-saira font-bold text-[15px] tracking-[0.5px] uppercase text-text1 border border-border2 hover:border-rosso hover:text-rosso rounded-btn px-6 py-3 transition-all order-2 cursor-pointer bg-transparent"
             >
               Rifiuta non necessari
             </button>
             {customize ? (
               <button
                 onClick={() => save({ statistics, marketing })}
-                className="font-saira font-bold text-[15px] tracking-[0.5px] uppercase text-white border border-border hover:border-white rounded-btn px-6 py-3 transition-all order-3"
+                className="font-saira font-bold text-[15px] tracking-[0.5px] uppercase text-text1 border border-border2 hover:border-rosso hover:text-rosso rounded-btn px-6 py-3 transition-all order-3 cursor-pointer bg-transparent"
               >
                 Salva preferenze
               </button>
             ) : (
               <button
                 onClick={() => setCustomize(true)}
-                className="font-saira font-semibold text-[14px] tracking-[0.5px] uppercase text-muted hover:text-white px-2 py-3 transition-colors order-3 sm:ml-auto"
+                className="font-saira font-semibold text-[14px] tracking-[0.5px] uppercase text-text2 hover:text-rosso px-2 py-3 transition-colors order-3 sm:ml-auto cursor-pointer"
               >
                 Personalizza
               </button>
@@ -162,9 +162,9 @@ export default function CookieBanner() {
           </div>
         </div>
 
-        <div className="flex items-center justify-end gap-2 px-6 md:px-8 py-3 border-t border-border bg-surface">
-          <span className="font-plex text-[11px] text-muted2 uppercase tracking-[1px]">Powered by</span>
-          <Image src="/adevolution.svg" alt="Adevolution" width={92} height={20} className="opacity-90" />
+        <div className="flex items-center justify-end gap-2 px-6 md:px-8 py-3 border-t border-border bg-surface2">
+          <span className="font-plex text-[11px] text-text2 uppercase tracking-[1px]">Powered by</span>
+          <Image src="/adevolution.svg" alt="Adevolution" width={92} height={20} className="opacity-100" />
         </div>
       </div>
     </div>
@@ -194,8 +194,8 @@ function Row({
         className="mt-1 h-4 w-4 accent-rosso shrink-0"
       />
       <span>
-        <span className="block font-saira font-bold text-[14px] text-white uppercase tracking-[0.5px]">{title}</span>
-        <span className="block font-plex text-[13px] text-muted leading-snug">{desc}</span>
+        <span className="block font-saira font-bold text-[14px] text-text1 uppercase tracking-[0.5px]">{title}</span>
+        <span className="block font-plex text-[13px] text-text2 leading-snug">{desc}</span>
       </span>
     </label>
   );

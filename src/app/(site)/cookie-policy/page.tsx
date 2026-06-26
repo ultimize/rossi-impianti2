@@ -7,12 +7,12 @@ export const metadata: Metadata = {
 
 export default function CookiePolicyPage() {
   return (
-    <div className="bg-bg text-text1 py-16 md:py-24">
+    <div className="bg-bg text-text py-16 md:py-24">
       <div className="max-w-[800px] mx-auto px-6">
-        <h1 className="font-saira font-extrabold text-4xl md:text-5xl uppercase tracking-[-0.5px] mb-8 text-white">
+        <h1 className="font-saira font-extrabold text-4xl md:text-5xl uppercase tracking-[-0.5px] mb-8 text-text">
           Cookie Policy
         </h1>
-        <div className="prose-dark">
+        <div className="prose-custom">
           <p>
             Questo sito web utilizza i cookie. I cookie sono piccoli file di testo che possono essere utilizzati dai siti web per
             rendere più efficiente l'esperienza per l'utente e per fornire informazioni al proprietario del sito.

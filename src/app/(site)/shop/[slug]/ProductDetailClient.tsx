@@ -126,29 +126,28 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
       </div>
     );
   };
-
   return (
-    <div className="bg-bg text-text1">
+    <div className="bg-bg text-text">
       {/* BREADCRUMB */}
       <div className="max-w-[1240px] mx-auto px-6 md:px-12 pt-6 pb-2 text-[13px] text-muted flex items-center gap-1.5 flex-wrap">
-        <Link href="/" className="hover:text-white transition-colors">Home</Link>
+        <Link href="/" className="hover:text-rosso transition-colors">Home</Link>
         <ChevronRight size={14} className="text-faint" />
-        <Link href="/shop" className="hover:text-white transition-colors">Shop</Link>
+        <Link href="/shop" className="hover:text-rosso transition-colors">Shop</Link>
         <ChevronRight size={14} className="text-faint" />
         {product.categories && (
           <>
-            <span className="text-muted2">{product.categories.name}</span>
+            <span className="text-muted-2">{product.categories.name}</span>
             <ChevronRight size={14} className="text-faint" />
           </>
         )}
-        <span className="text-white truncate">{product.name}</span>
+        <span className="text-text truncate">{product.name}</span>
       </div>
 
       {/* DETAIL SHEET */}
       <div className="max-w-[1240px] mx-auto px-6 md:px-12 py-10 grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-14 items-start">
         {/* Left Column: Image Box & Gallery */}
         <div className="flex flex-col gap-4">
-          <div className="relative h-[320px] md:h-[480px] w-full rounded-card overflow-hidden border border-border bg-surface flex items-center justify-center p-6">
+          <div className="relative h-[320px] md:h-[480px] w-full rounded-card overflow-hidden border border-border bg-surface flex items-center justify-center p-6 shadow-sm">
             <img
               src={images[activeImageIndex]}
               alt={product.name}
@@ -161,7 +160,7 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
                 <button
                   key={idx}
                   onClick={() => setActiveImageIndex(idx)}
-                  className={`w-20 h-20 border rounded-btn overflow-hidden p-1 flex-shrink-0 bg-surface ${
+                  className={`w-20 h-20 border rounded-btn overflow-hidden p-1 flex-shrink-0 bg-surface shadow-sm ${
                     activeImageIndex === idx ? 'border-rosso' : 'border-border'
                   }`}
                 >
@@ -175,39 +174,39 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
         {/* Right Column: Info Panel */}
         <div className="flex flex-col items-start text-left">
           {product.categories && (
-            <span className="font-saira font-bold text-[12px] tracking-[1.5px] uppercase bg-azzurro text-surface2 rounded-btn px-2.5 py-1 mb-4 shadow">
+            <span className="font-saira font-bold text-[12px] tracking-[1.5px] uppercase bg-azzurro text-white rounded-btn px-2.5 py-1 mb-4 shadow">
               {product.categories.name}
             </span>
           )}
-          <h1 className="font-saira font-extrabold text-4xl md:text-5xl uppercase tracking-[-1px] text-white leading-none mb-3">
+          <h1 className="font-saira font-extrabold text-4xl md:text-5xl uppercase tracking-[-1px] text-text leading-none mb-3">
             {product.name}
           </h1>
 
           {/* Stars summary line */}
           <div className="flex items-center gap-2.5 text-[14px] text-muted mb-6">
             {renderStars(avgRating, 18)}
-            <span className="text-white font-semibold">{avgRating} / 5</span>
+            <span className="text-text font-semibold">{avgRating} / 5</span>
             <span className="text-faint">·</span>
-            <a href="#recensioni" className="underline hover:text-white transition-colors">
+            <a href="#recensioni" className="underline hover:text-rosso transition-colors">
               {reviewCount} Recensioni
             </a>
             <span className="text-faint">·</span>
-            <span className={`font-semibold ${product.in_stock ? 'text-green-500' : 'text-faint'}`}>
+            <span className={`font-semibold ${product.in_stock ? 'text-green-600' : 'text-faint'}`}>
               {product.in_stock ? 'Disponibile' : 'Non Disponibile'}
             </span>
           </div>
 
           {/* Price Box */}
           <div className="mb-6 leading-none">
-            <div className="text-[40px] font-extrabold text-white leading-none">
+            <div className="text-[40px] font-extrabold text-text leading-none">
               {formatPrice(product.price_cents)}
             </div>
-            <div className="text-[12.5px] text-muted2 mt-2.5">IVA e trasporto inclusi</div>
+            <div className="text-[12.5px] text-muted-2 mt-2.5">IVA e trasporto inclusi</div>
           </div>
 
           {/* Short description */}
           {product.short && (
-            <p className="text-[15.5px] text-text2 leading-relaxed mb-7.5 border-b border-border/40 pb-6 mb-6">
+            <p className="text-[15.5px] text-text-2 leading-relaxed mb-7.5 border-b border-border/40 pb-6 mb-6">
               {product.short}
             </p>
           )}
@@ -220,16 +219,16 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
                 <div className="flex items-center bg-surface border border-border rounded-btn overflow-hidden">
                   <button
                     onClick={() => setQty((prev) => Math.max(1, prev - 1))}
-                    className="px-4 py-3 text-text2 hover:text-white transition-colors"
+                    className="px-4 py-3 text-text-2 hover:text-text transition-colors"
                   >
                     -
                   </button>
-                  <span className="px-4 text-[16px] font-semibold text-white min-w-[32px] text-center select-none">
+                  <span className="px-4 text-[16px] font-semibold text-text min-w-[32px] text-center select-none">
                     {qty}
                   </span>
                   <button
                     onClick={() => setQty((prev) => prev + 1)}
-                    className="px-4 py-3 text-text2 hover:text-white transition-colors"
+                    className="px-4 py-3 text-text-2 hover:text-text transition-colors"
                   >
                     +
                   </button>
@@ -244,10 +243,10 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
               </div>
 
               {addedNotify && (
-                <div className="bg-surface border border-green-500/30 text-green-400 text-[13.5px] p-3 rounded-btn text-center flex items-center justify-center gap-2">
+                <div className="bg-surface border border-green-500/30 text-green-600 text-[13.5px] p-3 rounded-btn text-center flex items-center justify-center gap-2">
                   <CheckCircle2 size={16} className="text-green-500" />
                   <span>Prodotto aggiunto!</span>
-                  <Link href="/shop/carrello" className="underline font-semibold hover:text-white transition-colors ml-2">
+                  <Link href="/shop/carrello" className="underline font-semibold hover:text-rosso transition-colors ml-2">
                     Vai al carrello →
                   </Link>
                 </div>
@@ -258,17 +257,17 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
           {/* Specifications Table */}
           {product.specs && product.specs.length > 0 && (
             <div className="w-full mb-6">
-              <h3 className="font-saira font-bold text-[14px] tracking-[1.5px] text-white uppercase mb-3.5">
+              <h3 className="font-saira font-bold text-[14px] tracking-[1.5px] text-text uppercase mb-3.5">
                 Specifiche Tecniche
               </h3>
               <table className="w-full border-collapse border border-border text-[14px]">
                 <tbody>
                   {product.specs.map((s, idx) => (
-                    <tr key={idx} className={idx % 2 === 0 ? 'bg-[#101214]' : 'bg-surface'}>
+                    <tr key={idx} className={idx % 2 === 0 ? 'bg-bg-alt' : 'bg-surface'}>
                       <td className="border border-border p-3 font-semibold text-muted text-left w-1/3">
                         {s.k}
                       </td>
-                      <td className="border border-border p-3 text-text2 text-left">
+                      <td className="border border-border p-3 text-text-2 text-left">
                         {s.v}
                       </td>
                     </tr>
@@ -280,7 +279,7 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
 
           {/* Secure checkout notice */}
           <div className="flex items-center gap-2.5 text-[12px] text-muted">
-            <span className="font-semibold uppercase tracking-[0.5px] text-[10px] bg-[#20242a] px-2 py-0.5 rounded-btn">
+            <span className="font-semibold uppercase tracking-[0.5px] text-[10px] bg-bg-alt text-text-2 border border-border px-2 py-0.5 rounded-btn">
               Pagamento Sicuro
             </span>
             <span>Accettiamo Carte di Credito (Stripe) e PayPal</span>
@@ -289,33 +288,33 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
       </div>
 
       {/* HIGHLIGHTED BENEFITS GRID */}
-      <section className="bg-surface border-t border-b border-border py-12">
+      <section className="bg-bg-alt border-t border-b border-border py-12">
         <div className="max-w-[1240px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="flex gap-4 items-start">
             <Truck size={36} className="text-rosso flex-shrink-0" />
             <div>
-              <h4 className="font-saira font-bold text-[16px] text-white uppercase mb-1">Spedizione tracciata</h4>
+              <h4 className="font-saira font-bold text-[16px] text-text uppercase mb-1">Spedizione tracciata</h4>
               <p className="text-[13px] text-muted leading-relaxed">Consegna rapida e sicura in tutta Italia con corriere espresso.</p>
             </div>
           </div>
           <div className="flex gap-4 items-start">
             <ShieldCheck size={36} className="text-azzurro flex-shrink-0" />
             <div>
-              <h4 className="font-saira font-bold text-[16px] text-white uppercase mb-1">Garanzia ufficiale</h4>
+              <h4 className="font-saira font-bold text-[16px] text-text uppercase mb-1">Garanzia ufficiale</h4>
               <p className="text-[13px] text-muted leading-relaxed">24 mesi di garanzia ufficiale del produttore su tutti i componenti.</p>
             </div>
           </div>
           <div className="flex gap-4 items-start">
             <HeartHandshake size={36} className="text-azzurro flex-shrink-0" />
             <div>
-              <h4 className="font-saira font-bold text-[16px] text-white uppercase mb-1">Installazione & assistenza</h4>
+              <h4 className="font-saira font-bold text-[16px] text-text uppercase mb-1">Installazione & assistenza</h4>
               <p className="text-[13px] text-muted leading-relaxed">I nostri tecnici qualificati sono a disposizione per l'installazione.</p>
             </div>
           </div>
           <div className="flex gap-4 items-start">
             <CheckCircle2 size={36} className="text-rosso flex-shrink-0" />
             <div>
-              <h4 className="font-saira font-bold text-[16px] text-white uppercase mb-1">Reso facile</h4>
+              <h4 className="font-saira font-bold text-[16px] text-text uppercase mb-1">Reso facile</h4>
               <p className="text-[13px] text-muted leading-relaxed">Soddisfatti o rimborsati entro 14 giorni dall'acquisto.</p>
             </div>
           </div>
@@ -324,15 +323,15 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
 
       {/* REVIEWS SECTION */}
       <section id="recensioni" className="max-w-[1240px] mx-auto px-6 md:px-12 py-[80px]">
-        <h2 className="font-saira font-extrabold text-[36px] text-white uppercase mb-10">
+        <h2 className="font-saira font-extrabold text-[36px] text-text uppercase mb-10">
           Recensioni dei Clienti
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-14 items-start">
           
           {/* Left Column: Summary Stats */}
-          <div className="flex flex-col gap-6 bg-surface border border-border rounded-card p-6.5 p-7">
+          <div className="flex flex-col gap-6 bg-surface border border-border rounded-card p-6.5 p-7 shadow-sm">
             <div className="text-center">
-              <div className="text-[64px] font-extrabold text-white leading-none">{avgRating}</div>
+              <div className="text-[64px] font-extrabold text-text leading-none">{avgRating}</div>
               <div className="flex justify-center my-2">{renderStars(avgRating, 22)}</div>
               <div className="text-[13.5px] text-muted">su {reviewCount} recensioni</div>
             </div>
@@ -342,13 +341,13 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
                 <div key={dist.stars} className="flex items-center gap-3 text-[13px]">
                   <span className="w-3 text-right">{dist.stars}</span>
                   <Star size={12} fill="#F5A623" className="text-stella flex-shrink-0" />
-                  <div className="flex-grow h-2 bg-[#101214] rounded-full overflow-hidden">
+                  <div className="flex-grow h-2 bg-surface-2 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-stella rounded-full"
                       style={{ width: `${dist.percentage}%` }}
                     />
                   </div>
-                  <span className="w-8 text-muted2 text-right">{dist.count}</span>
+                  <span className="w-8 text-muted-2 text-right">{dist.count}</span>
                 </div>
               ))}
             </div>
@@ -361,24 +360,24 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
             <div className="flex flex-col gap-6">
               {reviews.map((rev) => (
                 <div key={rev.id} className="border-b border-border/40 pb-6 flex gap-4 items-start text-left">
-                  <div className="w-11 h-11 rounded-full bg-[#20242a] text-white font-saira font-bold text-[18px] flex items-center justify-center flex-shrink-0 select-none uppercase">
+                  <div className="w-11 h-11 rounded-full bg-bg-alt text-text-2 border border-border font-saira font-bold text-[18px] flex items-center justify-center flex-shrink-0 select-none uppercase">
                     {rev.name.slice(0, 2)}
                   </div>
                   <div className="flex-grow">
                     <div className="flex items-center gap-3 mb-1.5 flex-wrap">
-                      <span className="font-semibold text-white">{rev.name}</span>
+                      <span className="font-semibold text-text">{rev.name}</span>
                       {rev.verified && (
-                        <span className="text-[10px] font-bold uppercase bg-green-500/20 text-green-400 border border-green-500/30 rounded-btn px-1.5 py-0.5">
+                        <span className="text-[10px] font-bold uppercase bg-green-500/10 text-green-700 border border-green-500/20 rounded-btn px-1.5 py-0.5">
                           Acquisto Verificato
                         </span>
                       )}
-                      <span className="text-[12px] text-muted2">
+                      <span className="text-[12px] text-muted-2">
                         {rev.city ? `${rev.city} · ` : ''}{new Date(rev.created_at).toLocaleDateString('it-IT')}
                       </span>
                     </div>
                     <div className="mb-2">{renderStars(rev.rating, 14)}</div>
                     {rev.title && (
-                      <h4 className="font-saira font-bold text-[17px] text-white uppercase mb-1">
+                      <h4 className="font-saira font-bold text-[17px] text-text uppercase mb-1">
                         {rev.title}
                       </h4>
                     )}
@@ -397,14 +396,14 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
             </div>
 
             {/* Submit Review Form */}
-            <div className="bg-surface border border-border rounded-card p-6.5 p-7 text-left">
-              <h3 className="font-saira font-bold text-[22px] text-white uppercase mb-5">
+            <div className="bg-surface border border-border rounded-card p-6.5 p-7 text-left shadow-sm">
+              <h3 className="font-saira font-bold text-[22px] text-text uppercase mb-5">
                 Scrivi una recensione
               </h3>
               {reviewSubmitted ? (
-                <div className="bg-[#101214] border border-green-500/25 text-green-400 p-6 rounded-card text-center flex flex-col items-center gap-2">
+                <div className="bg-bg-alt border border-green-500/30 text-green-700 p-6 rounded-card text-center flex flex-col items-center gap-2">
                   <Check size={32} className="text-green-500 animate-bounce" />
-                  <h4 className="font-saira font-bold text-[18px] uppercase text-white">Recensione inviata!</h4>
+                  <h4 className="font-saira font-bold text-[18px] uppercase text-green-700">Recensione inviata!</h4>
                   <p className="text-[14px] text-muted">
                     Grazie per il tuo feedback. Verrà pubblicata subito dopo l'approvazione degli amministratori.
                   </p>
@@ -419,7 +418,7 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
                         required
                         value={reviewForm.name}
                         onChange={(e) => setReviewForm({ ...reviewForm, name: e.target.value })}
-                        className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-3 text-white font-plex text-[14.5px] outline-none focus:border-rosso"
+                        className="w-full bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso"
                       />
                     </div>
                     <div>
@@ -428,7 +427,7 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
                         type="text"
                         value={reviewForm.city}
                         onChange={(e) => setReviewForm({ ...reviewForm, city: e.target.value })}
-                        className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-3 text-white font-plex text-[14.5px] outline-none focus:border-rosso"
+                        className="w-full bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso"
                       />
                     </div>
                   </div>
@@ -437,7 +436,7 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
                     <select
                       value={reviewForm.rating}
                       onChange={(e) => setReviewForm({ ...reviewForm, rating: Number(e.target.value) })}
-                      className="bg-[#101214] border border-[#2c3137] rounded-btn p-3 text-white font-plex text-[14.5px] outline-none focus:border-rosso cursor-pointer w-32"
+                      className="bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso cursor-pointer w-32"
                     >
                       <option value={5}>5 Stelle</option>
                       <option value={4}>4 Stelle</option>
@@ -454,7 +453,7 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
                       placeholder="es. Ottimo prodotto!"
                       value={reviewForm.title}
                       onChange={(e) => setReviewForm({ ...reviewForm, title: e.target.value })}
-                      className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-3 text-white font-plex text-[14.5px] outline-none focus:border-rosso"
+                      className="w-full bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso"
                     />
                   </div>
                   <div>
@@ -465,7 +464,7 @@ export default function ProductDetailClient({ product, reviews }: ProductDetailC
                       placeholder="Raccontaci la tua esperienza..."
                       value={reviewForm.text}
                       onChange={(e) => setReviewForm({ ...reviewForm, text: e.target.value })}
-                      className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-3 text-white font-plex text-[14.5px] outline-none focus:border-rosso resize-none"
+                      className="w-full bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso resize-none"
                     />
                   </div>
                   <button

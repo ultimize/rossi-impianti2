@@ -26,20 +26,26 @@ export default function ShopClient({ products, categories }: ShopClientProps) {
   };
 
   return (
-    <div className="bg-bg text-text1">
+    <div className="bg-bg text-text">
       {/* HERO BANNER */}
-      <div className="relative bg-cover bg-center bg-[url('/assets/site/header-marchi.jpg')] border-b border-border min-h-[320px] flex items-center">
-        <div className="absolute inset-0 bg-gradient-to-r from-bg/90 via-bg/40 to-transparent pointer-events-none" />
-        <div className="max-w-[1240px] w-full mx-auto px-6 md:px-12 py-20 relative z-10">
-          <div className="font-saira font-bold text-[14px] tracking-[3px] text-rosso uppercase mb-4">
-            Shop Rossi Impianti
+      <div className="relative bg-bg border-b border-border py-16 md:py-20 overflow-hidden">
+        <div className="max-w-[1240px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+          <div className="lg:col-span-7 text-left">
+            <div className="font-saira font-bold text-[14px] tracking-[3px] text-rosso uppercase mb-4">
+              Shop Rossi Impianti
+            </div>
+            <h1 className="font-saira font-extrabold text-5xl md:text-[68px] leading-[0.95] uppercase tracking-[-1px] text-text mb-4">
+              Componenti e<br />sistemi termotecnici
+            </h1>
+            <p className="text-[18px] text-text-2 max-w-[560px] leading-[1.55]">
+              Soluzioni professionali per riscaldamento, condizionamento e accessori, acquistabili online.
+            </p>
           </div>
-          <h1 className="font-saira font-extrabold text-5xl md:text-[68px] leading-[0.95] uppercase tracking-[-1px] mb-4">
-            Componenti e<br />sistemi termotecnici
-          </h1>
-          <p className="text-[18px] text-muted max-w-[600px] leading-[1.55]">
-            Soluzioni professionali per riscaldamento, condizionamento e accessori, acquistabili online.
-          </p>
+          <div className="lg:col-span-5 relative w-full aspect-[4/3] lg:aspect-square rounded-card overflow-hidden shadow-lg border border-border">
+            <div
+              className="absolute inset-0 w-full h-full bg-cover bg-center filter saturate-[0.95] contrast-[1.02] bg-[url('/assets/site/header-marchi.jpg')]"
+            />
+          </div>
         </div>
       </div>
 
@@ -51,7 +57,7 @@ export default function ShopClient({ products, categories }: ShopClientProps) {
             className={`font-saira font-bold text-[14px] tracking-[1px] uppercase rounded-btn px-5 py-2.5 transition-colors border ${
               selectedCategorySlug === null
                 ? 'bg-rosso border-rosso text-white'
-                : 'bg-surface border-border text-text2 hover:text-white hover:border-text2'
+                : 'bg-surface border-border text-text-2 hover:text-text hover:border-border-2 hover:bg-bg-alt'
             }`}
           >
             Tutti i prodotti
@@ -63,7 +69,7 @@ export default function ShopClient({ products, categories }: ShopClientProps) {
               className={`font-saira font-bold text-[14px] tracking-[1px] uppercase rounded-btn px-5 py-2.5 transition-colors border ${
                 selectedCategorySlug === cat.slug
                   ? 'bg-rosso border-rosso text-white'
-                  : 'bg-surface border-border text-text2 hover:text-white hover:border-text2'
+                  : 'bg-surface border-border text-text-2 hover:text-text hover:border-border-2 hover:bg-bg-alt'
               }`}
             >
               {cat.name}
@@ -87,11 +93,11 @@ export default function ShopClient({ products, categories }: ShopClientProps) {
                 <Link
                   key={prod.id}
                   href={`/shop/${prod.slug}`}
-                  className="border border-border hover:border-rosso rounded-card overflow-hidden bg-surface transition-all duration-300 hover:-translate-y-1 flex flex-col h-full justify-between group"
+                  className="border border-border rounded-card overflow-hidden bg-surface transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md flex flex-col h-full justify-between group"
                 >
                   <div>
                     {/* Image Box */}
-                    <div className="overflow-hidden h-[200px] relative bg-[#1d2024]">
+                    <div className="overflow-hidden h-[200px] relative bg-bg-alt">
                       {imageSrc ? (
                         <img
                           src={imageSrc}
@@ -102,15 +108,15 @@ export default function ShopClient({ products, categories }: ShopClientProps) {
                           }}
                         />
                       ) : (
-                        <div className="absolute inset-0 bg-gradient-to-br from-border to-[#2c3137] transition-transform duration-500 group-hover:scale-[1.05]" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-border to-surface-2 transition-transform duration-500 group-hover:scale-[1.05]" />
                       )}
                       {prod.categories && (
-                        <span className="absolute top-4 left-4 font-saira font-bold text-[11px] tracking-[1px] uppercase bg-azzurro text-surface2 rounded-btn px-2.5 py-1 z-10 shadow">
+                        <span className="absolute top-4 left-4 font-saira font-bold text-[11px] tracking-[1px] uppercase bg-azzurro text-white rounded-btn px-2.5 py-1 z-10 shadow">
                           {prod.categories.name}
                         </span>
                       )}
                       {!prod.in_stock && (
-                        <span className="absolute top-4 right-4 font-saira font-bold text-[11px] tracking-[1px] uppercase bg-surface2 text-muted2 rounded-btn px-2.5 py-1 z-10 border border-border">
+                        <span className="absolute top-4 right-4 font-saira font-bold text-[11px] tracking-[1px] uppercase bg-bg-alt text-muted border border-border rounded-btn px-2.5 py-1 z-10">
                           Esaurito
                         </span>
                       )}
@@ -118,7 +124,7 @@ export default function ShopClient({ products, categories }: ShopClientProps) {
 
                     {/* Details Box */}
                     <div className="p-6">
-                      <h3 className="font-saira font-bold text-[24px] text-white uppercase mb-2 group-hover:text-rosso transition-colors line-clamp-1">
+                      <h3 className="font-saira font-bold text-[24px] text-text uppercase mb-2 group-hover:text-rosso transition-colors line-clamp-1">
                         {prod.name}
                       </h3>
                       {prod.short && (
@@ -132,10 +138,10 @@ export default function ShopClient({ products, categories }: ShopClientProps) {
                   {/* Price & Action */}
                   <div className="px-6 pb-6 pt-2 border-t border-border/30 flex items-center justify-between">
                     <div>
-                      <div className="text-[20px] font-bold text-white leading-none">
+                      <div className="text-[20px] font-bold text-text leading-none">
                         {formatPrice(prod.price_cents)}
                       </div>
-                      <div className="text-[11px] text-muted2 mt-1">IVA Inclusa</div>
+                      <div className="text-[11px] text-muted-2 mt-1">IVA Inclusa</div>
                     </div>
                     <span className="font-saira font-bold text-[14px] tracking-[1px] uppercase text-rosso flex items-center gap-1 group-hover:gap-2 transition-all">
                       Scopri →

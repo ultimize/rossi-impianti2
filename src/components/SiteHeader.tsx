@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Menu, X, ShoppingCart } from 'lucide-react';
@@ -29,22 +30,18 @@ export default function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#101214]/86 backdrop-blur-[10px] border-bottom border-border border-b font-plex">
-      <div className="max-w-[1240px] mx-auto px-6 md:px-12 py-[18px] flex items-center justify-between">
+    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-[10px] border-b border-border shadow-sm font-plex">
+      <div className="max-w-[1240px] mx-auto px-6 md:px-12 py-[14px] flex items-center justify-between">
         {/* LOGO */}
-        <Link href="/" className="leading-none text-decoration-none group">
-          <div className="flex items-baseline gap-1.5 font-archivo">
-            <span className="font-extrabold text-[22px] tracking-[-0.5px] text-white transition-colors group-hover:text-rosso">
-              ROSSI IMPIANTI
-            </span>
-            <span className="font-semibold text-[10.5px] color-[#7c848d] text-muted2">
-              srl
-            </span>
-          </div>
-          <div className="flex gap-2.2 font-archivo font-bold text-[9px] tracking-[0.8px] mt-1">
-            <span className="text-rosso">RISCALDAMENTO</span>
-            <span className="text-azzurro">CONDIZIONAMENTO</span>
-          </div>
+        <Link href="/" className="leading-none text-decoration-none flex items-center">
+          <Image
+            src="/assets/logo-rossi.png"
+            alt="Rossi Impianti srl"
+            width={160}
+            height={50}
+            className="h-10 w-auto object-contain"
+            priority
+          />
         </Link>
 
         {/* DESKTOP NAV */}
@@ -53,8 +50,8 @@ export default function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
-              className={`font-saira font-semibold text-[14px] tracking-[0.5px] uppercase transition-colors hover:text-white ${
-                isLinkActive(link.href) ? 'text-white' : 'text-text2'
+              className={`font-saira font-semibold text-[14px] tracking-[0.5px] uppercase transition-colors hover:text-rosso ${
+                isLinkActive(link.href) ? 'text-text1' : 'text-text2'
               }`}
             >
               {link.label}
@@ -62,15 +59,15 @@ export default function SiteHeader() {
           ))}
           <Link
             href="/shop"
-            className={`font-saira font-semibold text-[14px] tracking-[0.5px] uppercase transition-colors hover:text-white flex items-center gap-1.5 ${
-              isLinkActive('/shop') ? 'text-white' : 'text-azzurro'
+            className={`font-saira font-semibold text-[14px] tracking-[0.5px] uppercase transition-colors hover:text-rosso flex items-center gap-1.5 ${
+              isLinkActive('/shop') ? 'text-text1' : 'text-azzurro'
             }`}
           >
             Shop
           </Link>
 
           {/* Cart Icon */}
-          <Link href="/shop/carrello" className="relative text-text2 hover:text-white p-1 transition-colors">
+          <Link href="/shop/carrello" className="relative text-text2 hover:text-text1 p-1 transition-colors">
             <ShoppingCart size={18} />
             {cartCount > 0 && (
               <span className="absolute -top-1 -right-1 bg-rosso text-white font-saira font-bold text-[10px] w-4.5 h-4.5 flex items-center justify-center rounded-full">
@@ -89,7 +86,7 @@ export default function SiteHeader() {
 
         {/* MOBILE MENU TRIGGER */}
         <div className="flex lg:hidden items-center gap-4">
-          <Link href="/shop/carrello" className="relative text-text2 hover:text-white p-1 transition-colors">
+          <Link href="/shop/carrello" className="relative text-text2 hover:text-text1 p-1 transition-colors">
             <ShoppingCart size={20} />
             {cartCount > 0 && (
               <span className="absolute -top-1 -right-1 bg-rosso text-white font-saira font-bold text-[10px] w-4.5 h-4.5 flex items-center justify-center rounded-full">
@@ -99,7 +96,7 @@ export default function SiteHeader() {
           </Link>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-white focus:outline-none p-1"
+            className="text-text1 focus:outline-none p-1"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -108,7 +105,7 @@ export default function SiteHeader() {
 
       {/* MOBILE NAV PANEL */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-border bg-bg/95 backdrop-blur-[10px]">
+        <div className="lg:hidden border-t border-border bg-white/95 backdrop-blur-[10px]">
           <nav className="flex flex-col p-6 gap-4 font-saira text-base tracking-[0.5px] uppercase font-semibold">
             {links.map((link) => (
               <Link
@@ -116,7 +113,7 @@ export default function SiteHeader() {
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`py-2 border-b border-border/40 transition-colors ${
-                  isLinkActive(link.href) ? 'text-white' : 'text-text2'
+                  isLinkActive(link.href) ? 'text-text1' : 'text-text2'
                 }`}
               >
                 {link.label}
@@ -126,7 +123,7 @@ export default function SiteHeader() {
               href="/shop"
               onClick={() => setMobileMenuOpen(false)}
               className={`py-2 border-b border-border/40 transition-colors ${
-                isLinkActive('/shop') ? 'text-white' : 'text-azzurro'
+                isLinkActive('/shop') ? 'text-text1' : 'text-azzurro'
               }`}
             >
               Shop

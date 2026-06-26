@@ -248,7 +248,6 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
       setLoading(false);
     }
   };
-
   return (
     <div className="flex flex-col gap-8 text-left">
       {mode === 'list' ? (
@@ -256,7 +255,7 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
           {/* Header */}
           <div className="flex justify-between items-center gap-4 flex-wrap">
             <div>
-              <h1 className="font-saira font-extrabold text-3xl md:text-4xl text-white uppercase tracking-tight">
+              <h1 className="font-saira font-extrabold text-3xl md:text-4xl text-text uppercase tracking-tight">
                 Catalogo Prodotti
               </h1>
               <p className="text-[14.5px] text-muted mt-1 leading-relaxed">
@@ -272,7 +271,7 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
           </div>
 
           {/* Search Filters Row */}
-          <div className="bg-surface border border-border rounded-card p-4 flex flex-col md:flex-row gap-3">
+          <div className="bg-surface border border-border rounded-card p-4 flex flex-col md:flex-row gap-3 shadow-sm">
             <div className="flex-grow relative flex items-center">
               <Search size={18} className="text-muted absolute left-3.5" />
               <input
@@ -280,13 +279,13 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                 placeholder="Cerca prodotti per nome..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full bg-[#101214] border border-[#2c3137] rounded-btn pl-11 pr-4 py-2.5 text-white font-plex text-[14.5px] outline-none"
+                className="w-full bg-bg-alt border border-border rounded-btn pl-11 pr-4 py-2.5 text-text font-plex text-[14.5px] outline-none"
               />
             </div>
             <select
               value={catFilter}
               onChange={(e) => setCatFilter(e.target.value)}
-              className="bg-[#101214] border border-[#2c3137] rounded-btn px-4 py-2.5 text-white font-plex text-[14.5px] outline-none cursor-pointer min-w-[200px]"
+              className="bg-bg-alt border border-border rounded-btn px-4 py-2.5 text-text font-plex text-[14.5px] outline-none cursor-pointer min-w-[200px]"
             >
               <option value="">Tutte le categorie</option>
               {categories.map((cat) => (
@@ -298,16 +297,15 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
           </div>
 
           {/* Products Table/List */}
-          <div className="bg-surface border border-border rounded-card overflow-hidden">
+          <div className="bg-surface border border-border rounded-card overflow-hidden shadow-sm">
             <table className="w-full text-left border-collapse text-[14px]">
               <thead>
-                <tr className="bg-[#101214] border-b border-border text-muted font-saira font-bold tracking-[0.5px] uppercase text-xs">
+                <tr className="bg-bg-alt border-b border-border text-muted font-saira font-bold tracking-[0.5px] uppercase text-xs">
                   <th className="p-4 w-16">Foto</th>
                   <th className="p-4">Prodotto</th>
                   <th className="p-4">Categoria</th>
                   <th className="p-4">Prezzo</th>
                   <th className="p-4">Stock</th>
-                  <th className="p-4">Stato</th>
                   <th className="p-4 w-28 text-center">Azioni</th>
                 </tr>
               </thead>
@@ -315,47 +313,38 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                 {filteredProducts.map((p) => {
                   const imageSrc = p.image_urls && p.image_urls.length > 0 ? p.image_urls[0] : '';
                   return (
-                    <tr key={p.id} className="border-b border-border/40 hover:bg-surface/50">
+                    <tr key={p.id} className="border-b border-border/40 hover:bg-bg-alt/50">
                       <td className="p-4">
-                        <div className="w-10 h-10 rounded-btn bg-[#101214] border border-border flex items-center justify-center p-0.5 overflow-hidden">
+                        <div className="w-10 h-10 rounded-btn bg-bg-alt border border-border flex items-center justify-center p-0.5 overflow-hidden">
                           {imageSrc ? (
                             <img src={imageSrc} alt="" className="w-full h-full object-contain" />
                           ) : (
-                            <ImageIcon size={18} className="text-muted2" />
+                            <ImageIcon size={18} className="text-muted-2" />
                           )}
                         </div>
                       </td>
                       <td className="p-4">
-                        <div className="font-semibold text-white">{p.name}</div>
+                        <div className="font-semibold text-text">{p.name}</div>
                         <div className="text-[12px] text-faint font-mono mt-0.5">{p.slug}</div>
                       </td>
-                      <td className="p-4 text-text2">
+                      <td className="p-4 text-text-2">
                         {p.categories?.name || <span className="text-faint">—</span>}
                       </td>
-                      <td className="p-4 text-white font-medium">
+                      <td className="p-4 text-text font-medium">
                         {(p.price_cents / 100).toLocaleString('it-IT', { style: 'currency', currency: 'EUR' })}
                       </td>
                       <td className="p-4">
                         <span
-                          className={`font-semibold ${p.in_stock ? 'text-green-500' : 'text-rosso'}`}
+                          className={`font-semibold ${p.in_stock ? 'text-green-600' : 'text-rosso'}`}
                         >
                           {p.in_stock ? 'Disponibile' : 'Esaurito'}
-                        </span>
-                      </td>
-                      <td className="p-4 uppercase text-xs font-bold font-saira">
-                        <span
-                          className={`px-2 py-0.5 rounded-btn ${
-                            p.status === 'published' ? 'bg-green-500/10 text-green-500' : 'bg-faint/20 text-muted'
-                          }`}
-                        >
-                          {p.status === 'published' ? 'pubblicato' : 'bozza'}
                         </span>
                       </td>
                       <td className="p-4">
                         <div className="flex items-center justify-center gap-3">
                           <button
                             onClick={() => handleStartEdit(p)}
-                            className="text-muted hover:text-white transition-colors"
+                            className="text-muted hover:text-text transition-colors"
                             title="Modifica"
                           >
                             <Edit2 size={15} />
@@ -375,7 +364,7 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
 
                 {filteredProducts.length === 0 && (
                   <tr>
-                    <td colSpan={7} className="p-8 text-center text-muted">
+                    <td colSpan={6} className="p-8 text-center text-muted">
                       Nessun prodotto trovato.
                     </td>
                   </tr>
@@ -386,15 +375,15 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
         </>
       ) : (
         /* CREATE / EDIT FORM VIEW */
-        <div className="bg-surface border border-border rounded-card p-6 md:p-8 flex flex-col gap-6 max-w-4xl">
+        <div className="bg-surface border border-border rounded-card p-6 md:p-8 flex flex-col gap-6 max-w-4xl shadow-sm">
           <div className="flex items-center gap-3 mb-2 border-b border-border/40 pb-4">
             <button
               onClick={() => setMode('list')}
-              className="text-muted hover:text-white transition-colors p-1"
+              className="text-muted hover:text-text transition-colors p-1"
             >
               <ArrowLeft size={20} />
             </button>
-            <h2 className="font-saira font-extrabold text-[26px] text-white uppercase leading-none">
+            <h2 className="font-saira font-extrabold text-[26px] text-text uppercase leading-none">
               {mode === 'create' ? 'Aggiungi Prodotto' : 'Modifica Prodotto'}
             </h2>
           </div>
@@ -410,7 +399,7 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                   required
                   value={form.name}
                   onChange={(e) => handleNameChange(e.target.value)}
-                  className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-3 text-white font-plex text-[14.5px] outline-none focus:border-rosso"
+                  className="w-full bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso"
                 />
               </div>
 
@@ -423,7 +412,7 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                   required
                   value={form.slug}
                   onChange={(e) => setForm({ ...form, slug: e.target.value })}
-                  className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-3 text-white font-plex text-[14.5px] outline-none focus:border-rosso font-mono"
+                  className="w-full bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso font-mono"
                 />
               </div>
             </div>
@@ -436,7 +425,7 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                 <select
                   value={form.category_id}
                   onChange={(e) => setForm({ ...form, category_id: e.target.value })}
-                  className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-3 text-white font-plex text-[14.5px] outline-none focus:border-rosso cursor-pointer"
+                  className="w-full bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso cursor-pointer"
                 >
                   <option value="">Nessuna</option>
                   {categories.map((cat) => (
@@ -458,13 +447,13 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                   placeholder="890.00"
                   value={form.price}
                   onChange={(e) => setForm({ ...form, price: e.target.value })}
-                  className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-3 text-white font-plex text-[14.5px] outline-none focus:border-rosso"
+                  className="w-full bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <label className="flex items-center gap-2.5 p-3.5 bg-[#101214] border border-border rounded-btn select-none cursor-pointer">
+              <label className="flex items-center gap-2.5 p-3.5 bg-bg-alt border border-border rounded-btn select-none cursor-pointer">
                 <input
                   type="checkbox"
                   checked={form.in_stock}
@@ -472,7 +461,7 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                   className="accent-rosso w-4 h-4"
                 />
                 <div>
-                  <span className="font-semibold text-[14.5px] text-white">Disponibilità Stock</span>
+                  <span className="font-semibold text-[14.5px] text-text">Disponibilità Stock</span>
                   <p className="text-[12px] text-muted">Controlla se il prodotto è ordinabile online</p>
                 </div>
               </label>
@@ -484,7 +473,7 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                 <select
                   value={form.status}
                   onChange={(e) => setForm({ ...form, status: e.target.value as 'draft' | 'published' })}
-                  className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-3.5 text-white font-plex text-[14.5px] outline-none focus:border-rosso cursor-pointer"
+                  className="w-full bg-bg-alt border border-border rounded-btn p-3.5 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso cursor-pointer"
                 >
                   <option value="published">Pubblicato (Visibile)</option>
                   <option value="draft">Bozza (Nascosto)</option>
@@ -500,7 +489,7 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                 rows={2}
                 value={form.short}
                 onChange={(e) => setForm({ ...form, short: e.target.value })}
-                className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-3 text-white font-plex text-[14.5px] outline-none focus:border-rosso resize-none"
+                className="w-full bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso resize-none"
               />
             </div>
 
@@ -512,20 +501,20 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                 rows={4}
                 value={form.description}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
-                className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-3 text-white font-plex text-[14.5px] outline-none focus:border-rosso"
+                className="w-full bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso"
               />
             </div>
 
             {/* Spec Repeater Panel */}
-            <div className="border border-border rounded-btn p-5 bg-[#101214]">
-              <h4 className="font-saira font-bold text-[14px] tracking-[1.5px] text-white uppercase mb-4 pb-2 border-b border-border/40">
+            <div className="border border-border rounded-btn p-5 bg-bg-alt">
+              <h4 className="font-saira font-bold text-[14px] tracking-[1.5px] text-text uppercase mb-4 pb-2 border-b border-border/40">
                 Specifiche Tecniche (Tabella K/V)
               </h4>
               <div className="flex flex-col gap-2.5 mb-4">
                 {form.specs.map((spec, idx) => (
                   <div key={idx} className="flex items-center justify-between gap-3 bg-surface p-2.5 rounded border border-border">
                     <span className="font-semibold text-[13.5px] text-muted w-1/3 truncate text-left">{spec.k}</span>
-                    <span className="text-[13.5px] text-white text-left flex-grow truncate">{spec.v}</span>
+                    <span className="text-[13.5px] text-text text-left flex-grow truncate">{spec.v}</span>
                     <button
                       type="button"
                       onClick={() => handleRemoveSpec(idx)}
@@ -546,7 +535,7 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                     type="text"
                     value={newSpec.k}
                     onChange={(e) => setNewSpec({ ...newSpec, k: e.target.value })}
-                    className="w-full bg-surface border border-border rounded p-2 text-white font-plex text-[13.5px]"
+                    className="w-full bg-surface border border-border rounded p-2 text-text font-plex text-[13.5px]"
                   />
                 </div>
                 <div>
@@ -555,13 +544,13 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                     type="text"
                     value={newSpec.v}
                     onChange={(e) => setNewSpec({ ...newSpec, v: e.target.value })}
-                    className="w-full bg-surface border border-border rounded p-2 text-white font-plex text-[13.5px]"
+                    className="w-full bg-surface border border-border rounded p-2 text-text font-plex text-[13.5px]"
                   />
                 </div>
                 <button
                   type="button"
                   onClick={handleAddSpec}
-                  className="font-saira font-bold text-[13px] tracking-[0.5px] uppercase text-white bg-border border border-border hover:border-text2 rounded py-2 px-4 flex items-center gap-1.5 transition-colors"
+                  className="font-saira font-bold text-[13px] tracking-[0.5px] uppercase text-text bg-bg-alt border border-border hover:border-border-2 rounded py-2 px-4 flex items-center gap-1.5 transition-colors"
                 >
                   <Plus size={14} /> Aggiungi
                 </button>
@@ -569,8 +558,8 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
             </div>
 
             {/* Images Upload / Direct URL Pane */}
-            <div className="border border-border rounded-btn p-5 bg-[#101214]">
-              <h4 className="font-saira font-bold text-[14px] tracking-[1.5px] text-white uppercase mb-4 pb-2 border-b border-border/40">
+            <div className="border border-border rounded-btn p-5 bg-bg-alt">
+              <h4 className="font-saira font-bold text-[14px] tracking-[1.5px] text-text uppercase mb-4 pb-2 border-b border-border/40">
                 Immagini Prodotto
               </h4>
               
@@ -606,7 +595,7 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                       accept="image/*"
                       onChange={handleFileUpload}
                       disabled={uploadingImage}
-                      className="text-xs text-muted border border-border rounded bg-surface p-2 file:bg-[#101214] file:border file:border-border file:text-white file:rounded file:px-3 file:py-1 file:mr-3 hover:file:bg-[#20242a] file:transition-colors file:cursor-pointer disabled:opacity-50"
+                      className="text-xs text-muted border border-border rounded bg-surface p-2 file:bg-bg-alt file:border file:border-border file:text-text file:rounded file:px-3 file:py-1 file:mr-3 hover:file:bg-surface-2 file:transition-colors file:cursor-pointer disabled:opacity-50"
                     />
                     {uploadingImage && (
                       <span className="flex items-center gap-1.5 text-xs text-azzurro font-semibold">
@@ -629,12 +618,12 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                       placeholder="https://esempio.com/immagine.jpg"
                       value={customImageUrl}
                       onChange={(e) => setCustomImageUrl(e.target.value)}
-                      className="flex-grow bg-surface border border-border rounded p-2 text-white font-plex text-[13.5px] outline-none"
+                      className="flex-grow bg-surface border border-border rounded p-2 text-text font-plex text-[13.5px] outline-none"
                     />
                     <button
                       type="button"
                       onClick={handleAddImageUrl}
-                      className="font-saira font-bold text-[13px] tracking-[0.5px] uppercase text-white bg-border border border-border hover:border-text2 rounded py-2 px-4 transition-colors"
+                      className="font-saira font-bold text-[13px] tracking-[0.5px] uppercase text-text bg-bg-alt border border-border hover:border-border-2 rounded py-2 px-4 transition-colors"
                     >
                       Aggiungi
                     </button>
@@ -656,7 +645,7 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
               <button
                 type="button"
                 onClick={() => setMode('list')}
-                className="font-saira font-bold text-[16px] tracking-[0.5px] uppercase text-muted hover:text-white bg-[#101214] border border-border hover:border-border2 rounded-btn px-6 py-3 transition-colors"
+                className="font-saira font-bold text-[16px] tracking-[0.5px] uppercase text-muted hover:text-text bg-bg-alt border border-border hover:border-border-2 rounded-btn px-6 py-3 transition-colors"
               >
                 Annulla
               </button>

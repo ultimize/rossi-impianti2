@@ -17,24 +17,29 @@ export default function MarchiPage() {
   return (
     <div className="bg-bg text-text1">
       {/* HERO BANNER */}
-      <div className="relative bg-cover bg-center bg-[url('/assets/site/header-marchi.jpg')] border-b border-border min-h-[320px] flex items-center">
-        <div className="absolute inset-0 bg-black/55 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-bg/90 via-bg/40 to-transparent pointer-events-none" />
-        <div className="max-w-[1240px] w-full mx-auto px-6 md:px-12 py-20 relative z-10">
-          <div className="font-saira font-bold text-[14px] tracking-[3px] text-rosso uppercase mb-4">
-            Marchi trattati
+      <div className="relative bg-bg border-b border-border py-16 md:py-20 overflow-hidden">
+        <div className="max-w-[1240px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+          <div className="lg:col-span-7 text-left">
+            <div className="font-saira font-bold text-[14px] tracking-[3px] text-rosso uppercase mb-4 animate-revealUp">
+              Marchi trattati
+            </div>
+            <h1 className="font-saira font-extrabold text-5xl md:text-[68px] leading-[0.95] uppercase tracking-[-1px] text-text1 mb-4 animate-revealUp">
+              I marchi che<br />installiamo
+            </h1>
+            <p className="text-[18px] text-text2 max-w-[600px] leading-[1.55] animate-revealUp">
+              Lavoriamo con produttori selezionati per garantire qualità, affidabilità e assistenza nel tempo.
+            </p>
           </div>
-          <h1 className="font-saira font-extrabold text-5xl md:text-[68px] leading-[0.95] uppercase tracking-[-1px] mb-4">
-            I marchi che<br />installiamo
-          </h1>
-          <p className="text-[18px] text-muted max-w-[600px] leading-[1.55]">
-            Lavoriamo con produttori selezionati per garantire qualità, affidabilità e assistenza nel tempo.
-          </p>
+          <div className="lg:col-span-5 relative w-full aspect-[4/3] lg:aspect-square rounded-card overflow-hidden shadow-lg animate-revealUp border border-border">
+            <div
+              className="absolute inset-0 w-full h-full bg-cover bg-center filter saturate-[0.95] contrast-[1.02] bg-[url('/assets/site/header-marchi.jpg')]"
+            />
+          </div>
         </div>
       </div>
 
       {/* BRANDS GRID (BRAND WALL) */}
-      <div className="max-w-[1240px] mx-auto px-6 md:px-12 py-20">
+      <div className="max-w-[1240px] mx-auto px-6 md:px-12 py-20 bg-bg">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
           {brands.map((brand) => {
             const logoPath = path.join(process.cwd(), 'public', brand.logo);
@@ -43,7 +48,7 @@ export default function MarchiPage() {
             return (
               <div
                 key={brand.slug}
-                className="bg-surface border border-border rounded-card h-32 flex items-center justify-center p-6 transition-all duration-300 group"
+                className="bg-surface border border-border rounded-card h-32 flex items-center justify-center p-6 transition-all duration-300 shadow-sm hover:shadow-md hover:border-border2 group"
               >
                 {hasLogo ? (
                   <img
@@ -54,7 +59,7 @@ export default function MarchiPage() {
                     className="max-h-12 w-auto object-contain filter grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
                   />
                 ) : (
-                  <span className="font-saira font-bold text-[22px] text-white uppercase tracking-wider select-none">
+                  <span className="font-saira font-bold text-[22px] text-text1 uppercase tracking-wider select-none">
                     {brand.name}
                   </span>
                 )}
@@ -63,7 +68,7 @@ export default function MarchiPage() {
           })}
         </div>
 
-        <p className="text-[15px] text-muted text-center mt-12">
+        <p className="text-[15px] text-text2 text-center mt-12">
           ...e molti altri produttori selezionati.
         </p>
       </div>

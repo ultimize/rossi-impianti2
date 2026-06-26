@@ -137,8 +137,9 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
 
   return (
     <div className="flex flex-col gap-8 text-left">
+      {/* Header */}
       <div>
-        <h1 className="font-saira font-extrabold text-3xl md:text-4xl text-white uppercase tracking-tight">
+        <h1 className="font-saira font-extrabold text-3xl md:text-4xl text-text uppercase tracking-tight">
           Gestione Categorie
         </h1>
         <p className="text-[14.5px] text-muted mt-1 leading-relaxed">
@@ -149,10 +150,10 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 items-start">
         
         {/* Category List Pane */}
-        <div className="bg-surface border border-border rounded-card p-6 flex flex-col gap-6">
+        <div className="bg-surface border border-border rounded-card p-6 flex flex-col gap-6 shadow-sm">
           {/* Article categories */}
           <div>
-            <h3 className="font-saira font-bold text-[18px] tracking-[1.5px] text-white uppercase mb-4 pb-2 border-b border-border/40">
+            <h3 className="font-saira font-bold text-[18px] tracking-[1.5px] text-text uppercase mb-4 pb-2 border-b border-border/40">
               Categorie Articoli (Blog)
             </h3>
             <div className="flex flex-wrap gap-2.5">
@@ -161,22 +162,22 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
                 .map((cat) => (
                   <div
                     key={cat.id}
-                    className="flex items-center gap-2 bg-[#101214] border border-border hover:border-border2 rounded-btn px-4 py-2"
+                    className="flex items-center gap-2 bg-bg-alt border border-border hover:border-border-2 rounded-btn px-4 py-2"
                   >
                     <span
                       style={{
                         backgroundColor: cat.color_bg || '#16A34A',
                         color: cat.color_text || '#ffffff',
                       }}
-                      className="font-saira font-semibold text-[12px] tracking-[0.5px] uppercase rounded-btn px-2.5 py-0.5"
+                      className="font-saira font-semibold text-[12px] tracking-[0.5px] uppercase rounded-btn px-2.5 py-0.5 shadow-sm"
                     >
                       {cat.name}
                     </span>
-                    <span className="text-[11px] text-faint font-mono">({cat.slug})</span>
+                    <span className="text-[11px] text-faint font-mono">( {cat.slug} )</span>
                     <div className="flex items-center gap-1.5 ml-2 border-l border-border/50 pl-2">
                       <button
                         onClick={() => handleStartEdit(cat)}
-                        className="text-muted hover:text-white transition-colors"
+                        className="text-muted hover:text-text transition-colors"
                         title="Modifica"
                       >
                         <Edit2 size={12} />
@@ -196,7 +197,7 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
 
           {/* Product categories */}
           <div className="mt-4">
-            <h3 className="font-saira font-bold text-[18px] tracking-[1.5px] text-white uppercase mb-4 pb-2 border-b border-border/40">
+            <h3 className="font-saira font-bold text-[18px] tracking-[1.5px] text-text uppercase mb-4 pb-2 border-b border-border/40">
               Categorie Prodotti (Shop)
             </h3>
             <div className="flex flex-wrap gap-2.5">
@@ -205,22 +206,22 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
                 .map((cat) => (
                   <div
                     key={cat.id}
-                    className="flex items-center gap-2 bg-[#101214] border border-border hover:border-border2 rounded-btn px-4 py-2"
+                    className="flex items-center gap-2 bg-bg-alt border border-border hover:border-border-2 rounded-btn px-4 py-2"
                   >
                     <span
                       style={{
                         backgroundColor: cat.color_bg || '#2BB3EF',
                         color: cat.color_text || '#ffffff',
                       }}
-                      className="font-saira font-semibold text-[12px] tracking-[0.5px] uppercase rounded-btn px-2.5 py-0.5"
+                      className="font-saira font-semibold text-[12px] tracking-[0.5px] uppercase rounded-btn px-2.5 py-0.5 shadow-sm"
                     >
                       {cat.name}
                     </span>
-                    <span className="text-[11px] text-faint font-mono">({cat.slug})</span>
+                    <span className="text-[11px] text-faint font-mono">( {cat.slug} )</span>
                     <div className="flex items-center gap-1.5 ml-2 border-l border-border/50 pl-2">
                       <button
                         onClick={() => handleStartEdit(cat)}
-                        className="text-muted hover:text-white transition-colors"
+                        className="text-muted hover:text-text transition-colors"
                         title="Modifica"
                       >
                         <Edit2 size={12} />
@@ -240,8 +241,8 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
         </div>
 
         {/* Categories form */}
-        <div className="bg-surface border border-border rounded-card p-6 flex flex-col">
-          <h3 className="font-saira font-bold text-[20px] text-white uppercase mb-5 pb-2.5 border-b border-border/60">
+        <div className="bg-surface border border-border rounded-card p-6 flex flex-col shadow-sm">
+          <h3 className="font-saira font-bold text-[20px] text-text uppercase mb-5 pb-2.5 border-b border-border/60">
             {editId ? 'Modifica Categoria' : 'Nuova Categoria'}
           </h3>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -254,7 +255,7 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
                 required
                 value={form.name}
                 onChange={(e) => handleNameChange(e.target.value)}
-                className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-3 text-white font-plex text-[14.5px] outline-none focus:border-rosso"
+                className="w-full bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso"
               />
             </div>
 
@@ -267,7 +268,7 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
                 required
                 value={form.slug}
                 onChange={(e) => setForm({ ...form, slug: e.target.value })}
-                className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-3 text-white font-plex text-[14.5px] outline-none focus:border-rosso font-mono"
+                className="w-full bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso font-mono"
               />
             </div>
 
@@ -278,7 +279,7 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
               <select
                 value={form.kind}
                 onChange={(e) => setForm({ ...form, kind: e.target.value as 'article' | 'product' })}
-                className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-3 text-white font-plex text-[14.5px] outline-none focus:border-rosso cursor-pointer"
+                className="w-full bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso cursor-pointer"
               >
                 <option value="article">Articolo (Blog)</option>
                 <option value="product">Prodotto (Shop)</option>
@@ -301,7 +302,7 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
                     type="text"
                     value={form.color_bg}
                     onChange={(e) => setForm({ ...form, color_bg: e.target.value })}
-                    className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-2 text-white font-plex text-[13.5px] outline-none font-mono"
+                    className="w-full bg-bg-alt border border-border rounded-btn p-2 text-text font-plex text-[13.5px] outline-none font-mono"
                   />
                 </div>
               </div>
@@ -321,14 +322,14 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
                     type="text"
                     value={form.color_text}
                     onChange={(e) => setForm({ ...form, color_text: e.target.value })}
-                    className="w-full bg-[#101214] border border-[#2c3137] rounded-btn p-2 text-white font-plex text-[13.5px] outline-none font-mono"
+                    className="w-full bg-bg-alt border border-border rounded-btn p-2 text-text font-plex text-[13.5px] outline-none font-mono"
                   />
                 </div>
               </div>
             </div>
 
             {/* Preview Badge */}
-            <div className="bg-[#101214] border border-border rounded-btn p-4 text-center mt-2">
+            <div className="bg-bg-alt border border-border rounded-btn p-4 text-center mt-2">
               <span className="text-xs text-muted block mb-2 uppercase tracking-[0.5px]">Anteprima Badge:</span>
               <span
                 style={{ backgroundColor: form.color_bg, color: form.color_text }}
@@ -351,7 +352,7 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
                 <button
                   type="button"
                   onClick={handleResetForm}
-                  className="font-saira font-bold text-[15px] tracking-[0.5px] uppercase text-muted hover:text-white bg-[#101214] border border-border hover:border-border2 rounded-btn py-2.5 px-4 transition-colors"
+                  className="font-saira font-bold text-[15px] tracking-[0.5px] uppercase text-muted hover:text-text bg-bg-alt border border-border hover:border-border-2 rounded-btn py-2.5 px-4 transition-colors"
                 >
                   Annulla
                 </button>

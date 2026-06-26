@@ -28,14 +28,14 @@ export default async function AdminLayout({
   ];
 
   return (
-    <div className="min-h-screen bg-surface2 text-text1 flex flex-col md:flex-row font-plex">
+    <div className="min-h-screen bg-surface-2 text-text flex flex-col md:flex-row font-plex">
       {/* Sidebar */}
       <aside className="w-full md:w-64 bg-bg border-r border-border flex flex-col justify-between flex-shrink-0">
         <div>
           {/* Brand header */}
           <div className="p-6 border-b border-border">
             <div className="flex items-baseline gap-1 font-archivo leading-none">
-              <span className="font-extrabold text-[20px] text-white">ADMIN PORTAL</span>
+              <span className="font-extrabold text-[20px] text-text">ADMIN PORTAL</span>
             </div>
             <div className="flex items-center gap-1.5 text-rosso text-[11px] font-bold tracking-[0.5px] mt-2">
               <ShieldAlert size={12} />
@@ -51,7 +51,7 @@ export default async function AdminLayout({
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="flex items-center gap-3 px-4 py-3 rounded-btn text-text2 hover:text-white hover:bg-surface border border-transparent hover:border-border transition-all"
+                  className="flex items-center gap-3 px-4 py-3 rounded-btn text-text-2 hover:text-text hover:bg-bg-alt border border-transparent hover:border-border transition-all"
                 >
                   <Icon size={16} className="text-rosso" />
                   <span>{item.label}</span>
@@ -62,10 +62,10 @@ export default async function AdminLayout({
         </div>
 
         {/* User Info / Logout */}
-        <div className="p-4 border-t border-border bg-surface/50">
+        <div className="p-4 border-t border-border bg-bg-alt">
           <div className="px-4 py-2 text-xs text-muted font-plex truncate mb-2">
             Logged in as:<br />
-            <span className="text-white font-medium text-xs">{user.email}</span>
+            <span className="text-text font-medium text-xs">{user.email}</span>
           </div>
           <AdminLogoutButton />
         </div>

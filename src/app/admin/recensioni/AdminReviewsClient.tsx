@@ -104,7 +104,7 @@ export default function AdminReviewsClient({ initialReviews }: AdminReviewsClien
             key={s}
             size={14}
             fill={s <= rating ? '#F5A623' : 'none'}
-            className={s <= rating ? 'text-stella' : 'text-[#39404a]'}
+            className={s <= rating ? 'text-stella' : 'text-border-2'}
           />
         ))}
       </div>
@@ -115,7 +115,7 @@ export default function AdminReviewsClient({ initialReviews }: AdminReviewsClien
     <div className="flex flex-col gap-8 text-left">
       {/* Header */}
       <div>
-        <h1 className="font-saira font-extrabold text-3xl md:text-4xl text-white uppercase tracking-tight">
+        <h1 className="font-saira font-extrabold text-3xl md:text-4xl text-text uppercase tracking-tight">
           Moderazione Recensioni
         </h1>
         <p className="text-[14.5px] text-muted mt-1 leading-relaxed">
@@ -136,7 +136,7 @@ export default function AdminReviewsClient({ initialReviews }: AdminReviewsClien
             className={`font-saira font-bold text-[13px] tracking-[1px] uppercase rounded-btn px-4 py-2.5 transition-colors border ${
               filter === tab.value
                 ? 'bg-rosso border-rosso text-white'
-                : 'bg-surface border-border text-text2 hover:text-white hover:border-text2'
+                : 'bg-surface border-border text-text-2 hover:text-text hover:border-border-2 hover:bg-bg-alt'
             }`}
           >
             {tab.label}
@@ -149,18 +149,18 @@ export default function AdminReviewsClient({ initialReviews }: AdminReviewsClien
         {filteredReviews.map((rev) => (
           <div
             key={rev.id}
-            className="bg-surface border border-border rounded-card p-5.5 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6"
+            className="bg-surface border border-border rounded-card p-5.5 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-sm"
           >
             <div className="flex-grow text-left">
               <div className="flex items-center gap-2.5 mb-1.5 flex-wrap">
-                <span className="font-semibold text-white">{rev.name}</span>
+                <span className="font-semibold text-text">{rev.name}</span>
                 {rev.city && <span className="text-[12.5px] text-muted">{rev.city}</span>}
                 <span className="text-faint">·</span>
-                <span className="text-[12px] text-muted2 flex items-center gap-1">
+                <span className="text-[12px] text-muted-2 flex items-center gap-1">
                   <Clock size={12} /> {new Date(rev.created_at).toLocaleDateString('it-IT')}
                 </span>
                 {rev.verified && (
-                  <span className="text-[9px] font-bold uppercase bg-green-500/10 text-green-500 border border-green-500/20 px-1 rounded">
+                  <span className="text-[9px] font-bold uppercase bg-green-500/10 text-green-600 border border-green-500/20 px-1 rounded">
                     Acquisto verificato
                   </span>
                 )}
@@ -174,7 +174,7 @@ export default function AdminReviewsClient({ initialReviews }: AdminReviewsClien
               </div>
 
               {rev.title && (
-                <h4 className="font-saira font-bold text-[18px] text-white uppercase mb-1">
+                <h4 className="font-saira font-bold text-[18px] text-text uppercase mb-1">
                   {rev.title}
                 </h4>
               )}

@@ -66,16 +66,16 @@ export default function CarrelloPage() {
   const total = subtotal + shipping;
 
   return (
-    <div className="bg-bg text-text1 min-h-screen py-12">
+    <div className="bg-bg text-text min-h-screen py-12">
       <div className="max-w-[1240px] mx-auto px-6 md:px-12">
-        <h1 className="font-saira font-extrabold text-4xl md:text-[50px] uppercase text-white tracking-[-1px] mb-8 pb-4 border-b border-border/50">
+        <h1 className="font-saira font-extrabold text-4xl md:text-[50px] uppercase text-text tracking-[-1px] mb-8 pb-4 border-b border-border/50">
           Il tuo Carrello
         </h1>
 
         {cartItems.length === 0 ? (
-          <div className="bg-surface border border-border rounded-card p-12 text-center flex flex-col items-center gap-4">
-            <ShoppingBag size={48} className="text-muted2" />
-            <h3 className="font-saira font-bold text-[24px] uppercase text-white">Il carrello è vuoto</h3>
+          <div className="bg-surface border border-border rounded-card p-12 text-center flex flex-col items-center gap-4 shadow-sm">
+            <ShoppingBag size={48} className="text-muted-2" />
+            <h3 className="font-saira font-bold text-[24px] uppercase text-text">Il carrello è vuoto</h3>
             <p className="text-[14.5px] text-muted max-w-[360px]">
               Non hai ancora aggiunto prodotti al tuo carrello. Esplora il catalogo dello shop per trovare la soluzione adatta a te.
             </p>
@@ -94,16 +94,16 @@ export default function CarrelloPage() {
               {cartItems.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-surface border border-border rounded-card p-4.5 p-5 flex gap-5 items-center justify-between flex-wrap md:flex-nowrap"
+                  className="bg-surface border border-border rounded-card p-4.5 p-5 flex gap-5 items-center justify-between flex-wrap md:flex-nowrap shadow-sm"
                 >
                   {/* Image */}
-                  <div className="w-16 h-16 rounded-btn bg-[#101214] border border-border flex items-center justify-center p-1 flex-shrink-0">
+                  <div className="w-16 h-16 rounded-btn bg-bg-alt border border-border flex items-center justify-center p-1 flex-shrink-0">
                     <img src={item.image_url} alt={item.name} className="w-full h-full object-contain" />
                   </div>
 
                   {/* Name & price */}
                   <div className="flex-grow min-w-[200px] text-left">
-                    <h3 className="font-saira font-bold text-[20px] text-white uppercase leading-tight">
+                    <h3 className="font-saira font-bold text-[20px] text-text uppercase leading-tight">
                       {item.name}
                     </h3>
                     <div className="text-[14.5px] text-muted font-semibold mt-1">
@@ -112,19 +112,19 @@ export default function CarrelloPage() {
                   </div>
 
                   {/* Stepper qty */}
-                  <div className="flex items-center bg-[#101214] border border-[#2c3137] rounded-btn overflow-hidden">
+                  <div className="flex items-center bg-surface border border-border rounded-btn overflow-hidden">
                     <button
                       onClick={() => updateQty(item.id, item.qty - 1)}
-                      className="px-3 py-1.5 text-text2 hover:text-white transition-colors"
+                      className="px-3 py-1.5 text-text-2 hover:text-rosso transition-colors"
                     >
                       -
                     </button>
-                    <span className="px-3 text-[14.5px] font-semibold text-white min-w-[24px] text-center select-none">
+                    <span className="px-3 text-[14.5px] font-semibold text-text min-w-[24px] text-center select-none">
                       {item.qty}
                     </span>
                     <button
                       onClick={() => updateQty(item.id, item.qty + 1)}
-                      className="px-3 py-1.5 text-text2 hover:text-white transition-colors"
+                      className="px-3 py-1.5 text-text-2 hover:text-rosso transition-colors"
                     >
                       +
                     </button>
@@ -132,7 +132,7 @@ export default function CarrelloPage() {
 
                   {/* Total & remove */}
                   <div className="flex items-center gap-5 justify-between min-w-[120px] md:justify-end">
-                    <span className="text-[17px] font-bold text-white">
+                    <span className="text-[17px] font-bold text-text">
                       {formatPrice(item.price_cents * item.qty)}
                     </span>
                     <button
@@ -149,7 +149,7 @@ export default function CarrelloPage() {
               <div className="mt-4">
                 <Link
                   href="/shop"
-                  className="inline-flex items-center gap-2 font-saira font-bold text-[14px] tracking-[0.5px] uppercase text-muted hover:text-white transition-colors"
+                  className="inline-flex items-center gap-2 font-saira font-bold text-[14px] tracking-[0.5px] uppercase text-muted hover:text-rosso transition-colors"
                 >
                   <ArrowLeft size={16} /> Continua lo shopping
                 </Link>
@@ -157,30 +157,30 @@ export default function CarrelloPage() {
             </div>
 
             {/* Right: Order Summary Panel */}
-            <div className="bg-surface border border-border rounded-card p-6.5 p-7 flex flex-col gap-6 text-left">
-              <h3 className="font-saira font-bold text-[20px] text-white uppercase pb-2.5 border-b border-border/60">
+            <div className="bg-surface border border-border rounded-card p-6.5 p-7 flex flex-col gap-6 text-left shadow-sm">
+              <h3 className="font-saira font-bold text-[20px] text-text uppercase pb-2.5 border-b border-border/60">
                 Riepilogo Ordine
               </h3>
 
               <div className="flex flex-col gap-3.5 text-[14.5px]">
                 <div className="flex justify-between">
                   <span className="text-muted">Subtotale</span>
-                  <span className="text-white font-medium">
+                  <span className="text-text font-medium">
                     {subtotal.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' })}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted">Spedizione</span>
-                  <span className="text-green-500 font-semibold">Gratis</span>
+                  <span className="text-green-600 font-semibold">Gratis</span>
                 </div>
                 <div className="border-t border-border/40 my-2" />
                 <div className="flex justify-between items-baseline">
-                  <span className="font-saira font-bold text-[18px] text-white uppercase">Totale</span>
-                  <span className="text-[26px] font-bold text-white">
+                  <span className="font-saira font-bold text-[18px] text-text uppercase">Totale</span>
+                  <span className="text-[26px] font-bold text-rosso">
                     {total.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' })}
                   </span>
                 </div>
-                <div className="text-[11px] text-muted2 text-right mt-1">IVA Inclusa</div>
+                <div className="text-[11px] text-muted-2 text-right mt-1">IVA Inclusa</div>
               </div>
 
               {/* Secure Checkout Buttons */}
@@ -214,7 +214,7 @@ export default function CarrelloPage() {
                 </button>
               </div>
 
-              <div className="text-[11px] text-muted2 text-center mt-2 leading-relaxed">
+              <div className="text-[11px] text-muted-2 text-center mt-2 leading-relaxed">
                 Cliccando su uno dei bottoni di pagamento verrai reindirizzato sul portale sicuro di Stripe o PayPal per completare l'acquisto.
               </div>
             </div>

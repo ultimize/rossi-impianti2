@@ -7,12 +7,12 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="bg-bg text-text1 py-16 md:py-24">
+    <div className="bg-bg text-text py-16 md:py-24">
       <div className="max-w-[800px] mx-auto px-6">
-        <h1 className="font-saira font-extrabold text-4xl md:text-5xl uppercase tracking-[-0.5px] mb-8 text-white">
+        <h1 className="font-saira font-extrabold text-4xl md:text-5xl uppercase tracking-[-0.5px] mb-8 text-text">
           Privacy Policy
         </h1>
-        <div className="prose-dark">
+        <div className="prose-custom">
           <p>
             Benvenuto nella nostra Privacy Policy. In questa pagina descriviamo le modalità di gestione del sito
             in riferimento al trattamento dei dati personali degli utenti che lo consultano.
