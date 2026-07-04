@@ -9,9 +9,10 @@ type Heading = {
 
 type ArticleClientWrapperProps = {
   headings: Heading[];
+  hasFaq?: boolean;
 };
 
-export default function ArticleClientWrapper({ headings }: ArticleClientWrapperProps) {
+export default function ArticleClientWrapper({ headings, hasFaq = false }: ArticleClientWrapperProps) {
   const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
@@ -57,28 +58,37 @@ export default function ArticleClientWrapper({ headings }: ArticleClientWrapperP
     }
   };
 
-  if (headings.length === 0) return null;
+  if (headings.length === 0 && !hasFaq) return null;
 
   return (
-    <div className="bg-surface border border-border rounded-card p-6.5 p-7 flex flex-col">
-      <h4 className="font-saira font-bold text-[14px] tracking-[2px] text-white uppercase mb-4 pb-2 border-b border-border/60">
-        Indice Articolo
-      </h4>
-      <nav className="flex flex-col gap-3 font-plex text-[14px] text-muted">
+    <div className="bg-surface2 border border-border rounded-card p-[22px_24px] flex flex-col">
+      <div className="font-saira font-extrabold text-[13px] tracking-[0.8px] text-text uppercase mb-3.5">
+        In questo articolo
+      </div>
+      <nav className="flex flex-col gap-[11px] font-plex text-[14px]">
         {headings.map((heading) => (
           <a
             key={heading.id}
             href={`#${heading.id}`}
             onClick={(e) => handleLinkClick(e, heading.id)}
-            className={`hover:text-white transition-colors text-left leading-normal border-l-2 pl-3 ${
-              activeId === heading.id
-                ? 'text-rosso border-rosso font-medium'
-                : 'border-transparent text-muted'
+            className={`transition-colors leading-[1.4] hover:text-rosso ${
+              activeId === heading.id ? 'text-rosso font-medium' : 'text-text-2'
             }`}
           >
             {heading.text}
           </a>
         ))}
+        {hasFaq && (
+          <a
+            href="#faq"
+            onClick={(e) => handleLinkClick(e, 'faq')}
+            className={`transition-colors leading-[1.4] hover:text-rosso ${
+              activeId === 'faq' ? 'text-rosso font-medium' : 'text-text-2'
+            }`}
+          >
+            Domande frequenti
+          </a>
+        )}
       </nav>
     </div>
   );

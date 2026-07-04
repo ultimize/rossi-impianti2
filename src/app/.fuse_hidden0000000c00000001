@@ -94,6 +94,7 @@ body {
   color: #15181C; /* text1 */
   margin-top: 2.5rem;
   margin-bottom: 1rem;
+  text-transform: uppercase;
   letter-spacing: -0.5px;
   scroll-margin-top: 104px;
 }
@@ -105,6 +106,7 @@ body {
   color: #15181C; /* text1 */
   margin-top: 2rem;
   margin-bottom: 0.75rem;
+  text-transform: uppercase;
   letter-spacing: -0.5px;
   scroll-margin-top: 104px;
 }

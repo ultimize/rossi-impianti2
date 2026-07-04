@@ -28,48 +28,49 @@ export default function ShopClient({ products, categories }: ShopClientProps) {
   return (
     <div className="bg-bg text-text">
       {/* HERO BANNER */}
-      <div className="relative bg-bg border-b border-border py-16 md:py-20 overflow-hidden">
-        <div className="max-w-[1240px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-          <div className="lg:col-span-7 text-left">
-            <div className="font-saira font-bold text-[14px] tracking-[3px] text-rosso uppercase mb-4">
-              Shop Rossi Impianti
-            </div>
-            <h1 className="font-saira font-extrabold text-5xl md:text-[68px] leading-[0.95] uppercase tracking-[-1px] text-text mb-4">
-              Componenti e<br />sistemi termotecnici
-            </h1>
-            <p className="text-[18px] text-text-2 max-w-[560px] leading-[1.55]">
-              Soluzioni professionali per riscaldamento, condizionamento e accessori, acquistabili online.
-            </p>
+      <div className="bg-bg-alt border-b border-border">
+        <div className="max-w-[1240px] mx-auto px-6 md:px-12 py-16">
+          <div className="font-plex font-semibold text-[13px] tracking-[1.4px] text-rosso uppercase mb-3.5">
+            Shop online
           </div>
-          <div className="lg:col-span-5 relative w-full aspect-[4/3] lg:aspect-square rounded-card overflow-hidden shadow-lg border border-border">
-            <div
-              className="absolute inset-0 w-full h-full bg-cover bg-center filter saturate-[0.95] contrast-[1.02] bg-[url('/assets/site/header-marchi.jpg')]"
-            />
+          <h1 className="font-saira font-extrabold text-5xl md:text-[58px] leading-[1.02] tracking-[-1.6px] text-text mb-4">
+            Climatizzatori, caldaie e accessori
+          </h1>
+          <p className="text-[17px] text-text-2 max-w-[540px] leading-[1.6] mb-5.5">
+            Prodotti selezionati, spedizione in tutta Italia. Pagamenti sicuri con Stripe e PayPal.
+          </p>
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="inline-flex items-center gap-2 text-[14px] text-text-2 bg-surface border border-border rounded-pill px-3.5 py-2">
+              Pagamenti — Stripe · PayPal
+            </span>
+            <span className="inline-flex items-center gap-2 text-[14px] text-text-2 bg-surface border border-border rounded-pill px-3.5 py-2">
+              Spedizione tracciata
+            </span>
           </div>
         </div>
       </div>
 
-      <div className="max-w-[1240px] mx-auto px-6 md:px-12 py-12">
+      <div className="max-w-[1240px] mx-auto px-6 md:px-12 pt-12 pb-[90px]">
         {/* Category Filters */}
-        <div className="flex flex-wrap gap-2.5 mb-12 pb-4 border-b border-border/50">
+        <div className="flex flex-wrap gap-2.5 mb-8">
           <button
             onClick={() => setSelectedCategorySlug(null)}
-            className={`font-saira font-bold text-[14px] tracking-[1px] uppercase rounded-btn px-5 py-2.5 transition-colors border ${
+            className={`font-plex font-semibold text-[14.5px] rounded-pill px-5 py-2.5 transition-colors border ${
               selectedCategorySlug === null
                 ? 'bg-rosso border-rosso text-white'
-                : 'bg-surface border-border text-text-2 hover:text-text hover:border-border-2 hover:bg-bg-alt'
+                : 'bg-surface border-border-2 text-text-2 hover:text-text hover:border-text hover:bg-bg-alt'
             }`}
           >
-            Tutti i prodotti
+            Tutti
           </button>
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategorySlug(cat.slug)}
-              className={`font-saira font-bold text-[14px] tracking-[1px] uppercase rounded-btn px-5 py-2.5 transition-colors border ${
+              className={`font-plex font-semibold text-[14.5px] rounded-pill px-5 py-2.5 transition-colors border ${
                 selectedCategorySlug === cat.slug
                   ? 'bg-rosso border-rosso text-white'
-                  : 'bg-surface border-border text-text-2 hover:text-text hover:border-border-2 hover:bg-bg-alt'
+                  : 'bg-surface border-border-2 text-text-2 hover:text-text hover:border-text hover:bg-bg-alt'
               }`}
             >
               {cat.name}
@@ -83,7 +84,7 @@ export default function ShopClient({ products, categories }: ShopClientProps) {
             Nessun prodotto disponibile in questa categoria.
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[18px]">
             {filteredProducts.map((prod) => {
               const imageSrc = (prod.image_urls && prod.image_urls.length > 0)
                 ? prod.image_urls[0]
@@ -93,59 +94,55 @@ export default function ShopClient({ products, categories }: ShopClientProps) {
                 <Link
                   key={prod.id}
                   href={`/shop/${prod.slug}`}
-                  className="border border-border rounded-card overflow-hidden bg-surface transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md flex flex-col h-full justify-between group"
+                  className="border border-border rounded-card overflow-hidden bg-surface transition-all duration-300 hover:-translate-y-[5px] shadow-card hover:shadow-card-hover flex flex-col h-full group"
                 >
-                  <div>
-                    {/* Image Box */}
-                    <div className="overflow-hidden h-[200px] relative bg-bg-alt">
-                      {imageSrc ? (
-                        <img
-                          src={imageSrc}
-                          alt={prod.name}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
-                          onError={(e) => {
-                            (e.target as HTMLElement).style.display = 'none';
-                          }}
-                        />
-                      ) : (
-                        <div className="absolute inset-0 bg-gradient-to-br from-border to-surface-2 transition-transform duration-500 group-hover:scale-[1.05]" />
-                      )}
-                      {prod.categories && (
-                        <span className="absolute top-4 left-4 font-saira font-bold text-[11px] tracking-[1px] uppercase bg-azzurro text-white rounded-btn px-2.5 py-1 z-10 shadow">
-                          {prod.categories.name}
-                        </span>
-                      )}
-                      {!prod.in_stock && (
-                        <span className="absolute top-4 right-4 font-saira font-bold text-[11px] tracking-[1px] uppercase bg-bg-alt text-muted border border-border rounded-btn px-2.5 py-1 z-10">
-                          Esaurito
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Details Box */}
-                    <div className="p-6">
-                      <h3 className="font-saira font-bold text-[24px] text-text uppercase mb-2 group-hover:text-rosso transition-colors line-clamp-1">
-                        {prod.name}
-                      </h3>
-                      {prod.short && (
-                        <p className="text-[14px] text-muted line-clamp-3 mb-4 leading-relaxed">
-                          {prod.short}
-                        </p>
-                      )}
-                    </div>
+                  {/* Image Box */}
+                  <div className="relative h-[210px] overflow-hidden bg-gradient-to-br from-bg-alt to-surface-2 flex items-center justify-center">
+                    {imageSrc ? (
+                      <img
+                        src={imageSrc}
+                        alt={prod.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+                        onError={(e) => {
+                          (e.target as HTMLElement).style.display = 'none';
+                        }}
+                      />
+                    ) : (
+                      <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" className="text-faint">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+                        <path d="m3.3 7 8.7 5 8.7-5M12 22V12" />
+                      </svg>
+                    )}
+                    {prod.categories && (
+                      <span className="absolute top-3.5 left-3.5 font-plex font-bold text-[11px] tracking-[0.6px] uppercase bg-surface text-text-2 border border-border rounded-pill px-3 py-1.5 z-10">
+                        {prod.categories.name}
+                      </span>
+                    )}
+                    {!prod.in_stock && (
+                      <span className="absolute top-3.5 right-3.5 font-plex font-bold text-[11px] tracking-[0.6px] uppercase bg-surface text-muted border border-border rounded-pill px-3 py-1.5 z-10">
+                        Esaurito
+                      </span>
+                    )}
                   </div>
 
-                  {/* Price & Action */}
-                  <div className="px-6 pb-6 pt-2 border-t border-border/30 flex items-center justify-between">
-                    <div>
-                      <div className="text-[20px] font-bold text-text leading-none">
+                  {/* Details Box */}
+                  <div className="flex flex-col flex-grow pt-6 px-[26px] pb-7">
+                    <h3 className="font-saira font-bold text-[22px] leading-[1.15] tracking-[-0.3px] text-text mb-1.5 group-hover:text-rosso transition-colors line-clamp-2">
+                      {prod.name}
+                    </h3>
+                    {prod.short && (
+                      <p className="text-[13.5px] text-muted line-clamp-2 mb-4 leading-[1.5]">
+                        {prod.short}
+                      </p>
+                    )}
+                    <div className="mt-auto flex items-center justify-between">
+                      <span className="font-saira font-extrabold text-[24px] text-text leading-none">
                         {formatPrice(prod.price_cents)}
-                      </div>
-                      <div className="text-[11px] text-muted-2 mt-1">IVA Inclusa</div>
+                      </span>
+                      <span className="font-plex font-semibold text-[14px] text-rosso">
+                        Scopri →
+                      </span>
                     </div>
-                    <span className="font-saira font-bold text-[14px] tracking-[1px] uppercase text-rosso flex items-center gap-1 group-hover:gap-2 transition-all">
-                      Scopri →
-                    </span>
                   </div>
                 </Link>
               );

@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export default function SiteFooter() {
   return (
-    <footer className="bg-[#F6F7F9] text-text2 border-t-3 border-rosso border-t-[3px] font-plex">
+    <footer className="bg-bg-alt text-text2 border-t border-border font-plex">
       <div className="max-w-[1240px] mx-auto px-6 md:px-12 py-[64px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.7fr_1fr_1fr_1.1fr] gap-10">
         {/* Brand Column */}
         <div className="flex flex-col items-start">
@@ -25,7 +25,7 @@ export default function SiteFooter() {
           </p>
           <Link
             href="/contatti"
-            className="inline-flex items-center gap-[9px] font-saira font-bold text-[15px] tracking-[0.5px] uppercase text-text1 border-[1.5px] border-border2 hover:border-rosso hover:text-rosso rounded-btn px-[22px] py-[11px] transition-colors"
+            className="inline-flex items-center gap-[9px] font-plex font-semibold text-[14.5px] text-text1 border-[1.5px] border-border2 hover:border-rosso hover:text-rosso rounded-btn px-[22px] py-[11px] transition-colors"
           >
             Richiedi un preventivo <span>→</span>
           </Link>
@@ -33,7 +33,7 @@ export default function SiteFooter() {
 
         {/* Navigation Column */}
         <div>
-          <h4 className="font-saira font-bold text-[13px] tracking-[1.5px] text-text1 uppercase mb-4">
+          <h4 className="font-plex font-bold text-[13px] tracking-[0.8px] text-text1 uppercase mb-4">
             Navigazione
           </h4>
           <div className="flex flex-col gap-2.2 text-[14px]">
@@ -60,7 +60,7 @@ export default function SiteFooter() {
 
         {/* Services Column */}
         <div>
-          <h4 className="font-saira font-bold text-[13px] tracking-[1.5px] text-text1 uppercase mb-4">
+          <h4 className="font-plex font-bold text-[13px] tracking-[0.8px] text-text1 uppercase mb-4">
             Servizi
           </h4>
           <div className="flex flex-col gap-2.2 text-[14px] text-text2">
@@ -74,7 +74,7 @@ export default function SiteFooter() {
 
         {/* Contact Column */}
         <div>
-          <h4 className="font-saira font-bold text-[13px] tracking-[1.5px] text-text1 uppercase mb-4">
+          <h4 className="font-plex font-bold text-[13px] tracking-[0.8px] text-text1 uppercase mb-4">
             Contatti
           </h4>
           <div className="flex flex-col gap-3.2 text-[14px] leading-[1.5]">

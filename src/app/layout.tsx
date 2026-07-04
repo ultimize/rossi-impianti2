@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
-import { Saira_Condensed, IBM_Plex_Sans, Archivo } from "next/font/google";
+import { IBM_Plex_Sans, Archivo } from "next/font/google";
 import "./globals.css";
 import Script from 'next/script';
 import CookieBanner from "@/components/CookieBanner";
-
-const sairaCondensed = Saira_Condensed({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-saira-condensed",
-});
 
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -66,7 +60,7 @@ export default function RootLayout({
         });
       `}</Script>
       <body
-        className={`${sairaCondensed.variable} ${ibmPlexSans.variable} ${archivo.variable} font-plex bg-bg text-text1 antialiased`}
+        className={`${ibmPlexSans.variable} ${archivo.variable} font-plex bg-bg text-text1 antialiased`}
       >
         {children}
         <CookieBanner />

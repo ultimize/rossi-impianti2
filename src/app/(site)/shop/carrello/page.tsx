@@ -66,90 +66,96 @@ export default function CarrelloPage() {
   const total = subtotal + shipping;
 
   return (
-    <div className="bg-bg text-text min-h-screen py-12">
+    <div className="bg-bg text-text min-h-screen pt-12 pb-[90px]">
       <div className="max-w-[1240px] mx-auto px-6 md:px-12">
-        <h1 className="font-saira font-extrabold text-4xl md:text-[50px] uppercase text-text tracking-[-1px] mb-8 pb-4 border-b border-border/50">
-          Il tuo Carrello
+        <h1 className="font-saira font-extrabold text-4xl md:text-[46px] text-text tracking-[-1px] mb-8">
+          Il tuo carrello
         </h1>
 
         {cartItems.length === 0 ? (
-          <div className="bg-surface border border-border rounded-card p-12 text-center flex flex-col items-center gap-4 shadow-sm">
+          <div className="bg-surface-2 border border-border rounded-card p-16 text-center flex flex-col items-center gap-4">
             <ShoppingBag size={48} className="text-muted-2" />
-            <h3 className="font-saira font-bold text-[24px] uppercase text-text">Il carrello è vuoto</h3>
-            <p className="text-[14.5px] text-muted max-w-[360px]">
-              Non hai ancora aggiunto prodotti al tuo carrello. Esplora il catalogo dello shop per trovare la soluzione adatta a te.
+            <p className="text-[17px] text-text-2 max-w-[360px]">
+              Il carrello è vuoto.
             </p>
             <Link
               href="/shop"
-              className="font-saira font-bold text-[15px] tracking-[0.5px] uppercase text-white bg-rosso hover:bg-rosso-hover rounded-btn px-6 py-3 mt-2 transition-colors"
+              className="font-plex font-semibold text-[16px] text-white bg-rosso hover:bg-rosso-hover rounded-btn px-7 py-[15px] mt-2 shadow-btn transition-colors"
             >
-              Torna allo Shop
+              Vai al catalogo
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-10 items-start">
-            
+          <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-6 items-start">
+
             {/* Left: Cart Items List */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3.5">
               {cartItems.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-surface border border-border rounded-card p-4.5 p-5 flex gap-5 items-center justify-between flex-wrap md:flex-nowrap shadow-sm"
+                  className="bg-surface border border-border rounded-card p-[18px] flex gap-5 items-center flex-wrap md:flex-nowrap shadow-card"
                 >
                   {/* Image */}
-                  <div className="w-16 h-16 rounded-btn bg-bg-alt border border-border flex items-center justify-center p-1 flex-shrink-0">
-                    <img src={item.image_url} alt={item.name} className="w-full h-full object-contain" />
+                  <div className="w-24 h-24 rounded-[12px] bg-gradient-to-br from-bg-alt to-surface-2 border border-border flex items-center justify-center flex-shrink-0 text-faint">
+                    {item.image_url ? (
+                      <img src={item.image_url} alt={item.name} className="w-full h-full object-cover rounded-[12px]" />
+                    ) : (
+                      <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+                        <path d="m3.3 7 8.7 5 8.7-5M12 22V12" />
+                      </svg>
+                    )}
                   </div>
 
                   {/* Name & price */}
-                  <div className="flex-grow min-w-[200px] text-left">
-                    <h3 className="font-saira font-bold text-[20px] text-text uppercase leading-tight">
+                  <div className="flex-grow min-w-[180px] text-left">
+                    <h3 className="font-saira font-bold text-[20px] text-text tracking-[-0.3px] leading-tight mb-1">
                       {item.name}
                     </h3>
-                    <div className="text-[14.5px] text-muted font-semibold mt-1">
+                    <div className="text-[13.5px] text-muted">
                       {formatPrice(item.price_cents)} cad.
                     </div>
                   </div>
 
                   {/* Stepper qty */}
-                  <div className="flex items-center bg-surface border border-border rounded-btn overflow-hidden">
+                  <div className="flex items-center border border-border-2 rounded-btn overflow-hidden flex-shrink-0">
                     <button
                       onClick={() => updateQty(item.id, item.qty - 1)}
-                      className="px-3 py-1.5 text-text-2 hover:text-rosso transition-colors"
+                      className="w-[38px] h-[38px] bg-bg-alt text-text hover:text-rosso transition-colors text-[20px] leading-none"
                     >
-                      -
+                      −
                     </button>
-                    <span className="px-3 text-[14.5px] font-semibold text-text min-w-[24px] text-center select-none">
+                    <span className="w-[42px] text-center font-saira font-bold text-[18px] text-text select-none">
                       {item.qty}
                     </span>
                     <button
                       onClick={() => updateQty(item.id, item.qty + 1)}
-                      className="px-3 py-1.5 text-text-2 hover:text-rosso transition-colors"
+                      className="w-[38px] h-[38px] bg-bg-alt text-text hover:text-rosso transition-colors text-[20px] leading-none"
                     >
                       +
                     </button>
                   </div>
 
-                  {/* Total & remove */}
-                  <div className="flex items-center gap-5 justify-between min-w-[120px] md:justify-end">
-                    <span className="text-[17px] font-bold text-text">
-                      {formatPrice(item.price_cents * item.qty)}
-                    </span>
-                    <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="text-faint hover:text-rosso p-1 transition-colors"
-                      title="Rimuovi articolo"
-                    >
-                      <Trash2 size={18} />
-                    </button>
+                  {/* Line total */}
+                  <div className="w-[110px] text-right font-saira font-extrabold text-[20px] text-text flex-shrink-0">
+                    {formatPrice(item.price_cents * item.qty)}
                   </div>
+
+                  {/* Remove */}
+                  <button
+                    onClick={() => removeFromCart(item.id)}
+                    className="text-faint hover:text-rosso p-1.5 transition-colors flex-shrink-0"
+                    title="Rimuovi articolo"
+                  >
+                    <Trash2 size={18} />
+                  </button>
                 </div>
               ))}
 
-              <div className="mt-4">
+              <div className="mt-1">
                 <Link
                   href="/shop"
-                  className="inline-flex items-center gap-2 font-saira font-bold text-[14px] tracking-[0.5px] uppercase text-muted hover:text-rosso transition-colors"
+                  className="inline-flex items-center gap-2 font-plex font-semibold text-[14px] text-muted hover:text-rosso transition-colors"
                 >
                   <ArrowLeft size={16} /> Continua lo shopping
                 </Link>
@@ -157,45 +163,43 @@ export default function CarrelloPage() {
             </div>
 
             {/* Right: Order Summary Panel */}
-            <div className="bg-surface border border-border rounded-card p-6.5 p-7 flex flex-col gap-6 text-left shadow-sm">
-              <h3 className="font-saira font-bold text-[20px] text-text uppercase pb-2.5 border-b border-border/60">
-                Riepilogo Ordine
+            <div className="bg-surface-2 border border-border rounded-card p-[30px] text-left">
+              <h3 className="font-saira font-extrabold text-[22px] text-text mb-[22px]">
+                Riepilogo
               </h3>
 
-              <div className="flex flex-col gap-3.5 text-[14.5px]">
-                <div className="flex justify-between">
-                  <span className="text-muted">Subtotale</span>
-                  <span className="text-text font-medium">
+              <div className="flex flex-col text-[15px]">
+                <div className="flex justify-between py-2.5 text-text-2">
+                  <span>Subtotale</span>
+                  <span className="text-text">
                     {subtotal.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' })}
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted">Spedizione</span>
-                  <span className="text-green-600 font-semibold">Gratis</span>
+                <div className="flex justify-between py-2.5 text-text-2 border-b border-border">
+                  <span>Spedizione</span>
+                  <span className="text-text">Calcolata al checkout</span>
                 </div>
-                <div className="border-t border-border/40 my-2" />
-                <div className="flex justify-between items-baseline">
-                  <span className="font-saira font-bold text-[18px] text-text uppercase">Totale</span>
-                  <span className="text-[26px] font-bold text-rosso">
+                <div className="flex justify-between pt-[18px] pb-6 font-saira font-extrabold text-[22px] text-text">
+                  <span>Totale</span>
+                  <span>
                     {total.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' })}
                   </span>
                 </div>
-                <div className="text-[11px] text-muted-2 text-right mt-1">IVA Inclusa</div>
               </div>
 
               {/* Secure Checkout Buttons */}
-              <div className="flex flex-col gap-3 mt-4">
+              <div className="flex flex-col gap-[11px]">
                 {/* Stripe button */}
                 <button
                   onClick={() => handleCheckout('stripe')}
                   disabled={!!checkoutLoading}
-                  className="font-saira font-bold text-[16px] tracking-[0.5px] uppercase text-white bg-[#635BFF] hover:bg-[#5249cf] disabled:bg-faint rounded-btn py-3.5 flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                  className="w-full font-plex font-semibold text-[16px] text-white bg-stripe hover:brightness-[1.08] disabled:opacity-60 rounded-btn py-[15px] flex items-center justify-center gap-2.5 transition-all cursor-pointer"
                 >
                   {checkoutLoading === 'stripe' ? (
                     <Loader2 size={18} className="animate-spin" />
                   ) : (
                     <>
-                      <CreditCard size={18} /> Paga con Carta (Stripe)
+                      <CreditCard size={18} /> Paga con carta — Stripe
                     </>
                   )}
                 </button>
@@ -204,19 +208,22 @@ export default function CarrelloPage() {
                 <button
                   onClick={() => handleCheckout('paypal')}
                   disabled={!!checkoutLoading}
-                  className="font-saira font-bold text-[16px] tracking-[0.5px] uppercase text-[#0d0f11] bg-[#FFC439] hover:bg-[#e2ad30] disabled:bg-faint rounded-btn py-3.5 flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                  className="w-full font-saira font-extrabold text-[18px] bg-paypal hover:brightness-[1.04] disabled:opacity-60 rounded-btn py-3.5 flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >
                   {checkoutLoading === 'paypal' ? (
-                    <Loader2 size={18} className="animate-spin" />
+                    <Loader2 size={18} className="animate-spin text-[#003087]" />
                   ) : (
-                    <span>Paga con PayPal</span>
+                    <span>
+                      <span className="text-[#003087]">Pay</span>
+                      <span className="text-[#009cde]">Pal</span>
+                    </span>
                   )}
                 </button>
               </div>
 
-              <div className="text-[11px] text-muted-2 text-center mt-2 leading-relaxed">
-                Cliccando su uno dei bottoni di pagamento verrai reindirizzato sul portale sicuro di Stripe o PayPal per completare l'acquisto.
-              </div>
+              <p className="text-[12px] text-muted text-center mt-4 leading-[1.5]">
+                Mockup grafico — i pagamenti Stripe e PayPal verranno collegati in fase di sviluppo.
+              </p>
             </div>
 
           </div>

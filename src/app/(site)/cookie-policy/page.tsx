@@ -9,7 +9,7 @@ export default function CookiePolicyPage() {
   return (
     <div className="bg-bg text-text py-16 md:py-24">
       <div className="max-w-[800px] mx-auto px-6">
-        <h1 className="font-saira font-extrabold text-4xl md:text-5xl uppercase tracking-[-0.5px] mb-8 text-text">
+        <h1 className="font-saira font-extrabold text-4xl md:text-5xl tracking-[-1.5px] mb-8 text-text">
           Cookie Policy
         </h1>
         <div className="prose-custom">

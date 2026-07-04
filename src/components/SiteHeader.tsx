@@ -30,8 +30,8 @@ export default function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-[10px] border-b border-border shadow-sm font-plex">
-      <div className="max-w-[1240px] mx-auto px-6 md:px-12 py-[14px] flex items-center justify-between">
+    <header className="sticky top-0 z-50 bg-white/[.88] backdrop-blur-[12px] border-b border-border font-plex">
+      <div className="max-w-[1240px] mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
         {/* LOGO */}
         <Link href="/" className="leading-none text-decoration-none flex items-center">
           <Image
@@ -45,12 +45,12 @@ export default function SiteHeader() {
         </Link>
 
         {/* DESKTOP NAV */}
-        <nav className="hidden lg:flex items-center gap-[21px]">
+        <nav className="hidden lg:flex items-center gap-[26px]">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`font-saira font-semibold text-[14px] tracking-[0.5px] uppercase transition-colors hover:text-rosso ${
+              className={`font-plex font-medium text-[15px] transition-colors hover:text-rosso ${
                 isLinkActive(link.href) ? 'text-text1' : 'text-text2'
               }`}
             >
@@ -59,7 +59,7 @@ export default function SiteHeader() {
           ))}
           <Link
             href="/shop"
-            className={`font-saira font-semibold text-[14px] tracking-[0.5px] uppercase transition-colors hover:text-rosso flex items-center gap-1.5 ${
+            className={`font-plex font-semibold text-[15px] transition-colors hover:text-azzurro-hover flex items-center gap-1.5 ${
               isLinkActive('/shop') ? 'text-text1' : 'text-azzurro'
             }`}
           >
@@ -70,7 +70,7 @@ export default function SiteHeader() {
           <Link href="/shop/carrello" className="relative text-text2 hover:text-text1 p-1 transition-colors">
             <ShoppingCart size={18} />
             {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-rosso text-white font-saira font-bold text-[10px] w-4.5 h-4.5 flex items-center justify-center rounded-full">
+              <span className="absolute -top-1 -right-1 bg-rosso text-white font-plex font-bold text-[10px] w-4.5 h-4.5 flex items-center justify-center rounded-full">
                 {cartCount}
               </span>
             )}
@@ -78,7 +78,7 @@ export default function SiteHeader() {
 
           <Link
             href="/contatti"
-            className="font-saira font-bold text-[14px] tracking-[0.5px] uppercase text-white bg-rosso hover:bg-rosso-hover rounded-btn px-[18px] py-[11px] transition-all hover:-translate-y-[1px]"
+            className="font-plex font-semibold text-[15px] text-white bg-rosso hover:bg-rosso-hover rounded-btn px-5 py-[11px] shadow-[0_4px_14px_rgba(225,29,23,.22)] transition-all hover:-translate-y-[1px]"
           >
             Contatti
           </Link>
@@ -89,7 +89,7 @@ export default function SiteHeader() {
           <Link href="/shop/carrello" className="relative text-text2 hover:text-text1 p-1 transition-colors">
             <ShoppingCart size={20} />
             {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-rosso text-white font-saira font-bold text-[10px] w-4.5 h-4.5 flex items-center justify-center rounded-full">
+              <span className="absolute -top-1 -right-1 bg-rosso text-white font-plex font-bold text-[10px] w-4.5 h-4.5 flex items-center justify-center rounded-full">
                 {cartCount}
               </span>
             )}
@@ -106,13 +106,13 @@ export default function SiteHeader() {
       {/* MOBILE NAV PANEL */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-border bg-white/95 backdrop-blur-[10px]">
-          <nav className="flex flex-col p-6 gap-4 font-saira text-base tracking-[0.5px] uppercase font-semibold">
+          <nav className="flex flex-col p-6 gap-4 font-plex text-[15px] font-medium">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`py-2 border-b border-border/40 transition-colors ${
+                className={`py-2 border-b border-border/60 transition-colors ${
                   isLinkActive(link.href) ? 'text-text1' : 'text-text2'
                 }`}
               >
@@ -122,7 +122,7 @@ export default function SiteHeader() {
             <Link
               href="/shop"
               onClick={() => setMobileMenuOpen(false)}
-              className={`py-2 border-b border-border/40 transition-colors ${
+              className={`py-2 border-b border-border/60 font-semibold transition-colors ${
                 isLinkActive('/shop') ? 'text-text1' : 'text-azzurro'
               }`}
             >
@@ -131,7 +131,7 @@ export default function SiteHeader() {
             <Link
               href="/contatti"
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-2 text-center font-bold text-[14px] tracking-[0.5px] uppercase text-white bg-rosso hover:bg-rosso-hover rounded-btn py-3 transition-all"
+              className="mt-2 text-center font-semibold text-[15px] text-white bg-rosso hover:bg-rosso-hover rounded-btn py-3 transition-all"
             >
               Contatti
             </Link>

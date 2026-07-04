@@ -1,6 +1,5 @@
 import { createStaticClient } from '@/lib/supabase/server';
 import Link from 'next/link';
-import { Sparkles, Shield, Flame, Wind, Building2, Calendar, FileText, Check } from 'lucide-react';
 import HomeClient from './HomeClient';
 import type { Article } from '@/lib/types';
 
@@ -20,101 +19,157 @@ export default async function HomePage() {
   const articles = (rawArticles || []) as (Article & { categories: any })[];
 
   return (
-    <div className="bg-bg text-text1 overflow-x-clip">
+    <div className="bg-bg text-text1 overflow-x-clip font-plex">
       {/* HERO SECTION */}
-      <section className="relative bg-bg py-16 lg:py-24 overflow-hidden flex items-center border-b border-border">
-        <div className="max-w-[1240px] w-full mx-auto px-6 md:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
-            <div className="font-saira font-bold text-[15px] tracking-[4px] text-rosso uppercase mb-6 animate-revealUp">
-              Impianti industriali · dal 1980
+      <section
+        id="top"
+        className="relative overflow-hidden flex items-center min-h-[660px] bg-[#0e1216]"
+      >
+        {/* Real photo */}
+        <div className="absolute inset-0 bg-cover bg-[url('/assets/site/hero.jpg')] bg-[position:center_right]" />
+        {/* White feather: left stays bright, photo reveals on the right */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(100deg,#ffffff 0%,#ffffff 28%,rgba(255,255,255,.94) 40%,rgba(255,255,255,.55) 53%,rgba(255,255,255,.1) 68%,rgba(255,255,255,0) 86%)',
+          }}
+        />
+        {/* Bottom white fade */}
+        <div
+          className="absolute left-0 right-0 bottom-0 h-[120px]"
+          style={{ background: 'linear-gradient(180deg,rgba(255,255,255,0),#ffffff)' }}
+        />
+        {/* Left red bar */}
+        <div className="absolute left-0 top-0 bottom-0 w-[5px] bg-rosso z-[3]" />
+
+        <div className="max-w-[1240px] w-full mx-auto px-6 md:px-12 pt-[72px] pb-[80px] md:pt-[96px] md:pb-[104px] relative z-[2]">
+          <div className="max-w-[600px]">
+            {/* Pill eyebrow */}
+            <div className="inline-flex items-center gap-[9px] bg-white border border-border rounded-pill pl-[7px] pr-[8px] py-[7px] mb-7 shadow-[0_8px_22px_-10px_rgba(20,30,45,.3)] animate-revealUp">
+              <span className="inline-flex items-center gap-1.5 bg-rosso-tint rounded-pill px-[11px] py-1 font-bold text-[12px] tracking-[0.4px] text-rosso-dark uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-rosso" />
+                Dal 1980
+              </span>
+              <span className="font-medium text-[13px] text-text2 pr-2">
+                Impianti industriali a Vicenza
+              </span>
             </div>
-            <h1 className="font-saira font-extrabold text-5xl md:text-7xl lg:text-[88px] leading-[0.92] uppercase tracking-[-1.5px] text-text1 mb-7 animate-revealUp">
-              Progettiamo<br />
-              e costruiamo<br />
-              <span className="text-rosso">impianti industriali.</span>
+
+            {/* H1 */}
+            <h1 className="font-archivo font-extrabold text-[44px] md:text-[68px] leading-[1.0] tracking-[-2px] text-[#13171c] mb-[22px] animate-revealUp">
+              Progettiamo e costruiamo <span className="text-rosso">impianti industriali.</span>
             </h1>
-            <p className="text-[19px] text-text2 leading-[1.55] mb-10 max-w-[480px] animate-revealUp">
-              44 anni di cantieri a Vicenza. Chiavi in mano, per le aziende.
+
+            {/* Lead */}
+            <p className="text-[19px] text-[#4f585f] leading-[1.6] mb-[34px] max-w-[440px] font-medium animate-revealUp">
+              44 anni di cantieri a Vicenza. Aria, acqua, gas e metano — chiavi in mano, per le aziende.
             </p>
+
+            {/* CTAs */}
             <div className="flex flex-wrap gap-3.5 animate-revealUp">
               <Link
                 href="/contatti"
-                className="font-saira font-bold text-[18px] tracking-[0.5px] uppercase text-white bg-rosso hover:bg-rosso-hover rounded-btn px-[34px] py-[17px] transition-all shadow-md hover:shadow-lg hover:-translate-y-[2px] cursor-pointer"
+                className="font-semibold text-[16px] text-white bg-rosso rounded-btn px-[30px] py-4 shadow-[0_12px_28px_-8px_rgba(225,29,23,.5)] hover:bg-rosso-hover hover:-translate-y-[2px] transition-all"
               >
                 Richiedi un preventivo
               </Link>
               <Link
                 href="/settori"
-                className="font-saira font-bold text-[18px] tracking-[0.5px] uppercase text-text1 border-[1.5px] border-border2 hover:border-rosso hover:text-rosso rounded-btn px-[34px] py-[17px] transition-all hover:-translate-y-[2px] cursor-pointer bg-transparent"
+                className="font-semibold text-[16px] text-text1 bg-white/90 border-[1.5px] border-border2 rounded-btn px-[30px] py-4 backdrop-blur-[4px] hover:border-text1 hover:-translate-y-[2px] transition-all"
               >
                 I nostri lavori
               </Link>
             </div>
-          </div>
-          {/* Right Column */}
-          <div className="lg:col-span-5 relative w-full aspect-[4/3] lg:aspect-square rounded-card overflow-hidden shadow-lg animate-revealUp border border-border">
-            <div
-              className="absolute inset-0 w-full h-full bg-cover bg-center filter saturate-[0.95] contrast-[1.02] bg-[url('/assets/site/hero.jpg')]"
-            />
-          </div>
-        </div>
 
-        {/* Large Decorative "44" */}
-        <div className="absolute top-[-70px] right-[-30px] font-saira font-extrabold text-[420px] leading-[0.8] text-border2/20 opacity-55 tracking-[-10px] animate-floaty pointer-events-none select-none">
-          44
+            {/* Stats */}
+            <div className="flex gap-[34px] mt-[50px] animate-revealUp">
+              <div>
+                <div className="font-archivo font-extrabold text-[36px] text-[#13171c] leading-none">44</div>
+                <div className="text-[13px] text-[#6b747c] mt-[5px] font-medium">anni di attività</div>
+              </div>
+              <div className="w-px bg-[#d3dade]" />
+              <div>
+                <div className="font-archivo font-extrabold text-[36px] text-[#13171c] leading-none">4</div>
+                <div className="text-[13px] text-[#6b747c] mt-[5px] font-medium">aree di servizio</div>
+              </div>
+              <div className="w-px bg-[#d3dade]" />
+              <div>
+                <div className="font-archivo font-extrabold text-[36px] text-[#13171c] leading-none">100%</div>
+                <div className="text-[13px] text-[#6b747c] mt-[5px] font-medium">chiavi in mano</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Circular seal over the photo */}
+          <div className="hidden md:flex absolute top-[80px] right-[60px] z-[3] w-[118px] h-[118px] rounded-full flex-col items-center justify-center text-white text-center bg-gradient-to-br from-rosso to-rosso-hover shadow-[0_0_0_9px_rgba(255,255,255,.9),0_22px_40px_-14px_rgba(225,29,23,.7)] animate-floaty">
+            <span className="font-semibold text-[10px] tracking-[2px] opacity-85">DAL</span>
+            <span className="font-archivo font-extrabold text-[34px] leading-none tracking-[-0.5px]">1980</span>
+          </div>
         </div>
-        <div className="absolute left-0 top-0 bottom-0 w-1.25 bg-rosso" />
       </section>
 
-      {/* MARQUEE BAR */}
-      <section className="bg-rosso overflow-hidden whitespace-nowrap py-4">
-        <div className="inline-flex animate-marquee font-saira font-semibold uppercase tracking-[1.5px] text-[16px] text-white">
-          <span>&nbsp;&nbsp;★&nbsp;&nbsp;44 anni di attività&nbsp;&nbsp;★&nbsp;&nbsp;Cantieri chiavi in mano&nbsp;&nbsp;★&nbsp;&nbsp;Aria · Acqua · Gas · Metano&nbsp;&nbsp;★&nbsp;&nbsp;Impianti antincendio&nbsp;&nbsp;★&nbsp;&nbsp;Vicenza e provincia&nbsp;&nbsp;★&nbsp;&nbsp;Pacchetto Completo&nbsp;&nbsp;</span>
-          <span>&nbsp;&nbsp;★&nbsp;&nbsp;44 anni di attività&nbsp;&nbsp;★&nbsp;&nbsp;Cantieri chiavi in mano&nbsp;&nbsp;★&nbsp;&nbsp;Aria · Acqua · Gas · Metano&nbsp;&nbsp;★&nbsp;&nbsp;Impianti antincendio&nbsp;&nbsp;★&nbsp;&nbsp;Vicenza e provincia&nbsp;&nbsp;★&nbsp;&nbsp;Pacchetto Completo&nbsp;&nbsp;</span>
+      {/* TRUST STRIP */}
+      <section className="bg-bg-alt border-t border-b border-border">
+        <div className="max-w-[1240px] mx-auto px-6 md:px-12 py-[22px] flex items-center justify-between gap-6 flex-wrap">
+          <span className="inline-flex items-center gap-2.5 text-[15px] text-text2">
+            <span className="text-rosso">●</span> Cantieri chiavi in mano
+          </span>
+          <span className="inline-flex items-center gap-2.5 text-[15px] text-text2">
+            <span className="text-azzurro">●</span> Aria · Acqua · Gas · Metano
+          </span>
+          <span className="inline-flex items-center gap-2.5 text-[15px] text-text2">
+            <span className="text-rosso">●</span> Impianti antincendio a norma
+          </span>
+          <span className="inline-flex items-center gap-2.5 text-[15px] text-text2">
+            <span className="text-azzurro">●</span> Vicenza e provincia
+          </span>
         </div>
       </section>
 
       {/* SERVIZI SECTION */}
-      <section id="servizi" className="bg-bg py-[90px] scroll-mt-20">
+      <section id="servizi" className="bg-bg py-[96px] scroll-mt-20">
         <div className="max-w-[1240px] mx-auto px-6 md:px-12">
           {/* Header */}
-          <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-[48px] items-end mb-[40px]">
+          <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-[48px] items-end mb-[44px]">
             <div>
-              <div className="font-saira font-bold text-[15px] tracking-[3px] text-rosso uppercase mb-3.5">
+              <div className="font-semibold text-[13px] tracking-[1.4px] text-rosso uppercase mb-3.5">
                 Cosa facciamo
               </div>
-              <h2 className="font-saira font-extrabold text-4xl md:text-[56px] text-text1 uppercase tracking-[-0.5px] leading-[0.95]">
-                Quattro aree,<br />un solo interlocutore
+              <h2 className="font-archivo font-extrabold text-[34px] md:text-[46px] text-text1 tracking-[-1px] leading-[1.05]">
+                Quattro aree, un solo interlocutore
               </h2>
             </div>
-            <p className="text-[16px] text-text2 leading-[1.6] mb-1">
-              Dalla progettazione alla messa in opera realizziamo impianti completi per l'industria, il commercio e la casa. Ogni servizio comprende il <strong className="text-text1 font-bold">Pacchetto Completo</strong>.
+            <p className="text-[16.5px] text-text2 leading-[1.65] mb-1">
+              Dalla progettazione alla messa in opera realizziamo impianti completi per l'industria, il commercio e la casa. Ogni servizio comprende il <strong className="text-text1">Pacchetto Completo</strong>.
             </p>
           </div>
 
           {/* Featured Industrial Card */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] border border-border rounded-card overflow-hidden bg-surface shadow-sm hover:shadow-md transition-all mb-6 group">
-            <div className="p-8 md:p-[48px] flex flex-col justify-center">
-              <div className="flex items-center gap-3.5 mb-[18px]">
-                <div className="w-[52px] h-[52px] border border-border2 rounded-btn flex items-center justify-center text-rosso bg-bg-alt">
-                  <Building2 size={26} />
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] border border-border rounded-[18px] overflow-hidden bg-white shadow-card hover:shadow-card-hover transition-all mb-[18px] group">
+            <div className="p-8 md:p-[48px_46px] flex flex-col justify-center">
+              <div className="flex items-center gap-3.5 mb-5">
+                <div className="w-[54px] h-[54px] rounded-[12px] flex items-center justify-center text-rosso bg-rosso-tint flex-none">
+                  <svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round">
+                    <path d="M3 21V11l6 3.2V11l6 3.2V7l6 3v11H3Z" />
+                    <path d="M7 21v-3.4M13 21v-3.4M19 21v-3.4" />
+                  </svg>
                 </div>
-                <div className="font-saira font-extrabold text-[13px] tracking-[2px] text-rosso uppercase">
+                <div className="font-bold text-[12.5px] tracking-[1.4px] text-rosso uppercase">
                   01 / Il nostro core
                 </div>
               </div>
-              <h3 className="font-saira font-extrabold text-[44px] text-text1 uppercase mb-3.5 leading-[0.98]">
+              <h3 className="font-archivo font-extrabold text-[30px] md:text-[36px] text-text1 tracking-[-0.6px] mb-3.5 leading-[1.05]">
                 Impianti industriali
               </h3>
-              <p className="text-[15.5px] text-text2 leading-[1.6] mb-[22px] max-w-[430px]">
+              <p className="text-[16px] text-text2 leading-[1.65] mb-6 max-w-[440px]">
                 Progettazione e costruzione di impianti aria, acqua, gas e metano per aziende, capannoni e imprese edili. Cantieri chiavi in mano.
               </p>
-              <div className="flex flex-wrap gap-2 mb-[26px]">
+              <div className="flex flex-wrap gap-2 mb-7">
                 {['Aria', 'Acqua', 'Gas', 'Metano', 'Antincendio'].map((tag) => (
                   <span
                     key={tag}
-                    className="font-saira font-semibold text-[14px] tracking-[0.5px] uppercase text-text2 border border-border2 rounded-btn px-3 py-1.5"
+                    className="text-[14px] text-text2 bg-chip rounded-pill px-[15px] py-[7px]"
                   >
                     {tag}
                   </span>
@@ -122,74 +177,39 @@ export default async function HomePage() {
               </div>
               <Link
                 href="/servizi"
-                className="font-saira font-bold text-[16px] tracking-[1px] uppercase text-text1 hover:text-rosso flex items-center gap-2 transition-all group-hover:gap-3"
+                className="font-semibold text-[15.5px] text-rosso hover:text-rosso-hover inline-flex items-center gap-2 transition-all group-hover:gap-3 w-fit"
               >
                 Scopri il settore industriale <span>→</span>
               </Link>
             </div>
-            <div className="min-h-[340px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/industriale.jpg')]">
-              <div className="absolute left-[22px] bottom-[22px] font-saira font-semibold text-[13px] tracking-[1px] text-text2 bg-bg rounded-btn px-[13px] py-[8px] uppercase border border-border shadow-sm">
-                Centrale Termica
-              </div>
-            </div>
+            <div className="min-h-[360px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/industriale.jpg')]" />
           </div>
 
           {/* Three subservices cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Card 2 */}
-            <div className="border border-border hover:-translate-y-1 rounded-card overflow-hidden bg-surface transition-all duration-300 relative group shadow-sm hover:shadow-md">
-              <div className="absolute top-[18px] right-[18px] z-10 font-saira font-bold text-[12px] tracking-[1px] bg-rosso text-white rounded-btn px-2.5 py-1">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[18px]">
+            {/* Card 2 — Antincendio */}
+            <div className="border border-border rounded-card overflow-hidden bg-white relative shadow-card hover:shadow-card-hover hover:-translate-y-[5px] transition-all duration-300">
+              <div className="absolute top-4 right-4 z-[2] font-bold text-[11px] tracking-[0.6px] bg-rosso text-white rounded-pill px-3 py-[5px]">
                 NUOVO
               </div>
-              <div className="height-[150px] h-[150px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/antincendio.jpg')]">
-                <div className="absolute left-4.5 bottom-3.5 w-[46px] h-[46px] rounded-btn bg-bg border border-border2 flex items-center justify-center text-rosso shadow-sm">
-                  <Shield size={24} className="animate-flick origin-bottom" />
+              <div className="p-[34px_30px_30px]">
+                <div className="w-[52px] h-[52px] rounded-[13px] bg-rosso-tint flex items-center justify-center text-rosso mb-5">
+                  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round">
+                    <path d="M12 3c.5 2.5 3.5 4 3.5 8a3.5 3.5 0 0 1-7 0c0-1.2.6-2 .6-2 .3 1.2 1.2 1.6 1.9 1.4.9-.3 1-1.6.5-3-.3-1 .3-2.8.5-3.8Z" />
+                  </svg>
                 </div>
-              </div>
-              <div className="p-7 md:p-[28px]">
-                <div className="font-saira font-extrabold text-[12.5px] tracking-[2px] text-rosso uppercase">
+                <div className="font-bold text-[12px] tracking-[1.2px] text-rosso uppercase">
                   02 / Sicurezza
                 </div>
-                <h3 className="font-saira font-extrabold text-[30px] text-text1 uppercase my-2">
+                <h3 className="font-archivo font-bold text-[25px] text-text1 tracking-[-0.4px] mt-[7px] mb-2.5">
                   Impianti antincendio
                 </h3>
-                <p className="text-[14px] text-text2 leading-[1.55] mb-4">
+                <p className="text-[14.5px] text-text2 leading-[1.6] mb-4">
                   Progettazione e realizzazione per le aziende, a norma e certificati.
                 </p>
-                <div className="flex flex-wrap gap-1.5">
-                  <span className="font-saira font-semibold text-[13px] tracking-[0.5px] uppercase text-text2 border border-border2 rounded-btn px-2.5 py-1">
-                    A norma
-                  </span>
-                  <span className="font-saira font-semibold text-[13px] tracking-[0.5px] uppercase text-text2 border border-border2 rounded-btn px-2.5 py-1">
-                    Certificati
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="border border-border hover:-translate-y-1 rounded-card overflow-hidden bg-surface transition-all duration-300 relative group shadow-sm hover:shadow-md">
-              <div className="height-[150px] h-[150px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/riscaldamento.jpg')]">
-                <div className="absolute left-4.5 bottom-3.5 w-[46px] h-[46px] rounded-btn bg-bg border border-border2 flex items-center justify-center text-azzurro shadow-sm">
-                  <Flame size={24} />
-                </div>
-              </div>
-              <div className="p-7 md:p-[28px]">
-                <div className="font-saira font-extrabold text-[12.5px] tracking-[2px] text-azzurro uppercase">
-                  03 / Comfort
-                </div>
-                <h3 className="font-saira font-extrabold text-[30px] text-text1 uppercase my-2">
-                  Riscaldamento
-                </h3>
-                <p className="text-[14px] text-text2 leading-[1.55] mb-4">
-                  Caldaie, pompe di calore, pannelli radianti e solare termico.
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {['Caldaie', 'Pompe di calore', 'Radiante'].map((tag) => (
-                    <span
-                      key={tag}
-                      className="font-saira font-semibold text-[13px] tracking-[0.5px] uppercase text-text2 border border-border2 rounded-btn px-2.5 py-1"
-                    >
+                <div className="flex flex-wrap gap-[7px]">
+                  {['A norma', 'Certificati'].map((tag) => (
+                    <span key={tag} className="text-[13px] text-text2 bg-chip rounded-pill px-[13px] py-[5px]">
                       {tag}
                     </span>
                   ))}
@@ -197,30 +217,60 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* Card 4 */}
-            <div className="border border-border hover:-translate-y-1 rounded-card overflow-hidden bg-surface transition-all duration-300 relative group shadow-sm hover:shadow-md">
-              <div className="height-[150px] h-[150px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/condizionamento.jpg')]">
-                <div className="absolute left-4.5 bottom-3.5 w-[46px] h-[46px] rounded-btn bg-bg border border-border2 flex items-center justify-center text-azzurro shadow-sm">
-                  <Wind size={24} className="animate-drift" />
+            {/* Card 3 — Riscaldamento */}
+            <div className="border border-border rounded-card overflow-hidden bg-white shadow-card hover:shadow-card-hover hover:-translate-y-[5px] transition-all duration-300">
+              <div className="p-[34px_30px_30px]">
+                <div className="w-[52px] h-[52px] rounded-[13px] bg-azzurro-tint flex items-center justify-center text-azzurro mb-5">
+                  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round">
+                    <rect x="5" y="4" width="14" height="15" rx="2" />
+                    <path d="M9 4v15M13 4v15M17 4v15" />
+                    <path d="M8 21v1M16 21v1" />
+                  </svg>
+                </div>
+                <div className="font-bold text-[12px] tracking-[1.2px] text-azzurro uppercase">
+                  03 / Comfort
+                </div>
+                <h3 className="font-archivo font-bold text-[25px] text-text1 tracking-[-0.4px] mt-[7px] mb-2.5">
+                  Riscaldamento
+                </h3>
+                <p className="text-[14.5px] text-text2 leading-[1.6] mb-4">
+                  Caldaie, pompe di calore, pannelli radianti e solare termico.
+                </p>
+                <div className="flex flex-wrap gap-[7px]">
+                  {['Caldaie', 'Pompe di calore', 'Radiante'].map((tag) => (
+                    <span key={tag} className="text-[13px] text-text2 bg-chip rounded-pill px-[13px] py-[5px]">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
-              <div className="p-7 md:p-[28px]">
-                <div className="font-saira font-extrabold text-[12.5px] tracking-[2px] text-azzurro uppercase">
+            </div>
+
+            {/* Card 4 — Condizionamento */}
+            <div className="border border-border rounded-card overflow-hidden bg-white shadow-card hover:shadow-card-hover hover:-translate-y-[5px] transition-all duration-300">
+              <div className="p-[34px_30px_30px]">
+                <div className="w-[52px] h-[52px] rounded-[13px] bg-azzurro-tint flex items-center justify-center text-azzurro mb-5">
+                  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round">
+                    <rect x="3" y="5" width="18" height="9" rx="2" />
+                    <path d="M7 10h7" />
+                    <path d="M6 18c1-1.2 2.2-1.2 3.2 0M11 18c1-1.2 2.2-1.2 3.2 0M16 18c1-1.2 2.2-1.2 3.2 0" />
+                  </svg>
+                </div>
+                <div className="font-bold text-[12px] tracking-[1.2px] text-azzurro uppercase">
                   04 / Clima
                 </div>
-                <h3 className="font-saira font-extrabold text-[30px] text-text1 uppercase my-2">
+                <h3 className="font-archivo font-bold text-[25px] text-text1 tracking-[-0.4px] mt-[7px] mb-2.5">
                   Condizionamento
                 </h3>
-                <p className="text-[14px] text-text2 leading-[1.55] mb-4">
+                <p className="text-[14.5px] text-text2 leading-[1.6] mb-4">
                   Climatizzazione e raffrescamento canalizzato a pompa di calore.
                 </p>
-                <div className="flex flex-wrap gap-1.5">
-                  <span className="font-saira font-semibold text-[13px] tracking-[0.5px] uppercase text-text2 border border-border2 rounded-btn px-2.5 py-1">
-                    Canalizzato
-                  </span>
-                  <span className="font-saira font-semibold text-[13px] tracking-[0.5px] uppercase text-text2 border border-border2 rounded-btn px-2.5 py-1">
-                    Pompa di calore
-                  </span>
+                <div className="flex flex-wrap gap-[7px]">
+                  {['Canalizzato', 'Pompa di calore'].map((tag) => (
+                    <span key={tag} className="text-[13px] text-text2 bg-chip rounded-pill px-[13px] py-[5px]">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
@@ -229,35 +279,39 @@ export default async function HomePage() {
       </section>
 
       {/* SETTORI SECTION */}
-      <section id="settori" className="bg-bg-alt py-[90px] border-t border-border scroll-mt-20">
+      <section id="settori" className="bg-bg-alt py-[96px] scroll-mt-20">
         <div className="max-w-[1240px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-[48px] items-end mb-[40px]">
+          <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-[48px] items-end mb-[44px]">
             <div>
-              <div className="font-saira font-bold text-[15px] tracking-[3px] text-rosso uppercase mb-3.5">
+              <div className="font-semibold text-[13px] tracking-[1.4px] text-rosso uppercase mb-3.5">
                 Settori
               </div>
-              <h2 className="font-saira font-extrabold text-4xl md:text-[56px] text-text1 uppercase tracking-[-0.5px] leading-[0.95]">
+              <h2 className="font-archivo font-extrabold text-[34px] md:text-[46px] text-text1 tracking-[-1px] leading-[1.05]">
                 Per chi lavoriamo
               </h2>
             </div>
-            <p className="text-[16px] text-text2 leading-[1.6] mb-1">
+            <p className="text-[16.5px] text-text2 leading-[1.65] mb-1">
               Stesso metodo, tre contesti: grandi impianti per l'industria, soluzioni per il commercio e comfort su misura per la casa.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-surface border border-border border-t-3 border-t-rosso rounded-card p-[38px_34px] shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="font-saira font-extrabold text-[46px] text-rosso leading-[0.85]">01</div>
-              <h3 className="font-saira font-extrabold text-[30px] text-text1 uppercase my-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[18px]">
+            {/* 01 */}
+            <div className="bg-white border border-border rounded-card p-[36px_32px] shadow-card">
+              <div className="flex items-center gap-3 mb-[18px]">
+                <span className="font-archivo font-extrabold text-[40px] text-rosso leading-[0.85]">01</span>
+                <span className="h-[2px] flex-1 bg-[#f0d9d7]" />
+              </div>
+              <h3 className="font-archivo font-bold text-[26px] text-text1 tracking-[-0.4px] mb-4">
                 Industriale
               </h3>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-[11px]">
                 {[
                   'Aziende, capannoni e imprese edili',
                   'Impianti aria / acqua / gas / metano',
                   'Impianti antincendio a norma',
                 ].map((item) => (
-                  <div key={item} className="flex gap-2.5 items-start text-[14.5px] text-text2">
+                  <div key={item} className="flex gap-2.5 items-start text-[14.5px] text-text2 leading-[1.5]">
                     <span className="text-rosso font-bold">—</span>
                     <span>{item}</span>
                   </div>
@@ -265,18 +319,22 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className="bg-surface border border-border border-t-3 border-t-azzurro rounded-card p-[38px_34px] shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="font-saira font-extrabold text-[46px] text-azzurro leading-[0.85]">02</div>
-              <h3 className="font-saira font-extrabold text-[30px] text-text1 uppercase my-4">
+            {/* 02 */}
+            <div className="bg-white border border-border rounded-card p-[36px_32px] shadow-card">
+              <div className="flex items-center gap-3 mb-[18px]">
+                <span className="font-archivo font-extrabold text-[40px] text-azzurro leading-[0.85]">02</span>
+                <span className="h-[2px] flex-1 bg-[#d8e9f4]" />
+              </div>
+              <h3 className="font-archivo font-bold text-[26px] text-text1 tracking-[-0.4px] mb-4">
                 Commerciale
               </h3>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-[11px]">
                 {[
                   'Bar, ristoranti, negozi e uffici',
                   'Climatizzazione a pompa di calore',
                   'Impianti per il ricambio dell\'aria',
                 ].map((item) => (
-                  <div key={item} className="flex gap-2.5 items-start text-[14.5px] text-text2">
+                  <div key={item} className="flex gap-2.5 items-start text-[14.5px] text-text2 leading-[1.5]">
                     <span className="text-azzurro font-bold">—</span>
                     <span>{item}</span>
                   </div>
@@ -284,18 +342,22 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className="bg-surface border border-border border-t-3 border-t-azzurro rounded-card p-[38px_34px] shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="font-saira font-extrabold text-[46px] text-azzurro leading-[0.85]">03</div>
-              <h3 className="font-saira font-extrabold text-[30px] text-text1 uppercase my-4">
+            {/* 03 */}
+            <div className="bg-white border border-border rounded-card p-[36px_32px] shadow-card">
+              <div className="flex items-center gap-3 mb-[18px]">
+                <span className="font-archivo font-extrabold text-[40px] text-azzurro leading-[0.85]">03</span>
+                <span className="h-[2px] flex-1 bg-[#d8e9f4]" />
+              </div>
+              <h3 className="font-archivo font-bold text-[26px] text-text1 tracking-[-0.4px] mb-4">
                 Residenziale
               </h3>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-[11px]">
                 {[
                   'Riscaldamento a pannelli radianti',
                   'Solare termico e climatizzazione',
                   'Caldaie, biomassa e irrigazione',
                 ].map((item) => (
-                  <div key={item} className="flex gap-2.5 items-start text-[14.5px] text-text2">
+                  <div key={item} className="flex gap-2.5 items-start text-[14.5px] text-text2 leading-[1.5]">
                     <span className="text-azzurro font-bold">—</span>
                     <span>{item}</span>
                   </div>
@@ -306,96 +368,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* INDUSTRIAL SPOTLIGHT SECTION */}
+      {/* CHI SIAMO, PACCHETTO, NEWS, MARCHI, CONTATTI, CTA */}
       <HomeClient articles={articles} />
-
-      {/* PACCHETTO COMPLETO SECTION */}
-      <section className="bg-bg py-[90px]">
-        <div className="max-w-[1240px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-[48px] items-end mb-[64px]">
-            <div>
-              <div className="font-saira font-bold text-[15px] tracking-[3px] text-azzurro uppercase mb-3.5">
-                Pacchetto Completo
-              </div>
-              <h2 className="font-saira font-extrabold text-4xl md:text-[56px] text-text1 uppercase tracking-[-0.5px] leading-[0.95]">
-                Dall'idea<br />all'impianto acceso
-              </h2>
-            </div>
-            <p className="text-[16px] text-text2 leading-[1.6] mb-1">
-              Un solo interlocutore, dalla prima idea fino all'impianto acceso: <strong className="text-text1 font-bold">assistenza cliente completa</strong> in progettazione, documentazione e installazione.
-            </p>
-          </div>
-
-          <div className="relative">
-            <div className="absolute left-[17%] right-[17%] top-[36px] h-[2px] bg-gradient-to-r from-rosso to-azzurro opacity-40 hidden md:block" />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-              <div className="text-center px-[22px]">
-                <div className="width-[72px] height-[72px] w-[72px] h-[72px] rounded-[10px] bg-rosso flex items-center justify-center mx-auto mb-[22px] relative z-10 shadow-[0_0_0_8px_#FFFFFF]">
-                  <span className="font-saira font-extrabold text-[32px] text-white leading-none">01</span>
-                </div>
-                <div className="flex justify-center text-text2 mb-3.5">
-                  <Calendar size={28} />
-                </div>
-                <h3 className="font-saira font-bold text-[26px] text-text1 uppercase mb-2.5">
-                  Progettazione
-                </h3>
-                <p className="text-[14.5px] text-text2 leading-[1.55] max-w-[250px] mx-auto">
-                  Sopralluogo, studio e progetto esecutivo dell'impianto.
-                </p>
-              </div>
-
-              <div className="text-center px-[22px]">
-                <div className="width-[72px] height-[72px] w-[72px] h-[72px] rounded-[10px] bg-rosso flex items-center justify-center mx-auto mb-[22px] relative z-10 shadow-[0_0_0_8px_#FFFFFF]">
-                  <span className="font-saira font-extrabold text-[32px] text-white leading-none">02</span>
-                </div>
-                <div className="flex justify-center text-text2 mb-3.5">
-                  <FileText size={28} />
-                </div>
-                <h3 className="font-saira font-bold text-[26px] text-text1 uppercase mb-2.5">
-                  Documentazione
-                </h3>
-                <p className="text-[14.5px] text-text2 leading-[1.55] max-w-[250px] mx-auto">
-                  Pratiche, certificazioni e documentazione tecnica completa.
-                </p>
-              </div>
-
-              <div className="text-center px-[22px]">
-                <div className="width-[72px] height-[72px] w-[72px] h-[72px] rounded-[10px] bg-rosso flex items-center justify-center mx-auto mb-[22px] relative z-10 shadow-[0_0_0_8px_#FFFFFF]">
-                  <span className="font-saira font-extrabold text-[32px] text-white leading-none">03</span>
-                </div>
-                <div className="flex justify-center text-text2 mb-3.5">
-                  <Check size={28} className="text-rosso" />
-                </div>
-                <h3 className="font-saira font-bold text-[26px] text-text1 uppercase mb-2.5">
-                  Installazione
-                </h3>
-                <p className="text-[14.5px] text-text2 leading-[1.55] max-w-[250px] mx-auto">
-                  Realizzazione e messa in opera a regola d'arte.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* BRAND MARKS */}
-      <section className="bg-bg-alt py-[54px] border-t border-border">
-        <div className="max-w-[1240px] mx-auto px-6 md:px-12">
-          <div className="font-saira font-bold text-[13px] tracking-[2px] text-text2 uppercase mb-6 text-center">
-            Marchi trattati
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {['SIME', 'DAIKIN', 'AERMEC', 'SAMSUNG'].map((brand) => (
-              <div
-                key={brand}
-                className="height-[74px] h-[74px] bg-white border border-border2 rounded-btn flex items-center justify-center font-archivo font-extrabold text-[21px] text-text2 hover:text-rosso hover:border-rosso transition-all duration-300 select-none shadow-sm hover:shadow"
-              >
-                {brand}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

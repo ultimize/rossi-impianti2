@@ -2,7 +2,7 @@ import { createStaticClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { ChevronRight, Calendar, User, Clock, ArrowLeft, Check, HelpCircle } from 'lucide-react';
+import { Clock, Check } from 'lucide-react';
 import Image from 'next/image';
 import ArticleClientWrapper from './ArticleClientWrapper';
 import type { Article, Category } from '@/lib/types';
@@ -223,68 +223,70 @@ export default async function ArticlePage({ params }: Props) {
       )}
 
       {/* BREADCRUMB */}
-      <div className="max-w-[1240px] mx-auto px-6 md:px-12 pt-6 pb-2 text-[13px] text-muted flex items-center gap-1.5 flex-wrap">
-        <Link href="/" className="hover:text-rosso transition-colors">Home</Link>
-        <ChevronRight size={14} className="text-faint" />
-        <Link href="/blog" className="hover:text-rosso transition-colors">News</Link>
-        <ChevronRight size={14} className="text-faint" />
-        {article.categories && (
-          <>
-            <span className="text-muted-2">{article.categories.name}</span>
-            <ChevronRight size={14} className="text-faint" />
-          </>
-        )}
-        <span className="text-text truncate max-w-[200px] md:max-w-none">{article.title}</span>
+      <div className="bg-bg-alt border-b border-border">
+        <nav aria-label="Breadcrumb" className="max-w-[1080px] mx-auto px-6 md:px-12 py-[15px] text-[13px] text-muted flex items-center gap-[9px] flex-wrap">
+          <Link href="/" className="text-text-2 hover:text-rosso transition-colors">Home</Link>
+          <span className="text-faint">/</span>
+          <Link href="/blog" className="text-text-2 hover:text-rosso transition-colors">News</Link>
+          <span className="text-faint">/</span>
+          {article.categories && (
+            <>
+              <span className="text-text-2">{article.categories.name}</span>
+              <span className="text-faint">/</span>
+            </>
+          )}
+          <span className="text-text truncate max-w-[200px] md:max-w-none">{article.title}</span>
+        </nav>
       </div>
 
       {/* ARTICLE HEADER */}
-      <header className="max-w-[820px] mx-auto px-6 text-center pt-8 pb-10">
+      <header className="max-w-[820px] mx-auto px-6 md:px-12 pt-[54px]">
         {article.categories && (
           <span
             style={{
-              backgroundColor: article.categories.color_bg || '#2BB3EF',
+              backgroundColor: article.categories.color_bg || '#E11D17',
               color: article.categories.color_text || '#ffffff',
             }}
-            className="inline-block font-saira font-bold text-[12px] tracking-[1px] uppercase rounded-btn px-2.5 py-1 mb-4 shadow"
+            className="inline-block font-plex font-bold text-[12px] tracking-[0.8px] uppercase rounded-pill px-[13px] py-1.5 mb-5"
           >
             {article.categories.name}
           </span>
         )}
-        <h1 className="font-saira font-extrabold text-4xl md:text-[52px] leading-tight text-text uppercase tracking-[-1px] mb-5">
+        <h1 className="font-saira font-extrabold text-4xl md:text-[48px] leading-[1.05] tracking-[-1.2px] text-text mb-[22px]">
           {article.title}
         </h1>
         {article.excerpt && (
-          <p className="text-[20px] text-text-2 leading-relaxed max-w-[720px] mx-auto mb-6.5 font-light">
+          <p className="text-[20px] text-text-2 leading-[1.55] mb-7">
             {article.excerpt}
           </p>
         )}
 
-        <div className="flex items-center justify-center gap-5 text-[13.5px] text-muted border-t border-b border-border/40 py-3.5 flex-wrap">
-          <span className="flex items-center gap-1.5">
-            <User size={14} className="text-rosso" />
-            {article.author || 'Ufficio Tecnico Rossi Impianti'}
-          </span>
-          <span className="text-faint">·</span>
-          <span className="flex items-center gap-1.5">
-            <Calendar size={14} />
-            Pubblicato il {formatDate(article.published_at)}
-          </span>
+        <div className="flex items-center gap-3.5 text-[13px] text-muted border-t border-b border-border py-[18px] flex-wrap">
+          <div className="w-11 h-11 rounded-full bg-rosso text-white font-saira font-extrabold text-[15px] flex items-center justify-center flex-none select-none">
+            RI
+          </div>
+          <div className="flex-1 min-w-[160px]">
+            <div className="font-plex font-bold text-[15px] text-text">
+              {article.author || 'Ufficio Tecnico Rossi Impianti'}
+            </div>
+            <div className="text-[13px] text-muted">
+              Pubblicato il {formatDate(article.published_at)}
+              {article.updated_at ? ` · Aggiornato il ${formatDate(article.updated_at)}` : ''}
+            </div>
+          </div>
           {article.read_time && (
-            <>
-              <span className="text-faint">·</span>
-              <span className="flex items-center gap-1.5 bg-surface border border-border px-2 py-0.5 rounded-btn text-[12px]">
-                <Clock size={12} className="text-azzurro" />
-                {article.read_time}
-              </span>
-            </>
+            <span className="inline-flex items-center gap-1.5 text-[13px] text-text-2 border border-border-2 rounded-pill px-3.5 py-[7px]">
+              <Clock size={15} className="text-muted" />
+              {article.read_time} di lettura
+            </span>
           )}
         </div>
       </header>
 
       {/* COVER HERO IMAGE */}
       {article.cover_url && (
-        <div className="max-w-[1080px] mx-auto px-6 mb-12">
-          <div className="relative h-[250px] md:h-[440px] w-full rounded-card overflow-hidden border border-border">
+        <div className="max-w-[1080px] mx-auto px-6 md:px-12 mt-[34px]">
+          <div className="relative h-[280px] md:h-[460px] w-full rounded-[18px] overflow-hidden bg-bg-alt shadow-[0_30px_60px_-30px_rgba(20,30,45,.3)]">
             <Image
               src={article.cover_url}
               alt={article.cover_alt || article.title}
@@ -298,24 +300,24 @@ export default async function ArticlePage({ params }: Props) {
       )}
 
       {/* ARTICLE BODY */}
-      <div className="max-w-[1240px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-[1fr_248px] gap-14 items-start pb-20">
+      <div className="max-w-[1080px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-[1fr_248px] gap-12 lg:gap-[60px] items-start pt-12 pb-[70px]">
         
         {/* Left: Article content */}
         <article className="min-w-0">
           {/* Key takeaways "In sintesi" */}
           {article.takeaways && article.takeaways.length > 0 && (
-            <div className="bg-bg-alt border border-border border-l-4 border-l-rosso rounded-card p-6 md:p-7 mb-9 shadow-sm">
-              <h3 className="font-saira font-bold text-[18px] tracking-[1.5px] text-text uppercase mb-4 flex items-center gap-2">
-                <Check size={18} className="text-rosso" /> In Sintesi
-              </h3>
-              <ul className="flex flex-col gap-3">
+            <div className="bg-surface2 border border-border border-l-[3px] border-l-rosso rounded-[14px] p-6 md:p-[24px_28px] mb-10">
+              <div className="font-saira font-extrabold text-[14px] tracking-[0.6px] text-text uppercase mb-3.5">
+                In sintesi
+              </div>
+              <div className="flex flex-col gap-[11px]">
                 {article.takeaways.map((item, idx) => (
-                  <li key={idx} className="flex gap-3 text-[15px] text-text-2 leading-relaxed">
-                    <Check size={16} className="text-rosso flex-shrink-0 mt-1" />
+                  <div key={idx} className="flex gap-[11px] items-start text-[15px] text-text-2 leading-[1.5]">
+                    <Check size={18} strokeWidth={2.2} className="text-rosso flex-none mt-0.5" />
                     <span>{item}</span>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           )}
 
@@ -326,26 +328,29 @@ export default async function ArticlePage({ params }: Props) {
               dangerouslySetInnerHTML={{ __html: article.body_html }}
             />
           ) : (
-            <div className="prose-custom flex flex-col gap-6">
+            <div>
               {article.body && article.body.map((section: any, idx: number) => {
                 const { h, paras, bullets } = section;
                 return (
-                  <div key={idx} className="mb-6">
+                  <div key={idx}>
                     {h && (
                       <h2
                         id={h.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')}
-                        className="font-saira font-extrabold text-3xl uppercase tracking-tight text-text mt-8 mb-4 scroll-mt-26"
+                        className="font-saira font-extrabold text-[28px] text-text mt-[42px] mb-4 tracking-[-0.5px] scroll-mt-24"
                       >
                         {h}
                       </h2>
                     )}
                     {paras && paras.map((p: string, pIdx: number) => (
-                      <p key={pIdx} className="mb-4 text-text-2 leading-relaxed">{p}</p>
+                      <p key={pIdx} className="mb-[18px] text-[16.5px] text-[#4f585f] leading-[1.75]">{p}</p>
                     ))}
                     {bullets && (
-                      <ul className="list-disc pl-5 mb-4 text-text-2 leading-relaxed flex flex-col gap-1.5">
+                      <ul className="mb-[18px] flex flex-col gap-2.5 list-none p-0">
                         {bullets.map((b: string, bIdx: number) => (
-                          <li key={bIdx} className="relative pl-1.5">{b}</li>
+                          <li key={bIdx} className="flex gap-3 items-start text-[16px] text-text-2 leading-[1.6]">
+                            <span className="w-[7px] h-[7px] rounded-full bg-rosso flex-none mt-[9px]" />
+                            <span>{b}</span>
+                          </li>
                         ))}
                       </ul>
                     )}
@@ -355,38 +360,38 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           )}
 
-          {/* Collapsible FAQ widgets */}
+          {/* FAQ */}
           {article.faq && article.faq.length > 0 && (
-            <div className="mt-14 pt-10 border-t border-border/40">
-              <h2 className="font-saira font-extrabold text-[36px] text-text uppercase mb-8 flex items-center gap-2.5">
-                <HelpCircle size={28} className="text-rosso" /> Domande Frequenti
+            <>
+              <h2 id="faq" className="font-saira font-extrabold text-[28px] text-text mt-[50px] mb-5 tracking-[-0.5px] scroll-mt-24">
+                Domande frequenti
               </h2>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3">
                 {article.faq.map((q, idx) => (
                   <div
                     key={idx}
-                    className="bg-surface border border-border rounded-card p-5.5 p-6 hover:border-border-2 shadow-sm hover:shadow-md transition-all duration-300"
+                    className="bg-surface border border-border rounded-[14px] p-5 md:p-[20px_24px] shadow-card"
                   >
-                    <h4 className="font-saira font-bold text-[20px] text-text uppercase mb-2">
-                      {q.q}
-                    </h4>
-                    <p className="text-[15px] text-text-2 leading-relaxed">
+                    <div className="flex gap-[11px] items-start font-saira font-bold text-[18px] text-text mb-[9px]">
+                      <span className="text-rosso">Q.</span>
+                      <span>{q.q}</span>
+                    </div>
+                    <p className="text-[15px] text-text-2 leading-[1.65] pl-[26px]">
                       {q.a}
                     </p>
                   </div>
                 ))}
               </div>
-            </div>
+            </>
           )}
 
           {/* Keywords / Tags */}
           {article.keywords && article.keywords.length > 0 && (
-            <div className="mt-10 pt-6 border-t border-border/30 flex flex-wrap gap-2 items-center">
-              <span className="text-[13.5px] text-muted-2 uppercase tracking-[1px] mr-1.5">Tag:</span>
+            <div className="mt-9 flex flex-wrap gap-[9px]">
               {article.keywords.map((kw) => (
                 <span
                   key={kw}
-                  className="font-saira font-semibold text-[13px] tracking-[0.5px] uppercase text-text-2 bg-surface border border-border rounded-btn px-3 py-1 hover:text-rosso hover:border-rosso transition-colors"
+                  className="text-[13px] text-text-2 bg-chip border border-border rounded-pill px-[13px] py-1.5"
                 >
                   #{kw}
                 </span>
@@ -395,62 +400,44 @@ export default async function ArticlePage({ params }: Props) {
           )}
 
           {/* Bio block */}
-          <div className="mt-14 bg-surface border border-border rounded-card p-6.5 p-7 flex gap-5 items-center flex-col sm:flex-row text-center sm:text-left shadow-sm">
-            <div className="w-[64px] h-[64px] rounded-full bg-rosso text-white font-saira font-extrabold text-[28px] flex items-center justify-center flex-shrink-0 select-none">
+          <div className="mt-9 bg-surface2 border border-border rounded-card p-6 md:p-[26px_28px] flex gap-[18px] items-start flex-col sm:flex-row text-center sm:text-left">
+            <div className="w-[56px] h-[56px] rounded-full bg-rosso text-white font-saira font-extrabold text-[19px] flex items-center justify-center flex-none select-none">
               RI
             </div>
             <div>
-              <h4 className="font-saira font-bold text-[19px] text-text uppercase mb-1">
+              <div className="font-saira font-bold text-[18px] text-text mb-[5px]">
                 {article.author || 'Ufficio Tecnico Rossi Impianti'}
-              </h4>
-              <p className="text-[14px] text-text-2 leading-relaxed">
-                Il dipartimento tecnico di Rossi Impianti srl si occupa della progettazione, certificazione e collaudo di impianti termoidraulici civili e industriali dal 1980.
+              </div>
+              <p className="text-[14.5px] text-text-2 leading-[1.6]">
+                Dal 1980 progettiamo e realizziamo impianti di riscaldamento, condizionamento e impianti industriali chiavi in mano a Vicenza e provincia.
               </p>
             </div>
-          </div>
-
-          {/* Back button */}
-          <div className="mt-10">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 font-saira font-bold text-[15px] tracking-[0.5px] uppercase text-muted hover:text-text transition-colors"
-            >
-              <ArrowLeft size={16} /> Torna a News
-            </Link>
           </div>
         </article>
 
         {/* Right: Sticky Aside Index & CTA */}
-        <aside className="sticky top-[104px] z-10 flex flex-col gap-6 hidden lg:flex">
+        <aside className="sticky top-[104px] z-10 flex-col gap-[18px] hidden lg:flex">
           {/* Scroll-margin TOC */}
-          <ArticleClientWrapper headings={tocHeadings} />
+          <ArticleClientWrapper headings={tocHeadings} hasFaq={!!(article.faq && article.faq.length > 0)} />
 
           {/* Sidebar CTA */}
-          <div className="bg-surface border border-border rounded-card p-6.5 p-7 flex flex-col text-center shadow-sm">
-            <h4 className="font-saira font-bold text-[24px] text-text uppercase leading-none mb-3">
-              Hai un progetto da realizzare?
-            </h4>
-            <p className="text-[13.5px] text-text-2 leading-relaxed mb-5">
-              Il nostro team è pronto ad aiutarti per progettare il tuo impianto.
-            </p>
-            <Link
-              href="/contatti"
-              className="font-saira font-bold text-[15px] tracking-[0.5px] uppercase text-white bg-rosso hover:bg-rosso-hover rounded-btn py-3 transition-colors text-center"
-            >
-              Richiedi Preventivo
-            </Link>
-          </div>
+          <Link
+            href="/contatti"
+            className="block text-center font-plex font-semibold text-[15px] text-white bg-rosso hover:bg-rosso-hover rounded-btn py-3.5 transition-colors shadow-btn"
+          >
+            Richiedi un preventivo
+          </Link>
         </aside>
       </div>
 
       {/* RELATED ARTICLES */}
       {relatedArticles.length > 0 && (
-        <section className="bg-surface2 border-t border-border py-16">
-          <div className="max-w-[1240px] mx-auto px-6 md:px-12">
-            <h3 className="font-saira font-bold text-[26px] text-text uppercase mb-8">
-              Articoli Correlati
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <section className="bg-bg-alt border-t border-border">
+          <div className="max-w-[1080px] mx-auto px-6 md:px-12 py-14 md:py-[60px]">
+            <h2 className="font-saira font-extrabold text-[28px] text-text mb-[26px] tracking-[-0.5px]">
+              Continua a leggere
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-[18px]">
               {relatedArticles.map((art) => {
                 const badgeBg = art.categories?.color_bg || '#E11D17';
                 const badgeText = art.categories?.color_text || '#ffffff';
@@ -458,7 +445,7 @@ export default async function ArticlePage({ params }: Props) {
                   <Link
                     key={art.id}
                     href={`/blog/${art.slug}`}
-                    className="border border-border rounded-card overflow-hidden bg-surface transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md flex flex-col h-full group"
+                    className="border border-border rounded-card overflow-hidden bg-surface transition-all duration-300 hover:-translate-y-[5px] shadow-card hover:shadow-card-hover flex flex-col h-full group"
                   >
                     <div className="overflow-hidden h-[150px] relative bg-bg-alt">
                       {art.cover_url ? (
@@ -467,35 +454,27 @@ export default async function ArticlePage({ params }: Props) {
                           alt={art.cover_alt || art.title}
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover transition-transform duration-500 group-hover:scale-[1.07]"
+                          className="object-cover"
                         />
                       ) : (
-                        <div className="absolute inset-0 bg-gradient-to-br from-border to-surface-2 transition-transform duration-500 group-hover:scale-[1.07]" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-border to-surface-2" />
                       )}
                       {art.categories && (
                         <span
                           style={{ backgroundColor: badgeBg, color: badgeText }}
-                          className="absolute top-3.5 left-3.5 font-saira font-bold text-[11px] tracking-[1px] uppercase rounded-btn px-2.5 py-0.5 z-10"
+                          className="absolute top-3 left-3 font-plex font-bold text-[11px] tracking-[0.6px] uppercase rounded-pill px-[11px] py-1 z-10"
                         >
                           {art.categories.name}
                         </span>
                       )}
                     </div>
-                    <div className="p-5.5 p-6 flex flex-col flex-grow justify-between">
-                      <div>
-                        <div className="text-[12px] text-muted-2 uppercase tracking-[1px] mb-2">
-                          {formatDate(art.published_at)}
-                        </div>
-                        <h4 className="font-saira font-bold text-[20px] text-text uppercase mb-2 line-clamp-2 leading-tight">
-                          {art.title}
-                        </h4>
-                        <p className="text-[14px] text-text-2 line-clamp-2 mb-3.5 leading-relaxed">
-                          {art.excerpt}
-                        </p>
+                    <div className="p-[20px_22px_24px] flex flex-col flex-grow">
+                      <div className="text-[12px] text-muted uppercase tracking-[0.8px] mb-2">
+                        {formatDate(art.published_at)}
                       </div>
-                      <span className="font-saira font-bold text-[13px] tracking-[1px] uppercase text-rosso flex items-center gap-1 group-hover:gap-2 transition-all">
-                        Leggi →
-                      </span>
+                      <h3 className="font-saira font-bold text-[19px] text-text leading-[1.2] tracking-[-0.3px]">
+                        {art.title}
+                      </h3>
                     </div>
                   </Link>
                 );
@@ -504,21 +483,6 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         </section>
       )}
-
-      {/* FOOTER CTA SECTION */}
-      <section className="bg-rosso py-[64px]">
-        <div className="max-w-[1240px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-7">
-          <h2 className="font-saira font-extrabold text-4xl md:text-[46px] text-white uppercase leading-[0.96] tracking-[-0.5px] text-left">
-            Costruiamo il tuo<br />progetto di riscaldamento.
-          </h2>
-          <Link
-            href="/contatti"
-            className="font-saira font-bold text-[18px] tracking-[0.5px] uppercase text-rosso bg-white rounded-btn px-[34px] py-[18px] hover:-translate-y-[2px] transition-all whitespace-nowrap"
-          >
-            Contattaci
-          </Link>
-        </div>
-      </section>
     </div>
   );
 }
