@@ -14,9 +14,10 @@ export default function SiteFooter() {
               <Image
                 src="/assets/logo-rossi.png"
                 alt="Rossi Impianti srl"
-                width={180}
-                height={56}
+                width={640}
+                height={122}
                 className="h-12 w-auto object-contain"
+                quality={95}
               />
             </Link>
           </div>

@@ -37,10 +37,11 @@ export default function SiteHeader() {
           <Image
             src="/assets/logo-rossi.png"
             alt="Rossi Impianti srl"
-            width={160}
-            height={50}
+            width={640}
+            height={122}
             className="h-10 w-auto object-contain"
             priority
+            quality={95}
           />
         </Link>
 
