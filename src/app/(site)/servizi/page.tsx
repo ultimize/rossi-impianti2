@@ -128,6 +128,32 @@ export default function ServiziPage() {
           </div>
         </div>
 
+        {/* Service 5 — Idraulica */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 border border-border rounded-[18px] overflow-hidden bg-bg shadow-[0_18px_40px_-28px_rgba(20,30,45,.2)]">
+          <div className="p-8 md:p-[48px_44px] flex flex-col justify-center">
+            <div className="font-plex font-bold text-[12.5px] tracking-[1.4px] text-azzurro uppercase mb-3.5">
+              05 / Idrosanitario
+            </div>
+            <h2 className="font-archivo font-extrabold text-[36px] text-text1 tracking-[-0.6px] leading-[1.05] mb-3.5">
+              Idraulica
+            </h2>
+            <p className="text-[15.5px] text-text2 leading-[1.7] mb-5">
+              Impianti idrosanitari, reti idriche, bagni e opere idrauliche per abitazioni e attività. Installazione, ristrutturazione e manutenzione a regola d&apos;arte.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['Impianti sanitari', 'Reti idriche', 'Bagni'].map((tag) => (
+                <span key={tag} className="text-[14px] text-text2 bg-chip rounded-pill px-[15px] py-[7px]">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <Link href="/servizi/idraulica" className="inline-flex items-center gap-1.5 mt-6 font-plex font-semibold text-[15px] text-azzurro hover:gap-2.5 transition-all">
+              Scopri di più e vedi la galleria <span>→</span>
+            </Link>
+          </div>
+          <div className="min-h-[320px] relative bg-[#dde4ea] bg-cover bg-center bg-[url('/assets/servizi/idraulica/idraulica-1.jpg')]" />
+        </div>
+
       </div>
 
       {/* PACCHETTO COMPLETO NOTE */}

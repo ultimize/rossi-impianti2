@@ -63,6 +63,21 @@ export const SERVIZI: Servizio[] = [
       'Progettazione e installazione di impianti di riscaldamento a Vicenza: caldaie a condensazione, pompe di calore e pannelli radianti a pavimento, soffitto e parete.',
   },
   {
+    slug: 'idraulica',
+    name: 'Idraulica',
+    eyebrow: 'Idrosanitario',
+    accent: 'azzurro',
+    intro: [
+      'Realizziamo impianti idrosanitari, reti idriche, bagni e opere idrauliche per abitazioni, uffici e attività. Installazione, ristrutturazione e manutenzione a regola d’arte, con materiali di qualità.',
+      'Dai piccoli interventi alle reti complete, garantiamo affidabilità e pulizia del lavoro, con l’assistenza di idraulici specializzati.',
+    ],
+    tags: ['Impianti sanitari', 'Reti idriche', 'Bagni', 'Manutenzione'],
+    galleryCount: 7,
+    metaTitle: 'Impianti idraulici a Vicenza | Rossi Impianti',
+    metaDescription:
+      'Impianti idrosanitari, reti idriche e opere idrauliche a Vicenza: installazione, ristrutturazione e manutenzione a regola d’arte. Dal 1980.',
+  },
+  {
     slug: 'climatizzazione',
     name: 'Climatizzazione',
     eyebrow: 'Clima',

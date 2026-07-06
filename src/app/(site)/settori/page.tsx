@@ -22,7 +22,7 @@ export default function SettoriPage() {
       <div className="max-w-[1240px] mx-auto px-6 md:px-12 pt-20 pb-[50px] flex flex-col gap-5">
 
         {/* Sector 1 */}
-        <div className="border border-border rounded-[18px] bg-surface p-8 md:p-[46px_44px] grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 items-start shadow-card">
+        <div className="border border-border rounded-[18px] bg-surface p-8 md:p-[46px_44px] grid grid-cols-1 md:grid-cols-[auto_1fr] lg:grid-cols-[auto_1fr_340px] gap-10 items-center shadow-card overflow-hidden">
           <div className="font-archivo font-extrabold text-[78px] text-rosso leading-[0.8]">01</div>
           <div>
             <h2 className="font-archivo font-extrabold text-[36px] text-text1 tracking-[-0.5px] mb-3">Industriale</h2>
@@ -37,10 +37,11 @@ export default function SettoriPage() {
               ))}
             </div>
           </div>
+          <div className="hidden lg:block h-[220px] rounded-[14px] bg-bg-alt bg-cover bg-center bg-[url('/assets/servizi/industriale/industriale-1.jpg')]" />
         </div>
 
         {/* Sector 2 */}
-        <div className="border border-border rounded-[18px] bg-surface p-8 md:p-[46px_44px] grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 items-start shadow-card">
+        <div className="border border-border rounded-[18px] bg-surface p-8 md:p-[46px_44px] grid grid-cols-1 md:grid-cols-[auto_1fr] lg:grid-cols-[auto_1fr_340px] gap-10 items-center shadow-card overflow-hidden">
           <div className="font-archivo font-extrabold text-[78px] text-azzurro leading-[0.8]">02</div>
           <div>
             <h2 className="font-archivo font-extrabold text-[36px] text-text1 tracking-[-0.5px] mb-3">Commerciale</h2>
@@ -55,10 +56,11 @@ export default function SettoriPage() {
               ))}
             </div>
           </div>
+          <div className="hidden lg:block h-[220px] rounded-[14px] bg-bg-alt bg-cover bg-center bg-[url('/assets/servizi/climatizzazione/climatizzazione-3.jpg')]" />
         </div>
 
         {/* Sector 3 */}
-        <div className="border border-border rounded-[18px] bg-surface p-8 md:p-[46px_44px] grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 items-start shadow-card">
+        <div className="border border-border rounded-[18px] bg-surface p-8 md:p-[46px_44px] grid grid-cols-1 md:grid-cols-[auto_1fr] lg:grid-cols-[auto_1fr_340px] gap-10 items-center shadow-card overflow-hidden">
           <div className="font-archivo font-extrabold text-[78px] text-azzurro leading-[0.8]">03</div>
           <div>
             <h2 className="font-archivo font-extrabold text-[36px] text-text1 tracking-[-0.5px] mb-3">Residenziale</h2>
@@ -73,6 +75,7 @@ export default function SettoriPage() {
               ))}
             </div>
           </div>
+          <div className="hidden lg:block h-[220px] rounded-[14px] bg-bg-alt bg-cover bg-center bg-[url('/assets/servizi/riscaldamento/riscaldamento-1.jpg')]" />
         </div>
 
       </div>
