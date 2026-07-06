@@ -10,7 +10,7 @@ export default function ServiziPage() {
             Servizi
           </div>
           <h1 className="font-archivo font-extrabold text-[40px] md:text-[56px] leading-[1.02] tracking-[-1.5px] text-text1 mb-4">
-            Quattro aree, un solo interlocutore
+            Cinque aree, un solo interlocutore
           </h1>
           <p className="text-[18px] text-text2 max-w-[620px] leading-[1.6]">
             Progettazione e realizzazione di impianti idrotermosanitari civili e industriali. Ogni servizio comprende il <strong className="text-text1 font-semibold">Pacchetto Completo</strong>: progettazione, documentazione e installazione.
