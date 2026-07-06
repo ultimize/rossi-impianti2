@@ -59,6 +59,7 @@ export default function ServiceGallery({
               alt={`${alt} — foto ${i + 1}`}
               fill
               sizes="(max-width: 768px) 50vw, 33vw"
+              unoptimized
               className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
             />
           </button>
@@ -93,6 +94,7 @@ export default function ServiceGallery({
               alt={`${alt} — foto ${index + 1}`}
               fill
               sizes="100vw"
+              unoptimized
               className="object-contain"
               priority
             />

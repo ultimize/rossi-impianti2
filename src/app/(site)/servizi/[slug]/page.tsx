@@ -75,6 +75,7 @@ export default function ServizioPage({ params }: { params: { slug: string } }) {
               alt={`${s.name} — Rossi Impianti`}
               fill
               sizes="(max-width: 1024px) 100vw, 600px"
+              unoptimized
               className="object-cover"
               priority
             />
