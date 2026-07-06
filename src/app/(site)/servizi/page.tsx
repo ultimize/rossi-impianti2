@@ -40,13 +40,16 @@ export default function ServiziPage() {
                 </span>
               ))}
             </div>
+            <Link href="/servizi/impianti-industriali" className="inline-flex items-center gap-1.5 mt-6 font-plex font-semibold text-[15px] text-rosso hover:gap-2.5 transition-all">
+              Scopri di più e vedi la galleria <span>→</span>
+            </Link>
           </div>
-          <div className="min-h-[320px] relative bg-[#dde4ea] bg-cover bg-center bg-[url('/assets/site/header-settori.jpg')]" />
+          <div className="min-h-[320px] relative bg-[#dde4ea] bg-cover bg-center bg-[url('/assets/servizi/industriale/industriale-1.jpg')]" />
         </div>
 
         {/* Service 2 — Impianti antincendio */}
         <div className="grid grid-cols-1 lg:grid-cols-2 border border-border rounded-[18px] overflow-hidden bg-bg shadow-[0_18px_40px_-28px_rgba(20,30,45,.2)]">
-          <div className="min-h-[320px] relative order-2 lg:order-1 bg-[#dde4ea] bg-cover bg-center bg-[url('/assets/site/header-servizi.jpg')]" />
+          <div className="min-h-[320px] relative order-2 lg:order-1 bg-[#dde4ea] bg-cover bg-center bg-[url('/assets/servizi/antincendio/antincendio-1.jpg')]" />
           <div className="p-8 md:p-[48px_44px] flex flex-col justify-center relative order-1 lg:order-2">
             <div className="absolute top-8 right-8 font-plex font-bold text-[11px] tracking-[0.6px] bg-rosso text-white rounded-pill px-3 py-[5px]">
               NUOVO
@@ -67,6 +70,9 @@ export default function ServiziPage() {
                 </span>
               ))}
             </div>
+            <Link href="/servizi/impianti-antincendio" className="inline-flex items-center gap-1.5 mt-6 font-plex font-semibold text-[15px] text-rosso hover:gap-2.5 transition-all">
+              Scopri di più e vedi la galleria <span>→</span>
+            </Link>
           </div>
         </div>
 
@@ -89,13 +95,16 @@ export default function ServiziPage() {
                 </span>
               ))}
             </div>
+            <Link href="/servizi/riscaldamento" className="inline-flex items-center gap-1.5 mt-6 font-plex font-semibold text-[15px] text-azzurro hover:gap-2.5 transition-all">
+              Scopri di più e vedi la galleria <span>→</span>
+            </Link>
           </div>
-          <div className="min-h-[320px] relative bg-[#dde4ea] bg-cover bg-center bg-[url('/assets/site/header-chisiamo.jpg')]" />
+          <div className="min-h-[320px] relative bg-[#dde4ea] bg-cover bg-center bg-[url('/assets/servizi/riscaldamento/riscaldamento-1.jpg')]" />
         </div>
 
         {/* Service 4 — Condizionamento */}
         <div className="grid grid-cols-1 lg:grid-cols-2 border border-border rounded-[18px] overflow-hidden bg-bg shadow-[0_18px_40px_-28px_rgba(20,30,45,.2)]">
-          <div className="min-h-[320px] relative order-2 lg:order-1 bg-[#dde4ea] bg-cover bg-center bg-[url('/assets/site/header-marchi.jpg')]" />
+          <div className="min-h-[320px] relative order-2 lg:order-1 bg-[#dde4ea] bg-cover bg-center bg-[url('/assets/servizi/climatizzazione/climatizzazione-1.jpg')]" />
           <div className="p-8 md:p-[48px_44px] flex flex-col justify-center order-1 lg:order-2">
             <div className="font-plex font-bold text-[12.5px] tracking-[1.4px] text-azzurro uppercase mb-3.5">
               04 / Clima
@@ -113,6 +122,9 @@ export default function ServiziPage() {
                 </span>
               ))}
             </div>
+            <Link href="/servizi/climatizzazione" className="inline-flex items-center gap-1.5 mt-6 font-plex font-semibold text-[15px] text-azzurro hover:gap-2.5 transition-all">
+              Scopri di più e vedi la galleria <span>→</span>
+            </Link>
           </div>
         </div>
 
