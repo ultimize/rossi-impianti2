@@ -3,6 +3,8 @@
 
 export type Servizio = {
   slug: string;
+  /** Cartella/prefisso dei file foto se diverso dallo slug (default: slug). */
+  dir?: string;
   name: string;
   eyebrow: string;
   accent: 'rosso' | 'azzurro';
@@ -15,12 +17,13 @@ export type Servizio = {
 
 import { media } from './media';
 
-const gallery = (slug: string, n: number) =>
-  Array.from({ length: n }, (_, i) => media(`servizi/${slug}/${slug}-${i + 1}.jpg`));
+const gallery = (dir: string, n: number) =>
+  Array.from({ length: n }, (_, i) => media(`servizi/${dir}/${dir}-${i + 1}.jpg`));
 
 export const SERVIZI: Servizio[] = [
   {
     slug: 'impianti-industriali',
+    dir: 'industriale',
     name: 'Impianti industriali',
     eyebrow: 'Il nostro core',
     accent: 'rosso',
@@ -36,6 +39,7 @@ export const SERVIZI: Servizio[] = [
   },
   {
     slug: 'impianti-antincendio',
+    dir: 'antincendio',
     name: 'Impianti antincendio',
     eyebrow: 'Sicurezza',
     accent: 'rosso',
