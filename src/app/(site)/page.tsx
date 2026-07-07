@@ -2,6 +2,7 @@ import { createStaticClient } from '@/lib/supabase/server';
 import Link from 'next/link';
 import HomeClient from './HomeClient';
 import type { Article } from '@/lib/types';
+import { media } from '@/lib/media';
 
 export const revalidate = 3600; // ISR revalidate every hour
 
@@ -26,7 +27,7 @@ export default async function HomePage() {
         className="relative overflow-hidden flex items-center min-h-[660px] bg-[#0e1216]"
       >
         {/* Real photo */}
-        <div className="absolute inset-0 bg-cover bg-[url('/assets/site/hero.jpg')] bg-[position:center_right]" />
+        <div className="absolute inset-0 bg-cover bg-[position:center_right]" style={{ backgroundImage: `url(${media('site/hero.jpg')})` }} />
         {/* White feather: left stays bright, photo reveals on the right */}
         <div
           className="absolute inset-0"
@@ -182,7 +183,7 @@ export default async function HomePage() {
                 Scopri il settore industriale <span>→</span>
               </Link>
             </div>
-            <div className="min-h-[360px] relative overflow-hidden bg-cover bg-center bg-[url('/assets/site/industriale.jpg')]" />
+            <div className="min-h-[360px] relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${media('site/industriale.jpg')})` }} />
           </div>
 
           {/* Three subservices cards */}

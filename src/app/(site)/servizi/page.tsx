@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { media } from '@/lib/media';
 
 export default function ServiziPage() {
   return (
@@ -44,12 +45,12 @@ export default function ServiziPage() {
               Scopri di più e vedi la galleria <span>→</span>
             </Link>
           </div>
-          <div className="min-h-[320px] relative bg-[#dde4ea] bg-cover bg-center bg-[url('/assets/servizi/industriale/industriale-1.jpg')]" />
+          <div className="min-h-[320px] relative bg-[#dde4ea] bg-cover bg-center" style={{ backgroundImage: `url(${media('servizi/featured/servizi-industriali.jpg')})` }} />
         </div>
 
         {/* Service 2 — Impianti antincendio */}
         <div className="grid grid-cols-1 lg:grid-cols-2 border border-border rounded-[18px] overflow-hidden bg-bg shadow-[0_18px_40px_-28px_rgba(20,30,45,.2)]">
-          <div className="min-h-[320px] relative order-2 lg:order-1 bg-[#dde4ea] bg-cover bg-center bg-[url('/assets/servizi/antincendio/antincendio-1.jpg')]" />
+          <div className="min-h-[320px] relative order-2 lg:order-1 bg-[#dde4ea] bg-cover bg-center" style={{ backgroundImage: `url(${media('servizi/featured/servizi-antincendio.jpg')})` }} />
           <div className="p-8 md:p-[48px_44px] flex flex-col justify-center relative order-1 lg:order-2">
             <div className="absolute top-8 right-8 font-plex font-bold text-[11px] tracking-[0.6px] bg-rosso text-white rounded-pill px-3 py-[5px]">
               NUOVO

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Article } from '@/lib/types';
 import { Check } from 'lucide-react';
+import { media } from '@/lib/media';
 
 type HomeClientProps = {
   articles: (Article & { categories: any })[];
@@ -139,7 +140,7 @@ export default function HomeClient({ articles }: HomeClientProps) {
               </div>
             </div>
           </div>
-          <div className="relative min-h-[460px] rounded-[18px] overflow-hidden bg-cover bg-center bg-[url('/assets/site/sede.jpg')] shadow-card-hover" />
+          <div className="relative min-h-[460px] rounded-[18px] overflow-hidden bg-cover bg-center shadow-card-hover" style={{ backgroundImage: `url(${media('site/sede.jpg')})` }} />
         </div>
       </section>
 
@@ -345,17 +346,19 @@ export default function HomeClient({ articles }: HomeClientProps) {
                 </div>
               </div>
             </div>
-            {/* Map Placeholder */}
-            <div className="relative h-[220px] rounded-[14px] overflow-hidden border border-border bg-gradient-to-br from-[#eef2f6] to-[#dde4ea]">
-              <div className="absolute inset-0 flex items-center justify-center text-[#aeb7c0]">
-                <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round">
-                  <path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11Z" />
-                  <circle cx="12" cy="10" r="2.5" />
-                </svg>
-              </div>
-              <span className="absolute left-[18px] bottom-4 font-semibold text-[12px] tracking-[0.4px] text-text2 bg-white/90 rounded-[6px] px-3 py-[7px] uppercase">
-                Mappa — Sarego (VI)
-              </span>
+            {/* Map */}
+            <div className="relative h-[240px] rounded-[14px] overflow-hidden border border-border bg-white">
+              <iframe
+                src="https://www.google.com/maps?q=Via%20Dei%20Fiori%209%2FA%2C%2036040%20Sarego%20VI&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+                title="Sede Rossi Impianti — Sarego (VI)"
+                className="absolute inset-0 w-full h-full"
+              />
             </div>
           </div>
 

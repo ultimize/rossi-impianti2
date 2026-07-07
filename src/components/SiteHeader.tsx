@@ -18,7 +18,8 @@ export default function SiteHeader() {
     { label: 'Chi siamo', href: '/chi-siamo' },
     { label: 'Servizi', href: '/servizi' },
     { label: 'Settori', href: '/settori' },
-    { label: 'Marchi trattati', href: '/marchi' },
+    { label: 'Lavori', href: '/lavori' },
+    { label: 'Marchi', href: '/marchi' },
     { label: 'News', href: '/blog' },
   ];
 

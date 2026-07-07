@@ -13,8 +13,10 @@ export type Servizio = {
   metaDescription: string;
 };
 
+import { media } from './media';
+
 const gallery = (slug: string, n: number) =>
-  Array.from({ length: n }, (_, i) => `/assets/servizi/${slug}/${slug}-${i + 1}.jpg`);
+  Array.from({ length: n }, (_, i) => media(`servizi/${slug}/${slug}-${i + 1}.jpg`));
 
 export const SERVIZI: Servizio[] = [
   {
@@ -103,5 +105,5 @@ export function servizioGallery(s: Servizio): string[] {
 }
 
 export function servizioHero(s: Servizio): string {
-  return `/assets/servizi/${s.slug}/${s.slug}-1.jpg`;
+  return media(`servizi/${s.slug}/${s.slug}-1.jpg`);
 }

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { media } from '@/lib/media';
 
 export default function SettoriPage() {
   return (
@@ -37,7 +38,7 @@ export default function SettoriPage() {
               ))}
             </div>
           </div>
-          <div className="hidden lg:block h-[220px] rounded-[14px] bg-bg-alt bg-cover bg-center bg-[url('/assets/servizi/industriale/industriale-1.jpg')]" />
+          <div className="hidden lg:block h-[220px] rounded-[14px] bg-bg-alt bg-cover bg-center" style={{ backgroundImage: `url(${media('servizi/featured/settori-industriale.jpg')})` }} />
         </div>
 
         {/* Sector 2 */}
@@ -56,7 +57,7 @@ export default function SettoriPage() {
               ))}
             </div>
           </div>
-          <div className="hidden lg:block h-[220px] rounded-[14px] bg-bg-alt bg-cover bg-center bg-[url('/assets/servizi/climatizzazione/climatizzazione-3.jpg')]" />
+          <div className="hidden lg:block h-[220px] rounded-[14px] bg-bg-alt bg-cover bg-center" style={{ backgroundImage: `url(${media('servizi/climatizzazione/climatizzazione-3.jpg')})` }} />
         </div>
 
         {/* Sector 3 */}
@@ -75,7 +76,7 @@ export default function SettoriPage() {
               ))}
             </div>
           </div>
-          <div className="hidden lg:block h-[220px] rounded-[14px] bg-bg-alt bg-cover bg-center bg-[url('/assets/servizi/riscaldamento/riscaldamento-1.jpg')]" />
+          <div className="hidden lg:block h-[220px] rounded-[14px] bg-bg-alt bg-cover bg-center" style={{ backgroundImage: `url(${media('servizi/riscaldamento/riscaldamento-1.jpg')})` }} />
         </div>
 
       </div>
