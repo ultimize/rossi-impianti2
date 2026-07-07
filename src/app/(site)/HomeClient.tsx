@@ -302,12 +302,22 @@ export default function HomeClient({ articles }: HomeClientProps) {
             Marchi trattati
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-[18px]">
-            {['SIME', 'DAIKIN', 'AERMEC', 'SAMSUNG'].map((brand) => (
+            {[
+              { name: 'Sime', logo: '/assets/marchi/sime.svg' },
+              { name: 'Daikin', logo: '/assets/marchi/daikin.svg' },
+              { name: 'Aermec', logo: '/assets/marchi/aermec.svg' },
+              { name: 'Samsung', logo: '/assets/marchi/samsung.svg' },
+            ].map((brand) => (
               <div
-                key={brand}
-                className="h-[80px] bg-white border border-border rounded-[12px] flex items-center justify-center font-archivo font-extrabold text-[21px] text-[#b6bec6] hover:text-rosso hover:border-rosso transition-all duration-300 select-none"
+                key={brand.name}
+                className="h-[80px] bg-white border border-border rounded-[12px] flex items-center justify-center px-6 hover:border-rosso transition-all duration-300 grayscale hover:grayscale-0"
               >
-                {brand}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  className="max-h-11 max-w-[130px] w-auto object-contain"
+                />
               </div>
             ))}
           </div>
