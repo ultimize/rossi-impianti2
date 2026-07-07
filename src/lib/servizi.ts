@@ -105,9 +105,10 @@ export function getServizio(slug: string): Servizio | undefined {
 }
 
 export function servizioGallery(s: Servizio): string[] {
-  return gallery(s.slug, s.galleryCount);
+  return gallery(s.dir ?? s.slug, s.galleryCount);
 }
 
 export function servizioHero(s: Servizio): string {
-  return media(`servizi/${s.slug}/${s.slug}-1.jpg`);
+  const d = s.dir ?? s.slug;
+  return media(`servizi/${d}/${d}-1.jpg`);
 }
