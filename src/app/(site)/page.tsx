@@ -28,12 +28,20 @@ export default async function HomePage() {
       >
         {/* Real photo */}
         <div className="absolute inset-0 bg-cover bg-[position:center_right]" style={{ backgroundImage: `url(${media('site/hero.jpg')})` }} />
-        {/* White feather: left stays bright, photo reveals on the right */}
+        {/* White feather (desktop): left stays bright, photo reveals on the right */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 hidden md:block"
           style={{
             background:
               'linear-gradient(100deg,#ffffff 0%,#ffffff 28%,rgba(255,255,255,.94) 40%,rgba(255,255,255,.55) 53%,rgba(255,255,255,.1) 68%,rgba(255,255,255,0) 86%)',
+          }}
+        />
+        {/* White overlay (mobile): quasi opaco per leggibilità del testo, foto visibile in basso */}
+        <div
+          className="absolute inset-0 md:hidden"
+          style={{
+            background:
+              'linear-gradient(180deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.94) 45%,rgba(255,255,255,.82) 75%,rgba(255,255,255,.6) 100%)',
           }}
         />
         {/* Bottom white fade */}

@@ -56,7 +56,7 @@ export default function MarchiPage() {
             return (
               <div
                 key={brand.slug}
-                className="border border-border rounded-card bg-surface p-9 flex gap-[30px] items-center shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-[3px]"
+                className="border border-border rounded-card bg-surface p-7 md:p-9 flex flex-col md:flex-row gap-5 md:gap-[30px] items-start md:items-center shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-[3px]"
               >
                 <div className="w-[150px] h-[84px] flex-none border border-border rounded-[12px] bg-bg-alt flex items-center justify-center overflow-hidden">
                   {hasLogo ? (

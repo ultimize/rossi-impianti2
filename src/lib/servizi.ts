@@ -32,7 +32,7 @@ export const SERVIZI: Servizio[] = [
       'Seguiamo ogni fase con tecnici specializzati, garantendo soluzioni affidabili, a norma e dimensionate sulle reali esigenze produttive dell’azienda.',
     ],
     tags: ['Aria', 'Acqua', 'Gas / Metano', 'Chiavi in mano'],
-    galleryCount: 17,
+    galleryCount: 34,
     metaTitle: 'Impianti industriali a Vicenza | Rossi Impianti',
     metaDescription:
       'Progettazione e costruzione di impianti industriali chiavi in mano a Vicenza: aria, acqua, gas e metano per aziende e capannoni. Dal 1980.',
