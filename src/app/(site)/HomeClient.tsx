@@ -359,7 +359,7 @@ export default function HomeClient({ articles }: HomeClientProps) {
             {/* Map */}
             <div className="relative h-[240px] rounded-[14px] overflow-hidden border border-border bg-white">
               <iframe
-                src="https://www.google.com/maps?q=Via%20Dei%20Fiori%209%2FA%2C%2036040%20Sarego%20VI&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.6505276032535!2d11.41144521292492!3d45.43654567095289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f391cf852bf43%3A0xe6432002188674a4!2sRossi%20Impianti!5e0!3m2!1sit!2sus!4v1783677720549!5m2!1sit!2sus"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

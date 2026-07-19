@@ -32,7 +32,7 @@ export const SERVIZI: Servizio[] = [
       'Seguiamo ogni fase con tecnici specializzati, garantendo soluzioni affidabili, a norma e dimensionate sulle reali esigenze produttive dell’azienda.',
     ],
     tags: ['Aria', 'Acqua', 'Gas / Metano', 'Chiavi in mano'],
-    galleryCount: 34,
+    galleryCount: 33,
     metaTitle: 'Impianti industriali a Vicenza | Rossi Impianti',
     metaDescription:
       'Progettazione e costruzione di impianti industriali chiavi in mano a Vicenza: aria, acqua, gas e metano per aziende e capannoni. Dal 1980.',
@@ -48,7 +48,7 @@ export const SERVIZI: Servizio[] = [
       'Sistemi sprinkler, reti di idranti e rilevazione dimensionati sul rischio specifico di ogni attività, per la massima sicurezza di persone e beni.',
     ],
     tags: ['A norma', 'Certificati', 'Sprinkler', 'Per aziende'],
-    galleryCount: 7,
+    galleryCount: 3,
     metaTitle: 'Impianti antincendio a Vicenza | Rossi Impianti',
     metaDescription:
       'Progettazione e realizzazione di impianti antincendio certificati a Vicenza: sistemi sprinkler, idranti e rilevazione a norma UNI EN 12845.',
@@ -78,7 +78,7 @@ export const SERVIZI: Servizio[] = [
       'Dai piccoli interventi alle reti complete, garantiamo affidabilità e pulizia del lavoro, con l’assistenza di idraulici specializzati.',
     ],
     tags: ['Impianti sanitari', 'Reti idriche', 'Bagni', 'Manutenzione'],
-    galleryCount: 7,
+    galleryCount: 8,
     metaTitle: 'Impianti idraulici a Vicenza | Rossi Impianti',
     metaDescription:
       'Impianti idrosanitari, reti idriche e opere idrauliche a Vicenza: installazione, ristrutturazione e manutenzione a regola d’arte. Dal 1980.',
