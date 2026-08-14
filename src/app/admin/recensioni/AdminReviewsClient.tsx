@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Check, Trash2, Loader2, Star, Clock, AlertTriangle } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
+import ConfirmDialog from '@/components/ConfirmDialog';
 import type { Review } from '@/lib/types';
 
 type AdminReviewsClientProps = {
@@ -13,6 +14,10 @@ export default function AdminReviewsClient({ initialReviews }: AdminReviewsClien
   const supabase = createClient();
   const [reviews, setReviews] = useState(initialReviews);
   const [loading, setLoading] = useState(false);
+
+  // Modale di conferma eliminazione (sostituisce window.confirm)
+  const [pendingDelete, setPendingDelete] = useState<{ id: string; productId: string } | null>(null);
+  const [deleting, setDeleting] = useState(false);
   const [filter, setFilter] = useState<'all' | 'pending' | 'approved'>('pending');
 
   const filteredReviews = reviews.filter((r) => {
@@ -68,31 +73,38 @@ export default function AdminReviewsClient({ initialReviews }: AdminReviewsClien
     }
   };
 
-  const handleDelete = async (id: string, productId: string) => {
-    if (!confirm('Sei sicuro di voler eliminare questa recensione? questa operazione è definitiva.')) {
-      return;
-    }
+  const handleConfirmDelete = async () => {
+    if (!pendingDelete) return;
+    const { id, productId } = pendingDelete;
 
-    setLoading(true);
+    setDeleting(true);
 
     try {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('reviews')
         .delete()
-        .eq('id', id);
+        .eq('id', id)
+        .select('id');
 
       if (error) throw error;
+      if (!data || data.length === 0) {
+        throw new Error(
+          'Nessuna recensione eliminata: la sessione admin potrebbe essere scaduta oppure non hai i permessi. Esci e rientra, poi riprova.'
+        );
+      }
 
       // Recalculate average rating for product
       await updateProductRating(productId);
 
       // Update state
       setReviews((prev) => prev.filter((r) => r.id !== id));
+      setPendingDelete(null);
     } catch (err: any) {
       console.error(err);
+      setPendingDelete(null);
       alert(err.message || 'Errore durante l\'eliminazione della recensione.');
     } finally {
-      setLoading(false);
+      setDeleting(false);
     }
   };
 
@@ -113,6 +125,16 @@ export default function AdminReviewsClient({ initialReviews }: AdminReviewsClien
 
   return (
     <div className="flex flex-col gap-8 text-left">
+      <ConfirmDialog
+        open={!!pendingDelete}
+        title="Elimina recensione"
+        message="Vuoi eliminare definitivamente questa recensione? L'operazione non è reversibile."
+        confirmLabel="Elimina definitivamente"
+        loading={deleting}
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setPendingDelete(null)}
+      />
+
       {/* Header */}
       <div>
         <h1 className="font-saira font-extrabold text-3xl md:text-4xl text-text uppercase tracking-tight">
@@ -195,7 +217,7 @@ export default function AdminReviewsClient({ initialReviews }: AdminReviewsClien
                 </button>
               )}
               <button
-                onClick={() => handleDelete(rev.id, rev.product_id)}
+                onClick={() => setPendingDelete({ id: rev.id, productId: rev.product_id })}
                 disabled={loading}
                 className="font-saira font-bold text-[13px] tracking-[0.5px] uppercase text-white bg-rosso hover:bg-rosso-hover disabled:bg-faint rounded-btn px-4 py-2 flex items-center gap-1.5 transition-colors cursor-pointer"
               >

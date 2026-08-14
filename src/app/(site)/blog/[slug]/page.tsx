@@ -7,7 +7,10 @@ import Image from 'next/image';
 import ArticleClientWrapper from './ArticleClientWrapper';
 import type { Article, Category } from '@/lib/types';
 
-export const revalidate = 3600; // ISR revalidate every hour
+// Rigenerazione ogni 10 minuti: serve a far comparire da soli gli articoli
+// programmati. Le modifiche dall'admin sono immediate grazie alla revalidation
+// on-demand (src/app/api/revalidate/route.ts).
+export const revalidate = 600;
 
 type Props = {
   params: { slug: string };
@@ -21,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .select('*, categories(*)')
     .eq('slug', params.slug)
     .eq('status', 'published')
+    .lte('published_at', new Date().toISOString())
     .maybeSingle();
 
   if (!art) {
@@ -65,7 +69,8 @@ export async function generateStaticParams() {
   const { data } = await supabase
     .from('articles')
     .select('slug')
-    .eq('status', 'published');
+    .eq('status', 'published')
+    .lte('published_at', new Date().toISOString());
 
   return (data || []).map((art) => ({
     slug: art.slug,
@@ -81,6 +86,7 @@ export default async function ArticlePage({ params }: Props) {
     .select('*, categories(*)')
     .eq('slug', params.slug)
     .eq('status', 'published')
+    .lte('published_at', new Date().toISOString())
     .maybeSingle();
 
   if (!rawArticle) {
@@ -94,6 +100,7 @@ export default async function ArticlePage({ params }: Props) {
     .from('articles')
     .select('*, categories(*)')
     .eq('status', 'published')
+    .lte('published_at', new Date().toISOString())
     .eq('category_id', article.category_id)
     .neq('id', article.id)
     .order('published_at', { ascending: false })

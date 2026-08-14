@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Plus, Edit2, Trash2, X, Check, Loader2, ArrowLeft, Image as ImageIcon, Search } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
+import ConfirmDialog from '@/components/ConfirmDialog';
 import type { Product, Category } from '@/lib/types';
 
 type AdminProductsClientProps = {
@@ -15,6 +16,10 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
   const [products, setProducts] = useState(initialProducts);
   const [loading, setLoading] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
+
+  // Modale di conferma eliminazione (sostituisce window.confirm)
+  const [pendingDelete, setPendingDelete] = useState<{ id: string; name: string } | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   // Search & filter
   const [search, setSearch] = useState('');
@@ -226,30 +231,54 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
     }
   };
 
-  const handleDelete = async (id: string, name: string) => {
-    if (!confirm(`Sei sicuro di voler eliminare il prodotto "${name}"? questa operazione è irreversibile.`)) {
-      return;
-    }
+  const handleConfirmDelete = async () => {
+    if (!pendingDelete) return;
+    const { id } = pendingDelete;
 
-    setLoading(true);
+    setDeleting(true);
 
     try {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('products')
         .delete()
-        .eq('id', id);
+        .eq('id', id)
+        .select('id');
 
       if (error) throw error;
+      if (!data || data.length === 0) {
+        throw new Error(
+          'Nessun prodotto eliminato: la sessione admin potrebbe essere scaduta oppure non hai i permessi. Esci e rientra, poi riprova.'
+        );
+      }
       setProducts((prev) => prev.filter((p) => p.id !== id));
+      setPendingDelete(null);
     } catch (err: any) {
       console.error(err);
+      setPendingDelete(null);
       alert(err.message || 'Errore durante l\'eliminazione del prodotto.');
     } finally {
-      setLoading(false);
+      setDeleting(false);
     }
   };
+
   return (
     <div className="flex flex-col gap-8 text-left">
+      <ConfirmDialog
+        open={!!pendingDelete}
+        title="Elimina prodotto"
+        message={
+          <>
+            Vuoi eliminare definitivamente il prodotto{' '}
+            <strong className="text-text">«{pendingDelete?.name}»</strong>? L&apos;operazione non è
+            reversibile.
+          </>
+        }
+        confirmLabel="Elimina definitivamente"
+        loading={deleting}
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setPendingDelete(null)}
+      />
+
       {mode === 'list' ? (
         <>
           {/* Header */}
@@ -350,7 +379,7 @@ export default function AdminProductsClient({ initialProducts, categories }: Adm
                             <Edit2 size={15} />
                           </button>
                           <button
-                            onClick={() => handleDelete(p.id, p.name)}
+                            onClick={() => setPendingDelete({ id: p.id, name: p.name })}
                             className="text-muted hover:text-rosso transition-colors"
                             title="Elimina"
                           >

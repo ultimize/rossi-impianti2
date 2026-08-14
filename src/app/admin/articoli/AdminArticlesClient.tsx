@@ -2,8 +2,16 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Plus, Edit2, Trash2, X, Check, Loader2, ArrowLeft, Image as ImageIcon, Search, HelpCircle } from 'lucide-react';
+import { Plus, Edit2, Trash2, X, Check, Loader2, ArrowLeft, Image as ImageIcon, Search, HelpCircle, Clock } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
+import ConfirmDialog from '@/components/ConfirmDialog';
+import {
+  toDatetimeLocalValue,
+  fromDatetimeLocalValue,
+  isScheduled,
+  statusLabel,
+  formatDateTimeIt,
+} from '@/lib/datetime';
 import type { Article, Category } from '@/lib/types';
 
 type AdminArticlesClientProps = {
@@ -25,6 +33,13 @@ export default function AdminArticlesClient({ initialArticles, categories }: Adm
   const [loading, setLoading] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
 
+  // Modale di conferma eliminazione (sostituisce window.confirm)
+  const [pendingDelete, setPendingDelete] = useState<{ id: string; title: string } | null>(null);
+  const [deleting, setDeleting] = useState(false);
+
+  // Messaggio di esito salvataggio
+  const [notice, setNotice] = useState<{ kind: 'ok' | 'err'; text: string } | null>(null);
+
   // Search & filter
   const [search, setSearch] = useState('');
   const [catFilter, setCatFilter] = useState('');
@@ -32,6 +47,7 @@ export default function AdminArticlesClient({ initialArticles, categories }: Adm
   // Mode: 'list' | 'create' | 'edit'
   const [mode, setMode] = useState<'list' | 'create' | 'edit'>('list');
   const [editId, setEditId] = useState<string | null>(null);
+  const [prevSlug, setPrevSlug] = useState<string | null>(null);
 
   // Form states
   const [form, setForm] = useState({
@@ -109,14 +125,16 @@ export default function AdminArticlesClient({ initialArticles, categories }: Adm
       takeaways: [],
       faq: [],
       status: 'draft',
-      published_at: new Date().toISOString().substring(0, 16), // datetime-local format
+      published_at: toDatetimeLocalValue(), // ora locale, formato datetime-local
     });
     setUseHtmlBody(false);
+    setNotice(null);
     setMode('create');
   };
 
   const handleStartEdit = (art: Article) => {
     setEditId(art.id);
+    setPrevSlug(art.slug);
     setForm({
       title: art.title,
       slug: art.slug,
@@ -132,11 +150,10 @@ export default function AdminArticlesClient({ initialArticles, categories }: Adm
       takeaways: art.takeaways || [],
       faq: art.faq || [],
       status: art.status || 'draft',
-      published_at: art.published_at
-        ? new Date(art.published_at).toISOString().substring(0, 16)
-        : new Date().toISOString().substring(0, 16),
+      published_at: toDatetimeLocalValue(art.published_at),
     });
     setUseHtmlBody(!!art.body_html);
+    setNotice(null);
     setMode('edit');
   };
 
@@ -269,14 +286,34 @@ export default function AdminArticlesClient({ initialArticles, categories }: Adm
     }));
   };
 
+  /**
+   * Rigenera le pagine pubbliche in cache (ISR) subito dopo il salvataggio,
+   * altrimenti la modifica compare sul sito solo alla scadenza della cache.
+   */
+  const revalidateSite = async (slug?: string, previousSlug?: string | null) => {
+    try {
+      const res = await fetch('/api/revalidate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug, previousSlug: previousSlug || undefined }),
+      });
+      return res.ok;
+    } catch (err) {
+      console.error('Revalidation fallita', err);
+      return false;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.title || !form.slug) return;
 
     setLoading(true);
+    setNotice(null);
 
+    // La data va salvata in UTC partendo dall'ora locale digitata nel form.
     const publishedAtVal = form.status === 'published'
-      ? (form.published_at ? new Date(form.published_at).toISOString() : new Date().toISOString())
+      ? (fromDatetimeLocalValue(form.published_at) || new Date().toISOString())
       : null;
 
     try {
@@ -306,9 +343,15 @@ export default function AdminArticlesClient({ initialArticles, categories }: Adm
           .update(payload)
           .eq('id', editId)
           .select('*, categories(*)')
-          .single();
+          .maybeSingle();
 
         if (error) throw error;
+        if (!data) {
+          // 0 righe aggiornate: quasi sempre permessi (RLS) o sessione scaduta
+          throw new Error(
+            'Nessuna riga aggiornata: la sessione admin potrebbe essere scaduta oppure il tuo utente non ha i permessi di scrittura. Esci e rientra, poi riprova.'
+          );
+        }
         setArticles((prev) => prev.map((a) => (a.id === editId ? (data as any) : a)));
       } else {
         // INSERT
@@ -316,45 +359,114 @@ export default function AdminArticlesClient({ initialArticles, categories }: Adm
           .from('articles')
           .insert(payload)
           .select('*, categories(*)')
-          .single();
+          .maybeSingle();
 
         if (error) throw error;
+        if (!data) {
+          throw new Error(
+            "Articolo non creato: la sessione admin potrebbe essere scaduta oppure il tuo utente non ha i permessi di scrittura. Esci e rientra, poi riprova."
+          );
+        }
         setArticles((prev) => [data as any, ...prev]);
       }
+
+      const rigenerato = await revalidateSite(form.slug, prevSlug);
+
+      const programmato = form.status === 'published' && isScheduled('published', publishedAtVal);
+      setNotice({
+        kind: 'ok',
+        text: programmato
+          ? `Articolo salvato e programmato per il ${formatDateTimeIt(publishedAtVal)}: comparirà sul sito automaticamente a quella data.`
+          : form.status === 'published'
+            ? rigenerato
+              ? 'Articolo pubblicato: il sito è già aggiornato.'
+              : 'Articolo pubblicato. Aggiornamento del sito non confermato, potrebbe richiedere qualche minuto.'
+            : 'Bozza salvata (non visibile sul sito).',
+      });
+
+      setPrevSlug(null);
       setMode('list');
     } catch (err: any) {
       console.error(err);
-      alert(err.message || 'Errore durante il salvataggio dell\'articolo.');
+      setNotice({ kind: 'err', text: err?.message || "Errore durante il salvataggio dell'articolo." });
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDelete = async (id: string, title: string) => {
-    if (!confirm(`Sei sicuro di voler eliminare l'articolo "${title}"? questa operazione è definitiva.`)) {
-      return;
-    }
+  const handleConfirmDelete = async () => {
+    if (!pendingDelete) return;
+    const { id } = pendingDelete;
+    const slug = articles.find((a) => a.id === id)?.slug;
 
-    setLoading(true);
+    setDeleting(true);
+    setNotice(null);
 
     try {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('articles')
         .delete()
-        .eq('id', id);
+        .eq('id', id)
+        .select('id');
 
       if (error) throw error;
+      if (!data || data.length === 0) {
+        throw new Error(
+          'Nessun articolo eliminato: la sessione admin potrebbe essere scaduta oppure il tuo utente non ha i permessi. Esci e rientra, poi riprova.'
+        );
+      }
+
       setArticles((prev) => prev.filter((a) => a.id !== id));
+      await revalidateSite(undefined, slug);
+      setPendingDelete(null);
+      setNotice({ kind: 'ok', text: 'Articolo eliminato.' });
     } catch (err: any) {
       console.error(err);
-      alert(err.message || 'Errore durante l\'eliminazione dell\'articolo.');
+      setPendingDelete(null);
+      setNotice({ kind: 'err', text: err?.message || "Errore durante l'eliminazione dell'articolo." });
     } finally {
-      setLoading(false);
+      setDeleting(false);
     }
   };
 
   return (
     <div className="flex flex-col gap-8 text-left">
+      <ConfirmDialog
+        open={!!pendingDelete}
+        title="Elimina articolo"
+        message={
+          <>
+            Vuoi eliminare definitivamente l&apos;articolo{' '}
+            <strong className="text-text">«{pendingDelete?.title}»</strong>? L&apos;operazione non è
+            reversibile.
+          </>
+        }
+        confirmLabel="Elimina definitivamente"
+        loading={deleting}
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setPendingDelete(null)}
+      />
+
+      {notice && (
+        <div
+          className={`flex items-start justify-between gap-4 rounded-card border px-4 py-3 text-[14px] ${
+            notice.kind === 'ok'
+              ? 'border-green-500/40 bg-green-500/10 text-green-700'
+              : 'border-rosso/40 bg-rosso/10 text-rosso'
+          }`}
+        >
+          <span className="leading-relaxed">{notice.text}</span>
+          <button
+            type="button"
+            onClick={() => setNotice(null)}
+            className="opacity-60 hover:opacity-100 flex-shrink-0 mt-0.5"
+            aria-label="Chiudi"
+          >
+            <X size={15} />
+          </button>
+        </div>
+      )}
+
       {mode === 'list' ? (
         <>          {/* Header */}
           <div className="flex justify-between items-center gap-4 flex-wrap">
@@ -416,6 +528,7 @@ export default function AdminArticlesClient({ initialArticles, categories }: Adm
               </thead>
               <tbody>
                 {filteredArticles.map((a) => {
+                  const stato = statusLabel(a.status, a.published_at);
                   return (
                     <tr key={a.id} className="border-b border-border/40 hover:bg-bg-alt/50">
                       <td className="p-4">
@@ -439,16 +552,26 @@ export default function AdminArticlesClient({ initialArticles, categories }: Adm
                       <td className="p-4 text-text-2 truncate max-w-[150px]">
                         {a.author}
                       </td>
-                      <td className="p-4 text-text-2">
-                        {a.published_at ? new Date(a.published_at).toLocaleDateString('it-IT') : <span className="text-faint">—</span>}
+                      <td className="p-4 text-text-2 whitespace-nowrap">
+                        {a.published_at ? formatDateTimeIt(a.published_at) : <span className="text-faint">—</span>}
                       </td>
                       <td className="p-4 uppercase text-xs font-bold font-saira">
                         <span
-                          className={`px-2 py-0.5 rounded-btn ${
-                            a.status === 'published' ? 'bg-green-500/10 text-green-500' : 'bg-faint/20 text-muted'
+                          className={`px-2 py-0.5 rounded-btn inline-flex items-center gap-1 ${
+                            stato === 'pubblicato'
+                              ? 'bg-green-500/10 text-green-600'
+                              : stato === 'programmato'
+                                ? 'bg-amber-500/15 text-amber-600'
+                                : 'bg-faint/20 text-muted'
                           }`}
+                          title={
+                            stato === 'programmato'
+                              ? `Comparirà sul sito il ${formatDateTimeIt(a.published_at)}`
+                              : undefined
+                          }
                         >
-                          {a.status === 'published' ? 'pubblicato' : 'bozza'}
+                          {stato === 'programmato' && <Clock size={11} />}
+                          {stato}
                         </span>
                       </td>
                       <td className="p-4">
@@ -461,7 +584,7 @@ export default function AdminArticlesClient({ initialArticles, categories }: Adm
                             <Edit2 size={15} />
                           </button>
                           <button
-                            onClick={() => handleDelete(a.id, a.title)}
+                            onClick={() => setPendingDelete({ id: a.id, title: a.title })}
                             className="text-muted hover:text-rosso transition-colors"
                             title="Elimina"
                           >
@@ -598,8 +721,22 @@ export default function AdminArticlesClient({ initialArticles, categories }: Adm
                   onChange={(e) => setForm({ ...form, published_at: e.target.value })}
                   className="w-full bg-bg-alt border border-border rounded-btn p-3 text-text font-plex text-[14.5px] outline-none focus:bg-white focus:border-rosso cursor-pointer font-mono"
                 />
+                <p className="text-[12px] text-muted mt-1.5 leading-relaxed">
+                  Ora italiana. Con stato <strong>Pubblicato</strong> e data futura l&apos;articolo
+                  resta nascosto dal sito e viene pubblicato automaticamente a quella data.
+                </p>
               </div>
             </div>
+
+            {form.status === 'published' && isScheduled('published', fromDatetimeLocalValue(form.published_at)) && (
+              <div className="flex items-start gap-2.5 rounded-btn border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-[13.5px] text-amber-700">
+                <Clock size={16} className="mt-0.5 flex-shrink-0" />
+                <span className="leading-relaxed">
+                  Articolo <strong>programmato</strong>: verrà pubblicato il{' '}
+                  {formatDateTimeIt(fromDatetimeLocalValue(form.published_at))}.
+                </span>
+              </div>
+            )}
 
             <div>
               <label className="block text-[13px] text-muted uppercase tracking-[0.5px] mb-1.5 font-semibold">

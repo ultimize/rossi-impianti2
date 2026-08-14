@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Plus, Edit2, Trash2, X, Check, Loader2 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
+import ConfirmDialog from '@/components/ConfirmDialog';
 import type { Category } from '@/lib/types';
 
 type AdminCategoriesClientProps = {
@@ -13,6 +14,10 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
   const supabase = createClient();
   const [categories, setCategories] = useState<Category[]>(initialCategories);
   const [loading, setLoading] = useState(false);
+
+  // Modale di conferma eliminazione (sostituisce window.confirm)
+  const [pendingDelete, setPendingDelete] = useState<{ id: string; name: string } | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   // Form states
   const [editId, setEditId] = useState<string | null>(null);
@@ -111,32 +116,53 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
     }
   };
 
-  const handleDelete = async (id: string, name: string) => {
-    if (!confirm(`Sei sicuro di voler eliminare la categoria "${name}"? Questa operazione potrebbe causare errori se ci sono articoli o prodotti associati ad essa.`)) {
-      return;
-    }
+  const handleConfirmDelete = async () => {
+    if (!pendingDelete) return;
+    const { id } = pendingDelete;
 
-    setLoading(true);
+    setDeleting(true);
 
     try {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('categories')
         .delete()
-        .eq('id', id);
+        .eq('id', id)
+        .select('id');
 
       if (error) throw error;
+      if (!data || data.length === 0) {
+        throw new Error(
+          'Nessuna categoria eliminata: la sessione admin potrebbe essere scaduta oppure non hai i permessi. Esci e rientra, poi riprova.'
+        );
+      }
       setCategories((prev) => prev.filter((c) => c.id !== id));
       if (editId === id) handleResetForm();
+      setPendingDelete(null);
     } catch (err: any) {
       console.error(err);
+      setPendingDelete(null);
       alert(err.message || 'Errore durante l\'eliminazione. Assicurati che non ci siano articoli o prodotti associati.');
     } finally {
-      setLoading(false);
+      setDeleting(false);
     }
   };
 
   return (
     <div className="flex flex-col gap-8 text-left">
+      <ConfirmDialog
+        open={!!pendingDelete}
+        title="Elimina categoria"
+        message={
+          <>
+            Vuoi eliminare la categoria <strong className="text-text">«{pendingDelete?.name}»</strong>?
+            L&apos;operazione può fallire se ci sono articoli o prodotti associati.
+          </>
+        }
+        loading={deleting}
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setPendingDelete(null)}
+      />
+
       {/* Header */}
       <div>
         <h1 className="font-saira font-extrabold text-3xl md:text-4xl text-text uppercase tracking-tight">
@@ -183,7 +209,7 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
                         <Edit2 size={12} />
                       </button>
                       <button
-                        onClick={() => handleDelete(cat.id, cat.name)}
+                        onClick={() => setPendingDelete({ id: cat.id, name: cat.name })}
                         className="text-muted hover:text-rosso transition-colors"
                         title="Elimina"
                       >
@@ -227,7 +253,7 @@ export default function AdminCategoriesClient({ initialCategories }: AdminCatego
                         <Edit2 size={12} />
                       </button>
                       <button
-                        onClick={() => handleDelete(cat.id, cat.name)}
+                        onClick={() => setPendingDelete({ id: cat.id, name: cat.name })}
                         className="text-muted hover:text-rosso transition-colors"
                         title="Elimina"
                       >
