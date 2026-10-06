@@ -45,7 +45,7 @@ export default function ServiziPage() {
               Scopri di più e vedi la galleria <span>→</span>
             </Link>
           </div>
-          <div className="min-h-[320px] relative bg-[#dde4ea] bg-cover bg-center" style={{ backgroundImage: `url(${media('servizi/featured/servizi-industriali.jpg')})` }} />
+          <div className="min-h-[320px] relative bg-[#dde4ea] bg-cover bg-center" style={{ backgroundImage: `url(${media('servizi/featured/servizi-industriali-2.jpg')})` }} />
         </div>
 
         {/* Service 2 — Impianti antincendio */}

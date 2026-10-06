@@ -60,6 +60,7 @@ export default function HomeClient({ articles }: HomeClientProps) {
     cognome: '',
     email: '',
     telefono: '',
+    piva: '',
     messaggio: '',
     privacy: false,
   });
@@ -67,7 +68,7 @@ export default function HomeClient({ articles }: HomeClientProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.nome || !form.email || !form.messaggio || !form.privacy) {
+    if (!form.nome || !form.email || !form.piva || !form.messaggio || !form.privacy) {
       alert('Per favore compila tutti i campi obbligatori e accetta la privacy policy.');
       return;
     }
@@ -81,6 +82,7 @@ export default function HomeClient({ articles }: HomeClientProps) {
         cognome: '',
         email: '',
         telefono: '',
+    piva: '',
         messaggio: '',
         privacy: false,
       });
@@ -112,11 +114,11 @@ export default function HomeClient({ articles }: HomeClientProps) {
               Il cuore dell'azienda
             </div>
             <h2 className="font-archivo font-extrabold text-[34px] md:text-[44px] text-text1 mb-5 leading-[1.06] tracking-[-1px]">
-              44 anni di cantieri industriali
+              44 anni di esperienza. Oggi, al servizio dell&apos;industria.
             </h2>
             <p className="text-[16.5px] text-text2 leading-[1.65] mb-[34px] max-w-[480px]">
               Dal 1980 progettiamo e costruiamo impianti per le aziende del territorio vicentino. Un solo interlocutore, dalla prima idea fino all'impianto acceso.
-            </p>
+          </p>
             <div className="grid grid-cols-2 gap-3.5">
               <div className="bg-bg-alt rounded-[14px] p-[24px_26px]">
                 <div className="font-archivo font-extrabold text-[42px] text-rosso leading-[0.9]">
@@ -140,7 +142,7 @@ export default function HomeClient({ articles }: HomeClientProps) {
               </div>
             </div>
           </div>
-          <div className="relative min-h-[460px] rounded-[18px] overflow-hidden bg-cover bg-center shadow-card-hover" style={{ backgroundImage: `url(${media('site/sede.jpg')})` }} />
+          <div className="relative min-h-[460px] rounded-[18px] overflow-hidden bg-cover bg-center shadow-card-hover" style={{ backgroundImage: `url(${media('site/sede-interno.jpg')})` }} />
         </div>
       </section>
 
@@ -391,6 +393,9 @@ export default function HomeClient({ articles }: HomeClientProps) {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col">
+                <p className="font-plex text-[13.5px] text-text2 leading-[1.5] bg-white/60 border-l-[3px] border-rosso rounded-[6px] px-3.5 py-2.5 mb-4 text-left">
+                  Lavoriamo esclusivamente con <strong className="text-text1">aziende</strong>: non effettuiamo interventi per privati. La Partita IVA è obbligatoria.
+                  </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-3.5">
                   <input
                     type="text"
@@ -421,6 +426,17 @@ export default function HomeClient({ articles }: HomeClientProps) {
                   placeholder="Telefono"
                   value={form.telefono}
                   onChange={(e) => setForm({ ...form, telefono: e.target.value })}
+                  className="bg-white border border-border2 rounded-btn p-3.5 text-text1 font-plex text-[15px] outline-none focus:border-rosso mb-3.5"
+                />
+                <input
+                  type="text"
+                  placeholder="Partita IVA"
+                  required
+                  inputMode="numeric"
+                  pattern="(IT)?[0-9]{11}"
+                  title="Inserisci una Partita IVA valida (11 cifre)"
+                  value={form.piva}
+                  onChange={(e) => setForm({ ...form, piva: e.target.value.replace(/\s/g, '').toUpperCase() })}
                   className="bg-white border border-border2 rounded-btn p-3.5 text-text1 font-plex text-[15px] outline-none focus:border-rosso mb-3.5"
                 />
                 <textarea
