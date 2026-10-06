@@ -14,7 +14,7 @@ export default function SettoriPage() {
             Per chi lavoriamo
           </h1>
           <p className="text-[18px] text-text2 max-w-[620px] leading-[1.6]">
-            Stesso metodo, tre contesti: l'industria, il commercio e la casa. Impianti idrotermosanitari civili e industriali, su misura.
+            Stesso metodo, due contesti: l'industria e il commercio. Impianti idrotermosanitari industriali e commerciali, su misura.
           </p>
         </div>
       </div>
@@ -58,25 +58,6 @@ export default function SettoriPage() {
             </div>
           </div>
           <div className="hidden lg:block h-[220px] rounded-[14px] bg-bg-alt bg-cover bg-center" style={{ backgroundImage: `url(${media('servizi/climatizzazione/climatizzazione-3.jpg')})` }} />
-        </div>
-
-        {/* Sector 3 */}
-        <div className="border border-border rounded-[18px] bg-surface p-8 md:p-[46px_44px] grid grid-cols-1 md:grid-cols-[auto_1fr] lg:grid-cols-[auto_1fr_340px] gap-10 items-center shadow-card overflow-hidden">
-          <div className="font-archivo font-extrabold text-[78px] text-azzurro leading-[0.8]">03</div>
-          <div>
-            <h2 className="font-archivo font-extrabold text-[36px] text-text1 tracking-[-0.5px] mb-3">Residenziale</h2>
-            <p className="text-[16px] text-text2 leading-[1.7] mb-5 max-w-[760px]">
-              Impianti idrotermosanitari, riscaldamento a pannelli radianti, solare termico, climatizzazione, installazione caldaie, impianti di irrigazione e impianti a biomassa. Il comfort di casa, su misura.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {['Pannelli radianti', 'Solare termico', 'Caldaie & biomassa'].map((tag) => (
-                <span key={tag} className="text-[14px] text-text2 bg-chip rounded-pill px-[15px] py-[7px]">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="hidden lg:block h-[220px] rounded-[14px] bg-bg-alt bg-cover bg-center" style={{ backgroundImage: `url(${media('servizi/riscaldamento/riscaldamento-1.jpg')})` }} />
         </div>
 
       </div>

@@ -14,7 +14,7 @@ export default function ServiziPage() {
             Cinque aree, un solo interlocutore
           </h1>
           <p className="text-[18px] text-text2 max-w-[620px] leading-[1.6]">
-            Progettazione e realizzazione di impianti idrotermosanitari civili e industriali. Ogni servizio comprende il <strong className="text-text1 font-semibold">Pacchetto Completo</strong>: progettazione, documentazione e installazione.
+            Progettazione e realizzazione di impianti idrotermosanitari industriali e commerciali. Ogni servizio comprende il <strong className="text-text1 font-semibold">Pacchetto Completo</strong>: progettazione, documentazione e installazione.
           </p>
         </div>
       </div>
@@ -114,7 +114,7 @@ export default function ServiziPage() {
               Condizionamento
             </h2>
             <p className="text-[15.5px] text-text2 leading-[1.7] mb-5">
-              Climatizzazione e raffrescamento canalizzato a pompa di calore, impianti meccanici per il ricambio dell&apos;aria. Comfort su misura per casa, uffici e attività.
+              Climatizzazione e raffrescamento canalizzato a pompa di calore, impianti meccanici per il ricambio dell&apos;aria. Comfort su misura per uffici, negozi e attività.
             </p>
             <div className="flex flex-wrap gap-2">
               {['Canalizzato', 'Pompa di calore', 'Ricambio aria'].map((tag) => (
@@ -139,7 +139,7 @@ export default function ServiziPage() {
               Idraulica
             </h2>
             <p className="text-[15.5px] text-text2 leading-[1.7] mb-5">
-              Impianti idrosanitari, reti idriche, bagni e opere idrauliche per abitazioni e attività. Installazione, ristrutturazione e manutenzione a regola d&apos;arte.
+              Impianti idrosanitari, reti idriche, bagni e opere idrauliche per aziende e attività. Installazione, ristrutturazione e manutenzione a regola d&apos;arte.
             </p>
             <div className="flex flex-wrap gap-2">
               {['Impianti sanitari', 'Reti idriche', 'Bagni'].map((tag) => (

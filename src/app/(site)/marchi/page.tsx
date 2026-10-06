@@ -19,7 +19,7 @@ export default function MarchiPage() {
       slug: 'aermec',
       name: 'Aermec',
       logo: '/assets/marchi/aermec.svg',
-      desc: 'Ventilconvettori e soluzioni per la climatizzazione di ambienti civili e commerciali.',
+      desc: 'Ventilconvettori e soluzioni per la climatizzazione di ambienti commerciali e industriali.',
     },
     {
       slug: 'samsung',

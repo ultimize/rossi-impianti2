@@ -59,7 +59,7 @@ export const SERVIZI: Servizio[] = [
     eyebrow: 'Comfort',
     accent: 'azzurro',
     intro: [
-      'Dopo un attento sopralluogo, Rossi Impianti progetta e installa impianti di riscaldamento per la casa, l’ufficio e l’azienda. L’obiettivo dei nostri idraulici specializzati è creare un ambiente che assicuri comfort climatico, impiegando le tecnologie più moderne per l’ottimizzazione dei consumi, in ottica green.',
+      'Dopo un attento sopralluogo, Rossi Impianti progetta e installa impianti di riscaldamento per l’azienda, l’ufficio e le attività commerciali. L’obiettivo dei nostri idraulici specializzati è creare un ambiente che assicuri comfort climatico, impiegando le tecnologie più moderne per l’ottimizzazione dei consumi, in ottica green.',
       'Siamo specializzati nella posa e nella manutenzione di impianti a pannelli radianti a pavimento, soffitto e parete: la soluzione ideale per stanze confortevoli, senza sbalzi di temperatura grazie al calore che si diffonde uniformemente.',
     ],
     tags: ['Caldaie a condensazione', 'Pompe di calore', 'Pannelli radianti', 'Solare termico'],
@@ -74,7 +74,7 @@ export const SERVIZI: Servizio[] = [
     eyebrow: 'Idrosanitario',
     accent: 'azzurro',
     intro: [
-      'Realizziamo impianti idrosanitari, reti idriche, bagni e opere idrauliche per abitazioni, uffici e attività. Installazione, ristrutturazione e manutenzione a regola d’arte, con materiali di qualità.',
+      'Realizziamo impianti idrosanitari, reti idriche, bagni e opere idrauliche per aziende, uffici e attività. Installazione, ristrutturazione e manutenzione a regola d’arte, con materiali di qualità.',
       'Dai piccoli interventi alle reti complete, garantiamo affidabilità e pulizia del lavoro, con l’assistenza di idraulici specializzati.',
     ],
     tags: ['Impianti sanitari', 'Reti idriche', 'Bagni', 'Manutenzione'],
@@ -89,7 +89,7 @@ export const SERVIZI: Servizio[] = [
     eyebrow: 'Clima',
     accent: 'azzurro',
     intro: [
-      'Rossi Impianti, azienda idraulica vicentina certificata F-GAS, garantisce la gestione sicura e professionale dei gas fluorurati e propone la fornitura e l’installazione di impianti di climatizzazione per il perfetto comfort a casa, in ufficio o in negozio.',
+      'Rossi Impianti, azienda idraulica vicentina certificata F-GAS, garantisce la gestione sicura e professionale dei gas fluorurati e propone la fornitura e l’installazione di impianti di climatizzazione per il perfetto comfort in azienda, in ufficio o in negozio.',
       'Ci affidiamo ai grandi marchi internazionali che utilizzano gas ecologici e assicurano alte performance, con servizi di condizionamento, raffrescamento e ventilazione meccanica controllata per il ricircolo e la purificazione dell’aria indoor.',
     ],
     tags: ['Certificati F-GAS', 'Condizionamento', 'Raffrescamento', 'VMC'],

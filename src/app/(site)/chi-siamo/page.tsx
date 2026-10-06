@@ -13,7 +13,7 @@ export default function ChiSiamoPage() {
             Dal 1980, al fianco di Vicenza
           </h1>
           <p className="text-[18px] text-text2 max-w-[560px] leading-[1.55]">
-            44 anni di impianti termoidraulici civili e industriali, costruiti con dedizione e precisione.
+            44 anni di impianti termoidraulici industriali e commerciali, costruiti con dedizione e precisione.
           </p>
         </div>
       </div>
@@ -29,7 +29,7 @@ export default function ChiSiamoPage() {
               Nel 1980 nasce a Vicenza la ditta termoidraulica Rossi Impianti. Gestita da sempre con dedizione e precisione, è cresciuta negli anni aumentando l&apos;organico e ampliando la proposta di servizi.
             </p>
             <p className="text-[16.5px] text-text2 leading-[1.7]">
-              Il nostro team di professionisti interviene sia nel pronto intervento sia in progetti di grandi impianti, mettendo competenze specifiche al servizio di aziende, imprese edili, architetti, geometri e privati.
+              Il nostro team di professionisti interviene sia nel pronto intervento sia in progetti di grandi impianti, mettendo competenze specifiche al servizio di aziende, imprese edili, architetti e geometri.
             </p>
           </div>
           <div className="relative min-h-[420px] rounded-[18px] overflow-hidden bg-[#dde4ea] bg-cover bg-center bg-[url('/assets/site/header-settori.jpg')] shadow-[0_30px_60px_-28px_rgba(20,30,45,.28)]" />

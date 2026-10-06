@@ -150,7 +150,7 @@ export default async function HomePage() {
               </h2>
             </div>
             <p className="text-[16.5px] text-text2 leading-[1.65] mb-1">
-              Dalla progettazione alla messa in opera realizziamo impianti completi per l'industria, il commercio e la casa. Ogni servizio comprende il <strong className="text-text1">Pacchetto Completo</strong>.
+              Dalla progettazione alla messa in opera realizziamo impianti completi per l'industria e il commercio. Ogni servizio comprende il <strong className="text-text1">Pacchetto Completo</strong>.
             </p>
           </div>
 
@@ -195,7 +195,7 @@ export default async function HomePage() {
           </div>
 
           {/* Three subservices cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[18px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[18px]">
             {/* Card 2 — Antincendio */}
             <div className="border border-border rounded-card overflow-hidden bg-white relative shadow-card hover:shadow-card-hover hover:-translate-y-[5px] transition-all duration-300">
               <div className="absolute top-4 right-4 z-[2] font-bold text-[11px] tracking-[0.6px] bg-rosso text-white rounded-pill px-3 py-[5px]">
@@ -300,11 +300,11 @@ export default async function HomePage() {
               </h2>
             </div>
             <p className="text-[16.5px] text-text2 leading-[1.65] mb-1">
-              Stesso metodo, tre contesti: grandi impianti per l'industria, soluzioni per il commercio e comfort su misura per la casa.
+              Stesso metodo, due contesti: grandi impianti per l'industria e soluzioni per il commercio.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[18px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[18px]">
             {/* 01 */}
             <div className="bg-white border border-border rounded-card p-[36px_32px] shadow-card">
               <div className="flex items-center gap-3 mb-[18px]">
@@ -342,29 +342,6 @@ export default async function HomePage() {
                   'Bar, ristoranti, negozi e uffici',
                   'Climatizzazione a pompa di calore',
                   'Impianti per il ricambio dell\'aria',
-                ].map((item) => (
-                  <div key={item} className="flex gap-2.5 items-start text-[14.5px] text-text2 leading-[1.5]">
-                    <span className="text-azzurro font-bold">—</span>
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 03 */}
-            <div className="bg-white border border-border rounded-card p-[36px_32px] shadow-card">
-              <div className="flex items-center gap-3 mb-[18px]">
-                <span className="font-archivo font-extrabold text-[40px] text-azzurro leading-[0.85]">03</span>
-                <span className="h-[2px] flex-1 bg-[#d8e9f4]" />
-              </div>
-              <h3 className="font-archivo font-bold text-[26px] text-text1 tracking-[-0.4px] mb-4">
-                Residenziale
-              </h3>
-              <div className="flex flex-col gap-[11px]">
-                {[
-                  'Riscaldamento a pannelli radianti',
-                  'Solare termico e climatizzazione',
-                  'Caldaie, biomassa e irrigazione',
                 ].map((item) => (
                   <div key={item} className="flex gap-2.5 items-start text-[14.5px] text-text2 leading-[1.5]">
                     <span className="text-azzurro font-bold">—</span>
