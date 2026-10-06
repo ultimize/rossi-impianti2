@@ -326,6 +326,53 @@ export default function HomeClient({ articles }: HomeClientProps) {
         </div>
       </section>
 
+      {/* RECENSIONI */}
+      {/* ponytail: recensioni copiate a mano dalla scheda Google (ott 2026), aggiornarle qui; widget live solo se serve */}
+      <section id="recensioni" className="bg-bg py-[96px] scroll-mt-20">
+        <div className="max-w-[1240px] mx-auto px-6 md:px-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-[44px]">
+            <div>
+              <div className="font-semibold text-[13px] tracking-[1.4px] text-rosso uppercase mb-3.5">
+                Recensioni
+              </div>
+              <h2 className="font-archivo font-extrabold text-[34px] md:text-[46px] text-text1 tracking-[-1px] leading-[1.05]">
+                Cosa dicono di noi
+              </h2>
+            </div>
+            <a
+              href="https://share.google/hXWaUWKJH1VtN7H2t"
+              target="_blank"
+              rel="noopener"
+              className="flex items-center gap-3 bg-white border border-border rounded-card px-5 py-3.5 shadow-card hover:border-rosso transition-colors"
+            >
+              <span className="font-archivo font-extrabold text-[32px] text-text1 leading-none">4,9</span>
+              <span className="flex flex-col">
+                <span className="text-[#f5b301] text-[16px] tracking-[2px]" aria-hidden>★★★★★</span>
+                <span className="text-[13px] text-text2">14 recensioni su Google</span>
+              </span>
+            </a>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[18px]">
+            {[
+              { name: 'Luca B.', text: 'Personale competente, buona consulenza tecnica, lavoro svolto con ottima professionalità. Grazie a tutto lo staff.' },
+              { name: 'Federica M.', text: "Azienda seria e professionale nell'esecuzione dei lavori. Attenti nel proporre soluzioni convenienti al cliente." },
+              { name: 'Nicolò M.', text: 'Competenti, affidabili ed al passo con i tempi!' },
+              { name: 'Alessandra Z.', text: 'Personale competente e lavoro ben eseguito!' },
+              { name: 'Gigliola C.', text: 'Competenti, onesti nei prezzi e veloci!' },
+              { name: 'Roberto M.', text: 'Con Rossi Impianti mi sono trovato molto bene.' },
+            ].map((r) => (
+              <figure key={r.name} className="bg-white border border-border rounded-card p-[28px_26px] shadow-card flex flex-col gap-4">
+                <div className="text-[#f5b301] text-[15px] tracking-[2px]" aria-label="5 stelle su 5">★★★★★</div>
+                <blockquote className="text-[15px] text-text2 leading-[1.6] flex-1">“{r.text}”</blockquote>
+                <figcaption className="font-semibold text-[14px] text-text1">
+                  {r.name} <span className="font-normal text-muted">· Google</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CONTATTI */}
       <section id="contatti" className="bg-bg py-[96px] scroll-mt-20">
         <div className="max-w-[1240px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-[56px]">
