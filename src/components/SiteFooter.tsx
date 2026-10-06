@@ -118,7 +118,12 @@ export default function SiteFooter() {
               Gestione cookie
             </button>
           </div>
-          <span className="tracking-[0.3px]">P.IVA 01659230245 · COD. SDI T9K4ZHO</span>
+          <span className="tracking-[0.3px]">
+            P.IVA 01659230245 · COD. SDI T9K4ZHO · Creato da{' '}
+            <a href="https://adevolution.eu/" target="_blank" rel="noopener" className="hover:text-rosso transition-colors">
+              ADevolution
+            </a>
+          </span>
         </div>
       </div>
     </footer>
