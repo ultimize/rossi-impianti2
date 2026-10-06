@@ -14,8 +14,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/marchi',
     '/contatti',
     '/blog',
-    '/shop',
-    '/shop/carrello',
   ];
 
   const staticUrls = staticPaths.map((path) => ({
@@ -39,18 +37,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  // Fetch products
-  const { data: products } = await supabase
-    .from('products')
-    .select('slug, created_at')
-    .eq('status', 'published');
 
-  const productUrls = (products || []).map((prod) => ({
-    url: `${siteUrl}/shop/${prod.slug}`,
-    lastModified: new Date(prod.created_at || new Date()),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }));
-
-  return [...staticUrls, ...articleUrls, ...productUrls];
+  return [...staticUrls, ...articleUrls];
 }

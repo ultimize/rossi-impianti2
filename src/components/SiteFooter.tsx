@@ -53,9 +53,6 @@ export default function SiteFooter() {
             <Link href="/blog" className="text-text2 hover:text-rosso transition-colors">
               News
             </Link>
-            <Link href="/shop" className="text-text2 hover:text-rosso transition-colors">
-              Shop
-            </Link>
           </div>
         </div>
 

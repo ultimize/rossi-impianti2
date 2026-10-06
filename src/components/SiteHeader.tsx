@@ -4,14 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { Menu, X, ShoppingCart } from 'lucide-react';
-import { useCart } from '@/context/CartContext';
+import { Menu, X } from 'lucide-react';
 
 export default function SiteHeader() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { cartItems } = useCart();
-  const cartCount = cartItems.reduce((acc, item) => acc + item.qty, 0);
 
   const links = [
     { label: 'Home', href: '/' },
@@ -59,24 +56,7 @@ export default function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/shop"
-            className={`font-plex font-semibold text-[15px] transition-colors hover:text-azzurro-hover flex items-center gap-1.5 ${
-              isLinkActive('/shop') ? 'text-text1' : 'text-azzurro'
-            }`}
-          >
-            Shop
-          </Link>
 
-          {/* Cart Icon */}
-          <Link href="/shop/carrello" className="relative text-text2 hover:text-text1 p-1 transition-colors">
-            <ShoppingCart size={18} />
-            {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-rosso text-white font-plex font-bold text-[10px] w-4.5 h-4.5 flex items-center justify-center rounded-full">
-                {cartCount}
-              </span>
-            )}
-          </Link>
 
           <Link
             href="/contatti"
@@ -88,14 +68,6 @@ export default function SiteHeader() {
 
         {/* MOBILE MENU TRIGGER */}
         <div className="flex lg:hidden items-center gap-4">
-          <Link href="/shop/carrello" className="relative text-text2 hover:text-text1 p-1 transition-colors">
-            <ShoppingCart size={20} />
-            {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-rosso text-white font-plex font-bold text-[10px] w-4.5 h-4.5 flex items-center justify-center rounded-full">
-                {cartCount}
-              </span>
-            )}
-          </Link>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-text1 focus:outline-none p-1"
@@ -121,15 +93,6 @@ export default function SiteHeader() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/shop"
-              onClick={() => setMobileMenuOpen(false)}
-              className={`py-2 border-b border-border/60 font-semibold transition-colors ${
-                isLinkActive('/shop') ? 'text-text1' : 'text-azzurro'
-              }`}
-            >
-              Shop
-            </Link>
             <Link
               href="/contatti"
               onClick={() => setMobileMenuOpen(false)}
