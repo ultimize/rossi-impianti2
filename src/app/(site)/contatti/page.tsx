@@ -10,6 +10,7 @@ export default function ContattiPage() {
     cognome: '',
     email: '',
     telefono: '',
+    piva: '',
     messaggio: '',
     privacy: false,
   });
@@ -17,7 +18,7 @@ export default function ContattiPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.nome || !form.email || !form.messaggio || !form.privacy) {
+    if (!form.nome || !form.email || !form.piva || !form.messaggio || !form.privacy) {
       alert('Per favore compila i campi obbligatori e accetta la privacy policy.');
       return;
     }
@@ -29,6 +30,7 @@ export default function ContattiPage() {
         cognome: '',
         email: '',
         telefono: '',
+    piva: '',
         messaggio: '',
         privacy: false,
       });
@@ -122,6 +124,9 @@ export default function ContattiPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col">
+              <p className="font-plex text-[13.5px] text-text2 leading-[1.5] bg-white/60 border-l-[3px] border-rosso rounded-[6px] px-3.5 py-2.5 mb-4 text-left">
+                Lavoriamo esclusivamente con <strong className="text-text1">aziende</strong>: non effettuiamo interventi per privati. La Partita IVA è obbligatoria.
+              </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-3.5">
                 <input
                   type="text"
@@ -152,6 +157,17 @@ export default function ContattiPage() {
                 placeholder="Telefono"
                 value={form.telefono}
                 onChange={(e) => setForm({ ...form, telefono: e.target.value })}
+                className="bg-bg border border-border2 rounded-btn p-3.5 text-text1 font-plex text-[15px] outline-none focus:border-rosso mb-3.5"
+              />
+              <input
+                type="text"
+                placeholder="Partita IVA *"
+                required
+                inputMode="numeric"
+                pattern="(IT)?[0-9]{11}"
+                title="Inserisci una Partita IVA valida (11 cifre)"
+                value={form.piva}
+                onChange={(e) => setForm({ ...form, piva: e.target.value.replace(/\s/g, '').toUpperCase() })}
                 className="bg-bg border border-border2 rounded-btn p-3.5 text-text1 font-plex text-[15px] outline-none focus:border-rosso mb-3.5"
               />
               <textarea
