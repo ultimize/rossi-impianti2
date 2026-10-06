@@ -15,6 +15,7 @@
 
 # vercel
 .vercel
+.claude
 
 # supabase
 .supabase/

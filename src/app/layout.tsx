@@ -49,16 +49,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it" className="scroll-smooth">
-      <Script id="consent-default" strategy="beforeInteractive">{`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        window.gtag = gtag;
-        gtag('consent', 'default', {
-          ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied',
-          analytics_storage:'denied', functionality_storage:'granted', security_storage:'granted',
-          wait_for_update: 500
-        });
-      `}</Script>
+      <head>
+        <Script id="consent-default" strategy="beforeInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('consent', 'default', {
+            ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied',
+            analytics_storage:'denied', functionality_storage:'granted', security_storage:'granted',
+            wait_for_update: 500
+          });
+        `}</Script>
+      </head>
       <body
         className={`${ibmPlexSans.variable} ${archivo.variable} font-plex bg-bg text-text1 antialiased`}
       >

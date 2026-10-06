@@ -31,6 +31,7 @@ const TARGETS = [
   'servizi',              // intera cartella (gallerie + featured)
   'site/hero.jpg',
   'site/sede.jpg',
+  'site/sede-interno.jpg',
   'site/industriale.jpg',
 ];
 
@@ -64,9 +65,19 @@ function contentType(name) {
   return ({ jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', avif: 'image/avif', gif: 'image/gif' })[ext] || 'application/octet-stream';
 }
 
+async function ensureBucket() {
+  const { data: buckets } = await supabase.storage.listBuckets();
+  if (buckets?.find((b) => b.name === BUCKET)) return;
+  const { error } = await supabase.storage.createBucket(BUCKET, { public: true });
+  if (error) throw new Error(`Impossibile creare il bucket "${BUCKET}": ${error.message}`);
+  console.log(`🪣 Bucket "${BUCKET}" creato (public).\n`);
+}
+
 async function main() {
   console.log(`\n🔧 Upload foto sito → Supabase Storage (${BUCKET}/${PREFIX}/)`);
   if (DRY_RUN) console.log('   [DRY RUN] nessun upload verrà effettuato\n');
+
+  if (!DRY_RUN) await ensureBucket();
 
   // Raccogli tutti i file
   const files = [];
